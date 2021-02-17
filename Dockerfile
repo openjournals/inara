@@ -1,7 +1,7 @@
 FROM pandoc/latex:2.11.4
 
 # Install additional LaTeX packages
-RUN tlmgr install \
+RUN tlmgr update --self && tlmgr install \
   algorithmicx \
   algorithms \
   booktabs \
