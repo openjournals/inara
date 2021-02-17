@@ -30,12 +30,12 @@ RUN tlmgr install \
 # Copy templates, images, and other resources
 ARG openjournals_path=/usr/local/share/openjournals
 COPY ./resources $openjournals_path
-COPY ./resources/docker-entrypoint.sh /usr/local/bin/paperdraft
+COPY ./resources/docker-entrypoint.sh /usr/local/bin/inara
 
 ENV JOURNAL=joss
 ENV OPENJOURNALS_PATH=$openjournals_path
 
 # Input is read from `paper.md` by default, but can be overridden. Output is
 # written to `paper.pdf`
-ENTRYPOINT ["/usr/local/bin/paperdraft"]
+ENTRYPOINT ["/usr/local/bin/inara"]
 CMD ["paper.md"]
