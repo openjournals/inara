@@ -1,0 +1,14 @@
+template: joss/latex.template
+csl: /usr/local/share/openjournals/apa.csl
+
+variables:
+  joss_resource_url: 'N/A'
+  journal_abbrev_title: 'JOSS'
+  journal_alias: 'joss'
+  journal_issn: '2475-9066'
+  journal_name: 'Journal of Open Source Software'
+  journal_url: 'https://joss.theoj.org/'
+
+metadata:
+  aas_logo_path: '/usr/local/share/openjournals/joss/aas-logo.png'
+  logo_path: '/usr/local/share/openjournals/joss/logo.png'

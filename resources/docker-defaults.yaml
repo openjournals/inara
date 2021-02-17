@@ -1,0 +1,42 @@
+from: markdown
+to: latex
+output-file: paper.pdf
+standalone: true
+
+# note that structured variables may be specified:
+variables:
+  archive_doi: 'DOI unavailable'
+  doi_batch_id: 'N/A'
+  editor_url: 'https://example.com'
+  formatted_doi: 'DOI unavailable'
+  repository: 'NO_REPOSITORY'
+  review_issue_url: 'N/A'
+  paper_url: 'NO PAPER URL'
+
+metadata:
+  citation_author: '¿citation_author?'
+  editor_name: 'Pending Editor'
+  issue: '¿ISSUE?'
+  page: '¿PAGE?'
+  published: 'N/A'
+  reviewers:
+    - 'Pending Reviewers'
+  submitted: 'N/A'
+  volume: '¿VOL?'
+
+resource-path: [".", '/usr/local/share/openjournals']
+
+filters:
+  - citeproc
+  - type: lua
+    path: /usr/local/share/openjournals/time.lua
+
+# ERROR, WARNING, or INFO
+verbosity: INFO
+
+pdf-engine: xelatex
+dpi: 300
+
+default-image-extension: ".png"
+reference-links: true
+fail-if-warnings: true
