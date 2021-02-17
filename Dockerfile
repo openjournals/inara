@@ -30,7 +30,7 @@ RUN tlmgr update --self && tlmgr install \
 # Copy templates, images, and other resources
 ARG openjournals_path=/usr/local/share/openjournals
 COPY ./resources $openjournals_path
-COPY ./resources/docker-entrypoint.sh /usr/local/bin/inara
+COPY ./scripts/entrypoint.sh /usr/local/bin/inara
 
 ENV JOURNAL=joss
 ENV OPENJOURNALS_PATH=$openjournals_path
