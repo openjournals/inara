@@ -11,5 +11,6 @@ cd "$(dirname $input)"
 /usr/local/bin/pandoc \
     --defaults="$OPENJOURNALS_PATH"/docker-defaults.yaml \
     --defaults="$OPENJOURNALS_PATH"/"$JOURNAL"/defaults.yaml \
+	  --data-dir="$OPENJOURNALS_PATH" \
     "$input_file" \
     "$@"

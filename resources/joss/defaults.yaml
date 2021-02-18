@@ -1,5 +1,5 @@
 template: joss/latex.template
-csl: /usr/local/share/openjournals/apa.csl
+csl: apa.csl
 
 variables:
   joss_resource_url: 'N/A'
@@ -10,5 +10,5 @@ variables:
   journal_url: 'https://joss.theoj.org/'
 
 metadata:
-  aas_logo_path: '/usr/local/share/openjournals/joss/aas-logo.png'
-  logo_path: '/usr/local/share/openjournals/joss/logo.png'
+  aas_logo_path: 'joss/aas-logo.png'
+  logo_path: 'joss/logo.png'

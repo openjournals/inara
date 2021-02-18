@@ -24,12 +24,17 @@ metadata:
   submitted: 'N/A'
   volume: '¿VOL?'
 
-resource-path: [".", '/usr/local/share/openjournals']
+resource-path:
+  - '/usr/local/share/openjournals'
+  - '.'
+  - '/usr/local/share/openjournals/filters'
 
 filters:
-  - citeproc
+  - type: citeproc
   - type: lua
-    path: /usr/local/share/openjournals/time.lua
+    path: time.lua
+  - type: lua
+    path: add-images.lua
 
 # ERROR, WARNING, or INFO
 verbosity: INFO
