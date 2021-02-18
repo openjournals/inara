@@ -1,6 +1,4 @@
 from: markdown
-to: latex
-output-file: paper.pdf
 standalone: true
 
 # note that structured variables may be specified:
@@ -27,7 +25,6 @@ metadata:
 resource-path:
   - '/usr/local/share/openjournals'
   - '.'
-  - '/usr/local/share/openjournals/filters'
 
 filters:
   - type: citeproc

@@ -6,13 +6,15 @@ JOURNAL = joss
 
 # Path to OpenJournals resources like logos, csl style file, etc.
 OPENJOURNALS_PATH = resources
+# Data path, containing configs, filters.
+INARA_DATA_PATH = data
 # The pandoc executable
 PANDOC = pandoc
 # Folder in which the outputs will be placed
 TARGET_FOLDER = publishing-artifacts
 
-SHARED_OPTIONS = --data-dir=. \
-  --defaults=$(OPENJOURNALS_PATH)/docker-defaults.yaml \
+SHARED_OPTIONS = --data-dir=$(INARA_DATA_PATH) \
+  --defaults=$(INARA_DATA_PATH)/shared.yaml \
   --defaults=$(OPENJOURNALS_PATH)/$(JOURNAL)/defaults.yaml \
   --resource-path=.:$(OPENJOURNALS_PATH):$(dir $(ARTICLE)) \
 
@@ -22,18 +24,13 @@ all: \
 		$(TARGET_FOLDER)/paper.pdf \
 		$(TARGET_FOLDER)/paper.html
 
-$(TARGET_FOLDER)/paper.pdf: $(ARTICLE) $(TARGET_FOLDER)
+$(TARGET_FOLDER)/paper.%: $(ARTICLE) \
+		$(INARA_DATA_PATH)/%.yaml \
+		$(TARGET_FOLDER)
 	mkdir -p $(TARGET_FOLDER)
 	$(PANDOC) $(SHARED_OPTIONS)\
-	  --output=$@ \
-	  $<
-
-$(TARGET_FOLDER)/paper.html: $(ARTICLE) $(TARGET_FOLDER)
-	$(PANDOC) \
-	  $(SHARED_OPTIONS) \
+    --defaults=$(INARA_DATA_PATH)/$*.yaml \
 	  --extract-media=$(TARGET_FOLDER) \
-	  --metadata=lang:en-US \
-	  --to=html \
 	  --output=$@ \
 	  $<
 

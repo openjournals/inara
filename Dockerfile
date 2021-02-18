@@ -30,7 +30,7 @@ RUN tlmgr update --self && tlmgr install \
 # Copy templates, images, and other resources
 ARG openjournals_path=/usr/local/share/openjournals
 COPY ./resources $openjournals_path
-COPY ./filters $openjournals_path/filters
+COPY ./data $openjournals_path/data
 COPY ./scripts/entrypoint.sh /usr/local/bin/inara
 
 ENV JOURNAL=joss
