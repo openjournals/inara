@@ -15,10 +15,12 @@ PANDOC = pandoc
 TARGET_FOLDER = publishing-artifacts
 
 .PHONY: all
-all: \
-		$(TARGET_FOLDER)/paper.pdf \
-		$(TARGET_FOLDER)/paper.jats \
-		$(TARGET_FOLDER)/paper.html
+all: pdf html jats
+
+.PHONY: pdf html jats
+pdf: $(TARGET_FOLDER)/paper.pdf
+html: $(TARGET_FOLDER)/paper.html
+jats:	$(TARGET_FOLDER)/paper.jats
 
 $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 		$(INARA_DATA_PATH)/defaults/%.yaml \
