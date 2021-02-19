@@ -23,13 +23,12 @@ $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 		$(INARA_DATA_PATH)/defaults/%.yaml \
 		$(TARGET_FOLDER)
 	mkdir -p $(TARGET_FOLDER)
-	$(PANDOC) \
+	INARA_ARTIFACTS_PATH=$(TARGET_FOLDER)/ $(PANDOC) \
 	  --data-dir=$(INARA_DATA_PATH) \
 	  --defaults=shared \
 	  --defaults=$*.yaml \
 	  --defaults=$(OPENJOURNALS_PATH)/$(JOURNAL)/defaults.yaml \
 	  --resource-path=.:$(OPENJOURNALS_PATH):$(dir $(ARTICLE)) \
-	  --extract-media=$(TARGET_FOLDER) \
 	  --variable=$(JOURNAL) \
 	  --metadata-file=$(OPENJOURNALS_PATH)/$(JOURNAL)/journal-metadata.yaml \
 	  --output=$@ \
