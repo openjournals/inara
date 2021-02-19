@@ -13,24 +13,24 @@ PANDOC = pandoc
 # Folder in which the outputs will be placed
 TARGET_FOLDER = publishing-artifacts
 
-SHARED_OPTIONS = --data-dir=$(INARA_DATA_PATH) \
-  --defaults=$(INARA_DATA_PATH)/shared.yaml \
-  --defaults=$(OPENJOURNALS_PATH)/$(JOURNAL)/defaults.yaml \
-  --resource-path=.:$(OPENJOURNALS_PATH):$(dir $(ARTICLE)) \
-
-
 .PHONY: all
 all: \
 		$(TARGET_FOLDER)/paper.pdf \
+		$(TARGET_FOLDER)/paper.jats \
 		$(TARGET_FOLDER)/paper.html
 
 $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
-		$(INARA_DATA_PATH)/%.yaml \
+		$(INARA_DATA_PATH)/defaults/%.yaml \
 		$(TARGET_FOLDER)
 	mkdir -p $(TARGET_FOLDER)
-	$(PANDOC) $(SHARED_OPTIONS)\
-    --defaults=$(INARA_DATA_PATH)/$*.yaml \
+	$(PANDOC) \
+	  --data-dir=$(INARA_DATA_PATH) \
+	  --defaults=shared \
+	  --defaults=$*.yaml \
+	  --defaults=$(OPENJOURNALS_PATH)/$(JOURNAL)/defaults.yaml \
+	  --resource-path=.:$(OPENJOURNALS_PATH):$(dir $(ARTICLE)) \
 	  --extract-media=$(TARGET_FOLDER) \
+	  --variable=$(JOURNAL) \
 	  --output=$@ \
 	  $<
 
@@ -40,4 +40,5 @@ $(TARGET_FOLDER):
 .PHONY: clean
 clean:
 	rm -rf $(TARGET_FOLDER)/paper.html
+	rm -rf $(TARGET_FOLDER)/paper.jats
 	rm -rf $(TARGET_FOLDER)/paper.pdf

@@ -1,0 +1,5 @@
+to: jats_publishing
+
+filters:
+  - type: lua
+    path: jats-metadata.lua

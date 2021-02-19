@@ -9,9 +9,10 @@ input_file="$(basename $input)"
 cd "$(dirname $input)"
 
 /usr/local/bin/pandoc \
-    --defaults="$OPENJOURNALS_PATH"/data/shared.yaml \
-    --defaults="$OPENJOURNALS_PATH"/data/pdf.yaml \
-    --defaults="$OPENJOURNALS_PATH"/"$JOURNAL"/defaults.yaml \
 	  --data-dir="$OPENJOURNALS_PATH"/data \
+    --defaults=shared \
+    --defaults=pdf \
+    --defaults="$OPENJOURNALS_PATH"/"$JOURNAL"/defaults.yaml \
+	  --variable="${JOURNAL}" \
     "$input_file" \
     "$@"

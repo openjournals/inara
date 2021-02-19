@@ -1,4 +1,3 @@
-template: joss/latex.template
 csl: apa.csl
 
 variables:

@@ -97,7 +97,9 @@ $endif$
             headheight=2.2cm, reversemp, includemp, marginparwidth=4.5cm]{geometry}
 
 % --- Default font ------------------------------------------------------------
+$if(joss)$
 \renewcommand\familydefault{\sfdefault}
+$endif$
 
 % --- Style -------------------------------------------------------------------
 \renewcommand{\bibfont}{\small \sffamily}
@@ -405,7 +407,7 @@ $if(affiliations)$
     \affil[$affiliations.index$]{$affiliations.name$}
   $endfor$
 $endif$
-\date{\vspace{-7ex}}
+\date{\vspace{$if(joss)$-7ex$else$-5ex$endif$}}
 
 \begin{document}
 $if(title)$
@@ -437,6 +439,7 @@ $endif$
 
   \vspace{2mm}
 
+$if(joss)$
   \par\noindent\hrulefill\par
 
   \vspace{2mm}
@@ -453,6 +456,7 @@ $endif$
   \end{itemize}
   $endif$
   \vspace{2mm}
+$endif$
 
   {\bfseries Submitted:} $submitted$\\
   {\bfseries Published:} $published$
