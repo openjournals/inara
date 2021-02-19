@@ -31,6 +31,7 @@ $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 	  --resource-path=.:$(OPENJOURNALS_PATH):$(dir $(ARTICLE)) \
 	  --extract-media=$(TARGET_FOLDER) \
 	  --variable=$(JOURNAL) \
+	  --metadata-file=$(OPENJOURNALS_PATH)/$(JOURNAL)/journal-metadata.yaml \
 	  --output=$@ \
 	  $<
 
