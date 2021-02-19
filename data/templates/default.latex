@@ -463,7 +463,7 @@ $endif$
 
   \vspace{2mm}
   {\bfseries License}\\
-  Authors of papers retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{http://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC BY 4.0}}).
+  Authors of papers retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{https://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC BY 4.0}}).
 
   $if(aas-doi)$
   \vspace{4mm}
