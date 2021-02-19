@@ -4,6 +4,7 @@ FROM pandoc/latex:2.11.4
 RUN tlmgr update --self && tlmgr install \
   algorithmicx \
   algorithms \
+  biblatex \
   booktabs \
   caption \
   collection-xetex \
