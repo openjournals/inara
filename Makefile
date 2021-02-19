@@ -41,6 +41,10 @@ $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 $(TARGET_FOLDER):
 	mkdir -p $(TARGET_FOLDER)
 
+.PHONY: docker-image
+docker-image: Dockerfile
+	docker build --tag openjournals/inara .
+
 .PHONY: clean
 clean:
 	rm -rf $(TARGET_FOLDER)/paper.html
