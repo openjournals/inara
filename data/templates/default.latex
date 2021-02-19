@@ -26,6 +26,12 @@
     \endorigfigure
 }
 
+$if(draft)$
+\usepackage{lineno}
+\linenumbers
+\usepackage{draftwatermark}
+$endif$
+
 \usepackage{fixltx2e} % provides \textsubscript
 \usepackage[
   backend=biber,

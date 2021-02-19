@@ -4,6 +4,7 @@ ARTICLE = paper.md
 # Currently either `joss` or `jose`.
 JOURNAL = joss
 
+DRAFT = true
 # Path to OpenJournals resources like logos, csl style file, etc.
 OPENJOURNALS_PATH = resources
 # Data path, containing configs, filters.
@@ -29,8 +30,9 @@ $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 	  --defaults=$*.yaml \
 	  --defaults=$(OPENJOURNALS_PATH)/$(JOURNAL)/defaults.yaml \
 	  --resource-path=.:$(OPENJOURNALS_PATH):$(dir $(ARTICLE)) \
-	  --variable=$(JOURNAL) \
+	  --metadata=draft:$(DRAFT) \
 	  --metadata-file=$(OPENJOURNALS_PATH)/$(JOURNAL)/journal-metadata.yaml \
+	  --variable=$(JOURNAL) \
 	  --output=$@ \
 	  $<
 
