@@ -32,6 +32,8 @@ filters:
     path: time.lua
   - type: lua
     path: add-images.lua
+  - type: lua
+    path: name-parser.lua
 
 # ERROR, WARNING, or INFO
 verbosity: INFO
