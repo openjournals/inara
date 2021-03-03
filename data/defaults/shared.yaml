@@ -40,7 +40,6 @@ filters:
 # ERROR, WARNING, or INFO
 verbosity: INFO
 
-pdf-engine: xelatex
 dpi: 300
 
 default-image-extension: ".png"

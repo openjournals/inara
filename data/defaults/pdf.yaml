@@ -1,2 +1,4 @@
 to: latex
+pdf-engine: latexmk
+pdf-engine-opt: -xelatex
 output-file: paper.pdf
