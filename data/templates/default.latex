@@ -33,12 +33,6 @@ $if(draft)$
 $endif$
 
 \usepackage{fixltx2e} % provides \textsubscript
-\usepackage[
-  backend=biber,
-%  style=alphabetic,
-%  citestyle=numeric
-]{biblatex}
-\bibliography{$bibliography$}
 
 % --- Splitting \texttt --------------------------------------------------
 
@@ -108,7 +102,6 @@ $if(joss)$
 $endif$
 
 % --- Style -------------------------------------------------------------------
-\renewcommand{\bibfont}{\small \sffamily}
 \renewcommand{\captionfont}{\small\sffamily}
 \renewcommand{\captionlabelfont}{\bfseries}
 
