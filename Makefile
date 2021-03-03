@@ -45,6 +45,12 @@ $(TARGET_FOLDER):
 docker-image: Dockerfile
 	docker build --tag openjournals/inara .
 
+$(OPENJOURNALS_PATH)/footer.csl: $(OPENJOURNALS_PATH)/apa.csl
+	sed -e 's/et-al-use-first="[0-9]*"/et-al-use-first="1"/g' \
+	    -e 's/et-al-min="[0-9]*"/et-al-min="3"/g' \
+	    -e 's/et-al-use-last="true"/et-al-use-last="false"/g' \
+			$< > $@
+
 .PHONY: clean
 clean:
 	rm -rf $(TARGET_FOLDER)/paper.html

@@ -1,6 +1,6 @@
 csl: apa.csl
 
-variables:
+metadata:
   joss_resource_url: 'N/A'
   journal_abbrev_title: 'JOSS'
   journal_alias: 'joss'
@@ -8,6 +8,5 @@ variables:
   journal_name: 'Journal of Open Source Software'
   journal_url: 'https://joss.theoj.org/'
 
-metadata:
   aas_logo_path: 'joss/aas-logo.png'
   logo_path: 'joss/logo.png'

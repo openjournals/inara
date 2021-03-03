@@ -137,7 +137,7 @@ $endif$
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
 
-\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $citation_author$, ($year$). $title$. \textit{$journal_name$}, $volume$($issue$), $page$. \url{https://doi.org/$formatted_doi$}}}}
+\fancyfoot[L]{\parbox[t]{0.98\headwidth}{\footnotesize{\sffamily $self-citation$}.}}
 
 
 \fancyfoot[R]{\sffamily \thepage}

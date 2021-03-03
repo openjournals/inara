@@ -1,17 +1,11 @@
 from: markdown
 standalone: true
 
-# note that structured variables may be specified:
-variables:
+metadata:
   archive_doi: 'DOI unavailable'
-  doi_batch_id: 'N/A'
   editor_url: 'https://example.com'
-  formatted_doi: 'DOI unavailable'
   repository: 'NO_REPOSITORY'
   review_issue_url: 'N/A'
-  paper_url: 'NO PAPER URL'
-
-metadata:
   citation_author: '¿citation_author?'
   editor_name: 'Pending Editor'
   issue: '¿ISSUE?'
@@ -21,6 +15,10 @@ metadata:
     - 'Pending Reviewers'
   submitted: 'N/A'
   volume: '¿VOL?'
+  doi_batch_id: 'N/A'
+  formatted_doi: 'DOI unavailable'
+  paper_url: 'NO PAPER URL'
+  footer-csl: 'footer.csl'
 
 resource-path:
   - '/usr/local/share/openjournals'
@@ -33,7 +31,11 @@ filters:
   - type: lua
     path: add-images.lua
   - type: lua
+    path: jats-metadata.lua
+  - type: lua
     path: name-parser.lua
+  - type: lua
+    path: self-citation.lua
 
 # ERROR, WARNING, or INFO
 verbosity: INFO
