@@ -35,7 +35,7 @@ function Meta (meta)
         ['page'] = meta.page,
         ['volume'] = meta.volume,
         ['submitted'] = meta.submitted,
-        -- ['editor'] = meta.editor_name,
+        ['editor'] = meta.editor_name,
         ['url'] = meta.paper_url,
         ['doi'] = meta.doi or meta.archive_doi
       }
