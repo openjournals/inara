@@ -24,8 +24,8 @@ jats:	$(TARGET_FOLDER)/paper.jats
 
 $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 		$(INARA_DATA_PATH)/defaults/%.yaml \
+		$(OPENJOURNALS_PATH)/footer.csl \
 		$(TARGET_FOLDER)
-	mkdir -p $(TARGET_FOLDER)
 	INARA_ARTIFACTS_PATH=$(TARGET_FOLDER)/ $(PANDOC) \
 	  --data-dir=$(INARA_DATA_PATH) \
 	  --defaults=shared \
