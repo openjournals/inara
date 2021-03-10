@@ -23,15 +23,20 @@ local function extract_notes(metainlines)
   return new_span.content, notes
 end
 
-local function is_corresponding_author_note(note)
+local function is_corresponding_author_note (note)
   local str = stringify(note)
   return str:match '[Cc]orrespond'
 end
 
 local corresponding_authors = List()
-local function add_corresponding_author(author)
+local function add_corresponding_author (author)
   corresponding_authors:insert(author)
   return tostring(#corresponding_authors)
+end
+
+local function is_equal_contributor_note (note)
+  local str = stringify(note)
+  return str:match '[Ee]qual' and str:match 'contrib'
 end
 
 function Meta (meta)
@@ -43,6 +48,9 @@ function Meta (meta)
     author.affiliation = author.affiliation
       and split_string(stringify(author.affiliation), ',')
       or nil
+    if notes:find_if(is_equal_contributor_note) then
+      author['equal-contrib'] = true
+    end
     if notes:find_if(is_corresponding_author_note) then
       author['cor-id'] = add_corresponding_author(author)
     end
@@ -51,9 +59,18 @@ function Meta (meta)
     aff.id = tostring(i)
   end
 
+  -- if there is only a single equal-contributor note, then it usually means
+  -- that the first two authors contributed equally; set a second mark in that
+  -- case.
+  local equal_contribs =
+    meta.authors:filter(function (auth) return auth['equal-contrib'] end)
+  if #equal_contribs == 1 and meta.authors[2] then
+    meta.authors[2]['equal-contrib'] = true
+  end
+
   meta.article = {}
   meta.article['author-notes'] = {}
-  meta.article['author-notes'].corresp =
+  meta.article['author-notes'].corresp = #corresponding_authors > 0 and
     corresponding_authors:map(function (auth, i)
         local corresp = {id = tostring(i)}
         if auth.email then
@@ -63,6 +80,7 @@ function Meta (meta)
         end
         return corresp
     end)
+  meta.article['author-notes']['equal-contributors'] = #equal_contribs > 0
 
   meta.author = authors
   meta.affiliation = affiliations

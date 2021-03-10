@@ -392,14 +392,19 @@ $if(subtitle)$
 $endif$
 
 $for(authors)$
-\author[$authors.affiliation$$if(authors.cor-id)$$$\mathparagraph$$$endif$]{$authors.name$}
+\author[$authors.affiliation$%
+$if(authors.equal-contrib)$*$endif$%
+$if(authors.cor-id)$$$\mathparagraph$$$endif$]{$authors.name$}
 $endfor$
 
 $for(affiliations)$
 \affil[$affiliations.index$]{$affiliations.name$}
 $endfor$
 $if(article.author-notes.corresp)$
-\affil[$$\mathparagraph$$]{Corresponding author}
+\affil[$article.author-notes.corresp$ $$\mathparagraph$$]{Corresponding author}
+$endif$
+$if(article.author-notes.equal-contributors)$
+\affil[*]{Authors contributed equally}
 $endif$
 \date{\vspace{$if(joss)$-7ex$else$-5ex$endif$}}
 
