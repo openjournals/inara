@@ -391,20 +391,15 @@ $if(subtitle)$
 \subtitle{$subtitle$}
 $endif$
 
-$if(authors)$
-  $for(authors)$
-  $if(authors.affiliation)$
-    \author[$authors.affiliation$]{$authors.name$}
-  $else$
-    \author{$authors.name$}
-  $endif$
-  $endfor$
-$endif$
+$for(authors)$
+\author[$authors.affiliation$$if(authors.cor-id)$$$\mathparagraph$$$endif$]{$authors.name$}
+$endfor$
 
-$if(affiliations)$
-  $for(affiliations)$
-    \affil[$affiliations.index$]{$affiliations.name$}
-  $endfor$
+$for(affiliations)$
+\affil[$affiliations.index$]{$affiliations.name$}
+$endfor$
+$if(article.author-notes.corresp)$
+\affil[$$\mathparagraph$$]{Corresponding author}
 $endif$
 \date{\vspace{$if(joss)$-7ex$else$-5ex$endif$}}
 

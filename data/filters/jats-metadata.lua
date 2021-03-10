@@ -40,7 +40,9 @@ function Meta (meta)
   for _, author in ipairs(authors) do
     local name, notes = extract_notes(author.name)
     author.name = name
-    author.affiliation = split_string(stringify(author.affiliation), ',')
+    author.affiliation = author.affiliation
+      and split_string(stringify(author.affiliation), ',')
+      or nil
     if notes:find_if(is_corresponding_author_note) then
       author['cor-id'] = add_corresponding_author(author)
     end
