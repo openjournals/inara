@@ -6,6 +6,4 @@ metadata:
 
 filters:
   - type: lua
-    path: jats-metadata.lua
-  - type: lua
     path: extract-images.lua
