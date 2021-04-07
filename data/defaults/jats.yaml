@@ -1,9 +1,5 @@
 to: jats_publishing+element_citations
 
-# All papers are currently written in English.
-metadata:
-  lang: 'en-US'
-
 filters:
   - type: lua
     path: extract-images.lua

@@ -20,6 +20,9 @@ metadata:
   paper_url: 'NO PAPER URL'
   footer-csl: 'footer.csl'
 
+  # All papers are currently written in English.
+  lang: 'en-US'
+
 resource-path:
   - '/usr/local/share/openjournals'
   - '.'
