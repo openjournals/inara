@@ -79,8 +79,14 @@ function Meta (meta)
           corresp.note = "Corresponding author"
         end
         return corresp
-    end)
-  meta.article['author-notes']['equal-contributors'] = #equal_contribs > 0
+    end) or nil
+  meta.article['author-notes']['equal-contributors'] =
+    #equal_contribs > 0 or nil
+  -- unset author notes unless it contains values
+  if not next(meta.article['author-notes']) then
+    meta.article['author-notes'] = nil
+  end
+
 
   meta.author = authors
   meta.affiliation = affiliations
