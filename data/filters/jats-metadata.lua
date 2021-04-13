@@ -56,7 +56,11 @@ function Meta (meta)
     end
   end
   for i, aff in ipairs(affiliations) do
-    aff.id = tostring(i)
+    aff.id = aff.index or tostring(i)
+    -- ensure name is not a block
+    aff.name = aff.name.t ~= 'MetaBlocks'
+      and aff.name
+      or pandoc.utils.blocks_to_inlines(aff.name)
   end
 
   -- if there is only a single equal-contributor note, then it usually means
