@@ -17,6 +17,7 @@ local function authors_to_csl_json (authors)
 end
 
 function Meta (meta)
+  meta.article = meta.article or {}
   local tmpmeta = {
     ['references'] = {
       {
@@ -31,13 +32,13 @@ function Meta (meta)
         ['container-title'] = meta.journal_name,
         ['container-title-short'] = meta.journal_abbrev_title,
         ['ISSN'] = meta.journal_issn,
-        ['issue'] = meta.issue,
-        ['page'] = meta.page,
-        ['volume'] = meta.volume,
+        ['issue'] = tostring(meta.article.issue),
+        ['page'] = tostring(meta.article.fpage),
+        ['volume'] = tostring(meta.article.volume),
         ['submitted'] = meta.submitted,
-        ['editor'] = meta.editor_name,
-        ['url'] = meta.paper_url,
-        ['doi'] = meta.doi or meta.archive_doi
+        ['editor'] = meta.editor.name,
+        ['url'] = 'https://doi.org/' .. stringify(meta.doi),
+        ['doi'] = meta.doi or meta.article.doi
       }
     },
     ['nocite'] = {pandoc.Cite({}, {pandoc.Citation('*', "NormalCitation")})},
