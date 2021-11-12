@@ -297,7 +297,7 @@ $if(verbatim-in-note)$
 \VerbatimFootnotes % allows verbatim text in footnotes
 $endif$
 $if(tables)$
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 $endif$
 
 % --- We redefined \texttt, but in sections and captions we want the
