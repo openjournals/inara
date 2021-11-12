@@ -1,0 +1,18 @@
+metadata:
+  archive_doi: 'DOI unavailable'
+  editor_url: 'https://example.com'
+  repository: 'NO_REPOSITORY'
+  review_issue_url: 'N/A'
+  citation_author: '¿citation_author?'
+  editor_name: 'Pending Editor'
+  issue: '¿ISSUE?'
+  page: '¿PAGE?'
+  published: 'N/A'
+  reviewers:
+    - 'Pending Reviewers'
+  submitted: 'N/A'
+  volume: '¿VOL?'
+  doi_batch_id: 'N/A'
+  formatted_doi: 'DOI unavailable'
+  paper_url: 'NO PAPER URL'
+  draft: true

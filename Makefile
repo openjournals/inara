@@ -13,7 +13,7 @@ PANDOC = pandoc
 # Folder in which the outputs will be placed
 TARGET_FOLDER = publishing-artifacts
 
-ARTICLE_INFO =
+ARTICLE_INFO_FILE = $(OPENJOURNALS_PATH)/default-article-info.yaml
 
 .PHONY: all
 all: pdf html jats
@@ -26,14 +26,8 @@ jats:	$(TARGET_FOLDER)/paper.jats
 $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 		$(INARA_DATA_PATH)/defaults/%.yaml \
 		$(OPENJOURNALS_PATH)/footer.csl \
+		$(ARTICLE_INFO_FILE) \
 		$(TARGET_FOLDER)
-	$(eval ARTICLE_INFO_FILE = $(shell mktemp --suffix='.yaml'))
-	if [ -z "$(ARTICLE_INFO)" ]; then \
-	    printf "%s" "metadata: {draft: true}" > $(ARTICLE_INFO_FILE); \
-	else \
-	    printf "%s" "$(ARTICLE_INFO)" > $(ARTICLE_INFO_FILE); \
-	fi
-	cat $(ARTICLE_INFO_FILE)
 	INARA_ARTIFACTS_PATH=$(TARGET_FOLDER)/ $(PANDOC) \
 	  --data-dir=$(INARA_DATA_PATH) \
 	  --defaults=shared \
@@ -45,7 +39,6 @@ $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 	  --variable=$(JOURNAL) \
 	  --output=$@ \
 	  $<
-	rm $(ARTICLE_INFO_FILE)
 
 $(TARGET_FOLDER):
 	mkdir -p $(TARGET_FOLDER)
