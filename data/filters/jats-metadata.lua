@@ -55,7 +55,7 @@ function Meta (meta)
       author['cor-id'] = add_corresponding_author(author)
     end
   end
-  for i, aff in ipairs(affiliations) do
+  for i, aff in ipairs(affiliations or {}) do
     aff.id = aff.index or tostring(i)
     -- ensure name is not a block
     aff.name = aff.name.t ~= 'MetaBlocks'
@@ -72,7 +72,7 @@ function Meta (meta)
     meta.authors[2]['equal-contrib'] = true
   end
 
-  meta.article = {}
+  meta.article = meta.article or {}
   meta.article['author-notes'] = {}
   meta.article['author-notes'].corresp = #corresponding_authors > 0 and
     corresponding_authors:map(function (auth, i)
