@@ -2,15 +2,15 @@
 # Get target formats. Default is to generate both JATS and PDF.
 usage()
 {
-    printf "Usage: %s [-m ARTICLE_INFO_FILE] [-o OUTPUT_FORMATS] INPUT_FILE" \
+    printf "Usage: %s [-m ARTICLE_INFO_FILE] [-o OUTPUT_FORMATS] INPUT_FILE\n" \
            "$0"
 }
 
-# args=$(getopt ':')
-set -- $(getopt ':o:m:' "$@")
+args=$(getopt ':o:m:' "$@")
 if [ $? -ne 0 ]; then
     usage && exit 1
 fi
+set -- $args
 
 outformats=jats,pdf
 article_info_file=
