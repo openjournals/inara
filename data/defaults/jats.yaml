@@ -1,7 +1,12 @@
 to: jats_publishing+element_citations
 
 filters:
-  []
+  - # Most papers have a 'references' section at the end, which makes
+    # sense for most output formats. However, as references are moved to
+    # the back-matter in JATS, we remove that heading.
+    type: lua
+    path: remove-references-heading.lua
+
 # This needs more work before we can really enable it.
 #   - type: lua
 #     path: extract-images.lua
