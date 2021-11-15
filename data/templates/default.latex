@@ -404,7 +404,7 @@ $if(article.author-notes.corresp)$
 \affil[$article.author-notes.corresp$ $$\mathparagraph$$]{Corresponding author}
 $endif$
 $if(article.author-notes.equal-contributors)$
-\affil[*]{Authors contributed equally}
+\affil[*]{$if(messgae.equal-contrib)$$message.equal-contrib$$else$These authors contributed equally.$endif$}
 $endif$
 \date{\vspace{$if(joss)$-7ex$else$-5ex$endif$}}
 
