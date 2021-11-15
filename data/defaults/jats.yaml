@@ -1,6 +1,10 @@
 to: jats_publishing+element_citations
 
 filters:
+  - # Handle `\ref`, `\label`, and `\autoref` commands
+    type: lua
+    path: resolve-references.lua
+
   - # Most papers have a 'references' section at the end, which makes
     # sense for most output formats. However, as references are moved to
     # the back-matter in JATS, we remove that heading.
