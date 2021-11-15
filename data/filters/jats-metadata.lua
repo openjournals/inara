@@ -84,7 +84,7 @@ function Meta (meta)
         end
         return corresp
     end) or nil
-  meta.article['author-notes']['equal-contributors'] =
+  meta.article['has-equal-contributors'] =
     #equal_contribs > 0 or nil
   -- unset author notes unless it contains values
   if not next(meta.article['author-notes']) then
