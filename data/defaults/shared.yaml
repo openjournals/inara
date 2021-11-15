@@ -34,7 +34,7 @@ filters:
   - type: lua
     path: add-images.lua
   - type: lua
-    path: jats-metadata.lua
+    path: normalize-metadata.lua
   - type: lua
     path: name-parser.lua
   - type: lua
