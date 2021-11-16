@@ -67,6 +67,7 @@ end
 
 local function parse_equation (txt)
   local is_equation = txt:match '^\\begin%{equation%}'
+    or txt:match '^\\begin%{align%}'
   if is_equation then
     local para = pandoc.read(txt, 'latex').blocks[1]
     if not para.t == 'Para' then
