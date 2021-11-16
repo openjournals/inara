@@ -30,6 +30,9 @@ end
 
 local corresponding_authors = List()
 local function add_corresponding_author (author)
+  author.email = author.email and FORMAT:match 'jats'
+    and stringify(author.email)
+    or author.email
   corresponding_authors:insert(author)
   return tostring(#corresponding_authors)
 end
@@ -51,7 +54,8 @@ function Meta (meta)
     if notes:find_if(is_equal_contributor_note) then
       author['equal-contrib'] = true
     end
-    if notes:find_if(is_corresponding_author_note) then
+    if notes:find_if(is_corresponding_author_note) or
+       author['corresponding'] then
       author['cor-id'] = add_corresponding_author(author)
     end
   end
@@ -73,17 +77,19 @@ function Meta (meta)
   end
 
   meta.article = meta.article or {}
-  meta.article['author-notes'] = {}
-  meta.article['author-notes'].corresp = #corresponding_authors > 0 and
-    corresponding_authors:map(function (auth, i)
-        local corresp = {id = tostring(i)}
-        if auth.email then
-          corresp.email = auth.email
-        else
-          corresp.note = "Corresponding author"
-        end
-        return corresp
-    end) or nil
+  meta.article['author-notes'] = meta.article['author-notes'] or {}
+  meta.article['author-notes'].corresp = meta.article['author-notes'].corresp
+    or (#corresponding_authors > 0 and
+        corresponding_authors:map(function (auth, i)
+          local corresp = {id = tostring(i)}
+          if auth.email then
+            corresp.email = auth.email
+          else
+            corresp.note = "Corresponding author"
+          end
+          return corresp
+        end))
+    or nil
   meta.article['has-equal-contributors'] =
     #equal_contribs > 0 or nil
   -- unset author notes unless it contains values
