@@ -101,7 +101,7 @@ return {
     end,
     RawBlock = function (raw)
       if raw.format == 'tex' then
-        local eq = read_equation(raw.text)
+        local eq = parse_equation(raw.text)
         return eq and pandoc.Para(eq) or nil
       end
     end,
