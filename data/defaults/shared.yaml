@@ -39,6 +39,8 @@ filters:
     path: name-parser.lua
   - type: lua
     path: self-citation.lua
+  - type: lua
+    path: substitute-in-format.lua
 
 # ERROR, WARNING, or INFO
 verbosity: INFO
