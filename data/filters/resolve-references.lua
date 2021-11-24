@@ -127,7 +127,7 @@ return {
       end
       local ref_target = link.attributes['reference-type'] == 'autoref'
         and labels[ref]
-        or (table_labels[ref] or figure_labels[ref])
+        or (table_labels[ref] or figure_labels[ref] or equation_labels[ref])
       if ref_target then
         link.content = ref_target
       end
