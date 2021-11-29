@@ -6,7 +6,7 @@ usage()
            "$0"
 }
 
-args=$(getopt ':o:m:' "$@")
+args=$(getopt ':o:m:v' "$@")
 if [ $? -ne 0 ]; then
     usage && exit 1
 fi
@@ -14,6 +14,7 @@ set -- $args
 
 outformats=jats,pdf
 article_info_file=
+verbose=0
 
 while true; do
     case "$1" in
@@ -25,6 +26,10 @@ while true; do
             # we switch the directory later, so get the absolute path.
             article_info_file="$(realpath "$2")";
             shift 2
+            ;;
+        (-v)
+            verbose=$(($verbose + 1));
+            shift 1
             ;;
         (--) shift; break;;
         (*) usage; exit 1;;
@@ -49,17 +54,18 @@ fi
 cd "${input_dir}"
 
 for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
+    [ "$verbose" -gt 0 ] && printf "Starting conversion to %s...\n" "$format"
     /usr/local/bin/pandoc \
 	      --data-dir="$OPENJOURNALS_PATH"/data \
         --defaults=shared \
         --defaults="${format}" \
         --defaults="$OPENJOURNALS_PATH"/"${JOURNAL}"/defaults.yaml \
-        --defaults="$OPENJOURNALS_PATH"/"${JOURNAL}"/defaults.yaml \
-        $article_info_option \
+        ${article_info_option} \
 	      --resource-path=.:${input_dir}:${OPENJOURNALS_PATH} \
 	      --metadata-file=${OPENJOURNALS_PATH}/${JOURNAL}/journal-metadata.yaml \
 	      --variable="${JOURNAL}" \
         --output="paper.${format}" \
         "$input_file" \
         "$@" || exit 1
+    [ "$verbose" -gt 0 ] && printf "DONE conversion to %s\n" "$format"
 done
