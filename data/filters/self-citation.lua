@@ -26,7 +26,7 @@ function Meta (meta)
         ['author'] = authors_to_csl_json(meta.authors),
         ['title'] = meta.title,
         ['issued'] = {
-          ['date-parts'] = {{meta.year}} -- FIXME
+          ['date-parts'] = {{meta.published_parts.year}}
         },
         ['publisher'] = meta.publisher,
         ['container-title'] = meta.journal_name,
