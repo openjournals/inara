@@ -1,4 +1,6 @@
 #!/bin/sh
+set -e
+
 # Get target formats. Default is to generate both JATS and PDF.
 usage()
 {
@@ -46,7 +48,37 @@ shift 1
 
 # Option passed to pandoc so the article metadata is included (if given).
 if [ ! -z "$article_info_file" ]; then
-    article_info_option="--defaults=${article_info_file}"
+    # turn into a defaults file if it isn't one.
+    if head -n1 "$article_info_file" | grep -q '^metadata:'; then
+        article_info_option="--defaults=${article_info_file}"
+    else
+        tmpmeta="$(mktemp)"
+        pandoc --from=markdown-citations \
+               --metadata-file="${article_info_file}" \
+               --to=markdown-citations \
+               --lua-filter=$OPENJOURNALS_PATH/clean-metadata.lua \
+               --output="${tmpmeta}" \
+               --standalone \
+               /dev/null
+        sed -i'' -e '/^---$/d' "$tmpmeta"
+        article_info_option="--defaults=${tmpmeta}"
+        article_info_file="${tmpmeta}"
+    fi
+fi
+
+
+printf 'Verbosity: %s\n' "$verbose"
+if [ "$verbose" -ge 1 ]; then
+    printf 'input_path           : %s\n' "${input_path}"
+    printf 'input_file           : %s\n' "${input_file}"
+    printf 'input_dir            : %s\n' "${input_dir}"
+    printf 'outformats           : %s\n' "${outformats}"
+    printf 'article_info_file    : %s\n' "${article_info_file}"
+    printf 'article_info_option  : %s\n' "${article_info_option}"
+fi
+if [ "$verbose" -ge 2 ]; then
+    printf "\nContent of metadata defaults file:\n"
+    cat "${article_info_file}"
 fi
 
 # All paths in the document are expected to be relative to the paper

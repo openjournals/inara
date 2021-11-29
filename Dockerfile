@@ -31,6 +31,7 @@ RUN tlmgr update --self && tlmgr install \
 ARG openjournals_path=/usr/local/share/openjournals
 COPY ./resources $openjournals_path
 COPY ./data $openjournals_path/data
+COPY ./scripts/clean-metadata.lua $openjournals_path
 COPY ./scripts/entrypoint.sh /usr/local/bin/inara
 
 ENV JOURNAL=joss

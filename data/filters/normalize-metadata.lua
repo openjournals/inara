@@ -97,6 +97,14 @@ function Meta (meta)
     meta.article['author-notes'] = nil
   end
 
+  -- move keys from base level to article
+  meta.article.doi = meta.article.doi or stringify(meta.doi)
+  meta.article.fpage = meta.article.fpage or stringify(meta.page)
+  meta.article.issue = meta.article.issue or stringify(meta.issue)
+  meta.article.volume = meta.article.volume or stringify(meta.volume)
+  meta.article['publisher-id'] = meta.article['publisher-id'] or
+    string.format("%0d", stringify(meta.page))
+
 
   meta.author = authors
   meta.affiliation = affiliations
