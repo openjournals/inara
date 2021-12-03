@@ -431,9 +431,9 @@ $endif$
   {\bfseries Software}
   \begin{itemize}
     \setlength\itemsep{0em}
-    \item \href{$review_issue_url$}{\color{linky}{Review}} \ExternalLink
-    \item \href{$repository$}{\color{linky}{Repository}} \ExternalLink
-    \item \href{$archive_doi$}{\color{linky}{Archive}} \ExternalLink
+    \item \href{$software_review_url$}{\color{linky}{Review}} \ExternalLink
+    \item \href{$software_repository_url$}{\color{linky}{Repository}} \ExternalLink
+    \item \href{https://dx.doi.org/$archive_doi$}{\color{linky}{Archive}} \ExternalLink
   \end{itemize}
 
   \vspace{2mm}
@@ -443,7 +443,7 @@ $if(joss)$
 
   \vspace{2mm}
 
-  {\bfseries Editor:} \href{$editor_url$}{$editor_name$} \ExternalLink \\
+  {\bfseries Editor:} \href{$editor.url$}{$editor.name$} \ExternalLink \\
   \vspace{1mm}
   $if(reviewers)$
   {\bfseries Reviewers:}
