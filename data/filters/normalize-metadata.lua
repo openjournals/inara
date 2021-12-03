@@ -103,7 +103,7 @@ function Meta (meta)
   meta.article.issue = meta.article.issue or stringify(meta.issue)
   meta.article.volume = meta.article.volume or stringify(meta.volume)
   meta.article['publisher-id'] = meta.article['publisher-id'] or
-    string.format("%0d", stringify(meta.page))
+    string.format("%0d", tonumber(stringify(meta.page or '')) or 0)
 
   -- Remove leading '@' from reviewers
   for i, reviewer in ipairs(meta.reviewers) do
