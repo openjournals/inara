@@ -2,18 +2,29 @@ from: markdown
 standalone: true
 
 metadata:
-  archive_doi: 'DOI unavailable'
-  editor_url: 'https://example.com'
-  repository: 'NO_REPOSITORY'
-  review_issue_url: 'N/A'
+  archive_doi: '10.5281'
+  doi: 'unavailable'
+  software_repository_url: 'https://github.com/openjournals'
+  software_review_url: 'https://github.com/openjournals'
   citation_author: '¿citation_author?'
-  editor_name: 'Pending Editor'
+  editor:
+    name: 'Open Journals'
+    url: 'https://joss.theoj.org'
+    github_user: '@openjournals'
   issue: '¿ISSUE?'
   page: '¿PAGE?'
-  published: 'N/A'
+  published:
+    year: 1970
+    month: 1
+    day: 1
+  submitted:
+    year: 1970
+    month: 1
+    day: 1
   reviewers:
-    - 'Pending Reviewers'
-  submitted: 'N/A'
+    - 'openjournals'
+  submitted_at: '1970-01-01'
+  published_at: '1970-01-01'
   volume: '¿VOL?'
   doi_batch_id: 'N/A'
   formatted_doi: 'DOI unavailable'
