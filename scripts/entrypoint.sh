@@ -16,7 +16,7 @@ set -- $args
 
 outformats=jats,pdf
 article_info_file=
-verbose=0
+verbosity=0
 
 while true; do
     case "$1" in
@@ -30,7 +30,7 @@ while true; do
             shift 2
             ;;
         (-v)
-            verbose=$(($verbose + 1));
+            verbosity=$(($verbosity + 1));
             shift 1
             ;;
         (--) shift; break;;
@@ -67,8 +67,8 @@ if [ ! -z "$article_info_file" ]; then
 fi
 
 
-printf 'Verbosity: %s\n' "$verbose"
-if [ "$verbose" -ge 1 ]; then
+if [ "$verbosity" -ge 1 ]; then
+    printf 'verbosity            : %s\n' "$verbosity"
     printf 'input_path           : %s\n' "${input_path}"
     printf 'input_file           : %s\n' "${input_file}"
     printf 'input_dir            : %s\n' "${input_dir}"
@@ -76,7 +76,7 @@ if [ "$verbose" -ge 1 ]; then
     printf 'article_info_file    : %s\n' "${article_info_file}"
     printf 'article_info_option  : %s\n' "${article_info_option}"
 fi
-if [ "$verbose" -ge 2 ]; then
+if [ "$verbosity" -ge 2 ]; then
     printf "\nContent of metadata defaults file:\n"
     cat "${article_info_file}"
 fi
@@ -86,7 +86,9 @@ fi
 cd "${input_dir}"
 
 for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
-    [ "$verbose" -gt 0 ] && printf "Starting conversion to %s...\n" "$format"
+    if [ "$verbosity" -gt 0 ]; then
+         printf "Starting conversion to %s...\n" "$format"
+    fi
     /usr/local/bin/pandoc \
 	      --data-dir="$OPENJOURNALS_PATH"/data \
         --defaults=shared \
@@ -99,5 +101,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
         --output="paper.${format}" \
         "$input_file" \
         "$@" || exit 1
-    [ "$verbose" -gt 0 ] && printf "DONE conversion to %s\n" "$format"
+    if [ "$verbosity" -gt 0 ]; then
+        printf "DONE conversion to %s\n" "$format"
+    fi
 done
