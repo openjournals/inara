@@ -105,6 +105,10 @@ function Meta (meta)
   meta.article['publisher-id'] = meta.article['publisher-id'] or
     string.format("%0d", stringify(meta.page))
 
+  -- Remove leading '@' from reviewers
+  for i, reviewer in ipairs(meta.reviewers) do
+    meta.reviewers[i] = stringify(reviewer):gsub('^@', '')
+  end
 
   meta.author = authors
   meta.affiliation = affiliations
