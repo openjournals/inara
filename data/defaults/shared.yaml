@@ -39,6 +39,8 @@ resource-path:
   - '.'
 
 filters:
+  - type: lua
+    path: inline-cited-references.lua
   - type: citeproc
   - type: lua
     path: time.lua
