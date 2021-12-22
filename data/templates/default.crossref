@@ -45,7 +45,7 @@ $for(authors/first)$
 $if(it.given)$
             <given_name>${it.given}</given_name>
 $endif$
-            <surname>$if(it.dropping-particle)$ ${it.dropping-particle}$endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
+            <surname>$if(it.dropping-particle)$${it.dropping-particle} $endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
 $if(it.suffix)$
             <suffix>${it.suffix}</suffix>
 $endif$
@@ -60,7 +60,7 @@ $for(authors/rest)$
 $if(it.given)$
             <given_name>${it.given}</given_name>
 $endif$
-            <surname>$if(it.dropping-particle)$ ${it.dropping-particle}$endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
+            <surname>$if(it.dropping-particle)$${it.dropping-particle} $endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
 $if(it.suffix)$
             <suffix>${it.suffix}</suffix>
 $endif$
@@ -109,13 +109,21 @@ $endfor$
 $for(references)$
           <citation key="${it.id}">
 $if(it.title)$
+$if(it.isbook)$
+            <volume_title>${it.title}</volume_title>
+$else$
             <article_title>${it.title}</article_title>
+$endif$
 $endif$
 $for(it.author/first)$
             <author>$if(it.family)$${it.family}$else$$if(it.name)$${it.name}$else$${it.literal}$endif$$endif$</author>
 $endfor$
 $if(it.container-title)$
+$if(it.isbook)$
+            <series_title>${it.container-title}</series_title>
+$else$
             <journal_title>${it.container-title}</journal_title>
+$endif$
 $endif$
 $if(it.page-first)$
             <first_page>${it.page-first}</first_page>
