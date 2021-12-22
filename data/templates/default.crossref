@@ -42,9 +42,12 @@
         <contributors>
 $for(authors/first)$
           <person_name sequence="first" contributor_role="author">
-            <surname>$if(it.family)$${it.family}$else$${it}$endif$</surname>
 $if(it.given)$
             <given_name>${it.given}</given_name>
+$endif$
+            <surname>$if(it.dropping-particle)$ ${it.dropping-particle}$endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
+$if(it.suffix)$
+            <suffix>${it.suffix}</suffix>
 $endif$
 $if(it.orcid)$
             <ORCID>https://orcid.org/${it.orcid}</ORCID>
@@ -54,8 +57,10 @@ $endfor$
 $for(authors/rest)$
           <person_name sequence="$if(it.equal_contrib)$first$else$additional$endif$"
                        contributor_role="author">
-            <given_name>${it.given}$if(it.dropping-particle)$ ${it.dropping-particle}$endif$</given_name>
-            <surname>$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
+$if(it.given)$
+            <given_name>${it.given}</given_name>
+$endif$
+            <surname>$if(it.dropping-particle)$ ${it.dropping-particle}$endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
 $if(it.suffix)$
             <suffix>${it.suffix}</suffix>
 $endif$
@@ -107,7 +112,7 @@ $if(it.title)$
             <article_title>${it.title}</article_title>
 $endif$
 $for(it.author/first)$
-            <author>$if(it.family)$${it.family}$else$${it.name}$endif$</author>
+            <author>$if(it.family)$${it.family}$else$$if(it.name)$${it.name}$else$${it.literal}$endif$$endif$</author>
 $endfor$
 $if(it.container-title)$
             <journal_title>${it.container-title}</journal_title>
@@ -123,6 +128,9 @@ $if(it.volume)$
 $endif$
 $if(it.doi)$
             <doi>${it.doi}</doi>
+$endif$
+$if(it.issn)$
+            <issn>${it.issn}</issn>
 $endif$
 $if(it.isbn)$
             <isbn>${it.isbn}</isbn>
