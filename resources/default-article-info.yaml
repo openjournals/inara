@@ -7,10 +7,10 @@ metadata:
   editor_name: 'Pending Editor'
   issue: '¿ISSUE?'
   page: '¿PAGE?'
-  published: 'N/A'
+  published_at: '1970-01-01'
   reviewers:
     - 'Pending Reviewers'
-  submitted: 'N/A'
+  submitted_at: '1970-01-01'
   volume: '¿VOL?'
   doi_batch_id: 'N/A'
   formatted_doi: 'DOI unavailable'
