@@ -6,6 +6,9 @@ function Pandoc (doc)
         ref[k] = pandoc.utils.stringify(v)
       end
     end
+    if ref.type == 'book' then
+      ref.isbook = true
+    end
   end
   doc.meta.bibliography = nil  -- prevent bibliography from being parsed twice
   return doc
