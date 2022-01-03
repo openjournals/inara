@@ -406,7 +406,7 @@ $endif$
 $if(article.has-equal-contributors)$
 \affil[*]{$if(messgae.equal-contrib)$$message.equal-contrib$$else$These authors contributed equally.$endif$}
 $endif$
-\date{\vspace{$if(joss)$-7ex$else$-5ex$endif$}}
+\date{\vspace{-2.5ex}}
 
 \begin{document}
 $if(title)$
