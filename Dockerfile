@@ -1,5 +1,7 @@
 FROM pandoc/latex:2.16.2
 
+RUN apk add --no-cache ttf-hack
+
 # Install additional LaTeX packages
 RUN tlmgr update --self && tlmgr install \
   algorithmicx \
