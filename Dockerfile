@@ -39,6 +39,8 @@ COPY ./scripts/entrypoint.sh /usr/local/bin/inara
 ENV JOURNAL=joss
 ENV OPENJOURNALS_PATH=$openjournals_path
 
+COPY --from=pandoc/core:edge /usr/local/bin/pandoc /usr/local/bin/pandoc
+
 # Input is read from `paper.md` by default, but can be overridden. Output is
 # written to `paper.pdf`
 ENTRYPOINT ["/usr/local/bin/inara"]
