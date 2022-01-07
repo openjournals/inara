@@ -1,15 +1,66 @@
 \documentclass[10pt,a4paper,onecolumn]{article}
 \usepackage{marginnote}
 \usepackage{graphicx}
-\usepackage{xcolor}
+\usepackage[rgb]{xcolor}
 \usepackage{authblk,etoolbox}
 \usepackage{titlesec}
 \usepackage{calc}
 \usepackage{tikz}
-\usepackage{hyperref}
-\hypersetup{colorlinks,breaklinks=true,
-            urlcolor=[rgb]{0.0, 0.5, 1.0},
-            linkcolor=[rgb]{0.0, 0.5, 1.0}}
+\usepackage[pdfa]{hyperref}
+\usepackage{hyperxmp}
+\usepackage{embedfile}
+\hypersetup{%
+    unicode=true,
+    pdfapart=3,
+    pdfaconformance=B,
+    $if(title-meta)$
+    pdftitle={$title-meta$},
+    $endif$
+    $if(author-meta)$
+    pdfauthor={$author-meta$},
+    $endif$
+    $if(keywords)$
+    pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
+    $endif$
+    pdfpublication={$journal_name$},
+    pdfpublisher={Open Journals},
+    pdfissn={$journal_issn$},
+    pdfpubtype={journal},
+    pdfvolumenum={$volume$},
+    pdfissuenum={$issue$},
+    $if(formatted_doi)$
+    pdfdoi={$formatted_doi$},
+    $endif$
+    $if(author-meta)$
+    pdfcopyright={Copyright (c) $year$, $author-meta$},
+    $endif$
+    pdflicenseurl={http://creativecommons.org/licenses/by/4.0/},
+    $if(colorlinks)$
+    colorlinks=true,
+    linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
+    citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
+    urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
+    $else$
+    pdfborder={0 0 0},
+    $endif$
+    breaklinks=true
+}
+% https://tex.stackexchange.com/a/535849
+\embedfile[afrelationship={/Source},ucfilespec={\jobname.tex},mimetype={application/x-tex}]{\jobname.tex}
+% Create an OutputIntent in order to correctly specify colours
+\immediate\pdfobj stream attr{/N 3} file{sRGB.icc}
+\pdfcatalog{%
+  /OutputIntents [
+    <<
+      /Type /OutputIntent
+      /S /GTS_PDFA1
+      /DestOutputProfile \the\pdflastobj\space 0 R
+      /OutputConditionIdentifier (sRGB)
+      /Info (sRGB)
+    >>
+  ]
+}
+\pdfvariable omitcidset=1
 \usepackage{caption}
 \usepackage{tcolorbox}
 \usepackage{amssymb,amsmath}
@@ -237,29 +288,9 @@ $endif$
 % Use Hack https://sourcefoundry.org/hack/
 \setmonofont{Hack}
 
-\usepackage{hyperref}
 $if(colorlinks)$
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 $endif$
-\hypersetup{unicode=true,
-$if(title-meta)$
-            pdftitle={$title-meta$},
-$endif$
-$if(author-meta)$
-            pdfauthor={$author-meta$},
-$endif$
-$if(keywords)$
-            pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
-$endif$
-$if(colorlinks)$
-            colorlinks=true,
-            linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
-            citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
-            urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
-$else$
-            pdfborder={0 0 0},
-$endif$
-            breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 $if(lang)$
 \ifLuaTeX
