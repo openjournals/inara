@@ -35,6 +35,9 @@ COPY ./data $openjournals_path/data
 COPY ./scripts/clean-metadata.lua $openjournals_path
 COPY ./scripts/entrypoint.sh /usr/local/bin/inara
 
+RUN TERM=dumb luaotfload-tool --update \
+  && chmod -R o+w /opt/texlive/texdir/texmf-var
+
 ENV JOURNAL=joss
 ENV OPENJOURNALS_PATH=$openjournals_path
 
