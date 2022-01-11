@@ -4,11 +4,15 @@ set -e
 # Get target formats. Default is to generate both JATS and PDF.
 usage()
 {
-    printf "Usage: %s [-m ARTICLE_INFO_FILE] [-o OUTPUT_FORMATS] INPUT_FILE\n" \
-           "$0"
+    printf "Usage: %s [OPTIONS] INPUT_FILE\n" "$0"
+    printf 'Options:\n'
+    printf '\t-m: article info file; YAML file contains article metadata\n'
+    printf '\t-o: comma-separated list of output format; defaults to jats,pdf\n'
+
+    printf '\t-v: increase verbosity; can be given multiple times\n'
 }
 
-args=$(getopt ':o:m:v' "$@")
+args=$(getopt 'o:m:v' "$@")
 if [ $? -ne 0 ]; then
     usage && exit 1
 fi
