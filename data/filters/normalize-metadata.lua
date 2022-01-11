@@ -112,5 +112,9 @@ function Meta (meta)
 
   meta.author = authors
   meta.affiliation = affiliations
+  meta['author-meta'] = table.concat(
+    authors:map(function (auth) return stringify(auth.name) end),
+    ', '
+  )
   return meta
 end
