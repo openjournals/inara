@@ -8,12 +8,14 @@ RUN tlmgr update --self && tlmgr install \
   algorithms \
   booktabs \
   caption \
+  draftwatermark \
   environ \
   etoolbox \
   fancyvrb \
   float \
   fontspec \
   latexmk \
+  lineno \
   listings \
   logreq \
   marginnote \

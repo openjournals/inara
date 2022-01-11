@@ -8,17 +8,19 @@ usage()
     printf 'Options:\n'
     printf '\t-m: article info file; YAML file contains article metadata\n'
     printf '\t-o: comma-separated list of output format; defaults to jats,pdf\n'
+    printf '\t-p: flag to force the production of a publishing PDF\n'
 
     printf '\t-v: increase verbosity; can be given multiple times\n'
 }
 
-args=$(getopt 'o:m:v' "$@")
+args=$(getopt 'o:m:pv' "$@")
 if [ $? -ne 0 ]; then
     usage && exit 1
 fi
 set -- $args
 
 outformats=jats,pdf
+draft_variable=true
 article_info_file=
 verbosity=0
 
@@ -32,6 +34,10 @@ while true; do
             # we switch the directory later, so get the absolute path.
             article_info_file="$(realpath "$2")";
             shift 2
+            ;;
+        (-p)
+            draft_variable=
+            shift 1
             ;;
         (-v)
             verbosity=$(($verbosity + 1));
@@ -102,6 +108,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
 	      --resource-path=.:${input_dir}:${OPENJOURNALS_PATH} \
 	      --metadata-file=${OPENJOURNALS_PATH}/${JOURNAL}/journal-metadata.yaml \
 	      --variable="${JOURNAL}" \
+        --variable=draft:"$draft_variable" \
         --output="paper.${format}" \
         "$input_file" \
         "$@" || exit 1

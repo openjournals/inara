@@ -77,12 +77,6 @@
     \endorigfigure
 }
 
-$if(draft)$
-\usepackage{lineno}
-\linenumbers
-\usepackage{draftwatermark}
-$endif$
-
 \usepackage{fixltx2e} % provides \textsubscript
 
 % --- Splitting \texttt --------------------------------------------------
@@ -333,6 +327,13 @@ $endif$
 $if(tables)$
 \usepackage{longtable,booktabs,array}
 $endif$
+$-- add watermark and linenumbers unless this is the final (non-draft) version
+$if(draft)$
+\usepackage{lineno}
+\linenumbers
+\usepackage{draftwatermark}
+$endif$
+
 
 % --- We redefined \texttt, but in sections and captions we want the
 % --- old definition
