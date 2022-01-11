@@ -467,7 +467,7 @@ $endif$
     \setlength\itemsep{0em}
     \item \href{$software_review_url$}{\color{linky}{Review}} \ExternalLink
     \item \href{$software_repository_url$}{\color{linky}{Repository}} \ExternalLink
-    \item \href{https://dx.doi.org/$archive_doi$}{\color{linky}{Archive}} \ExternalLink
+    \item \href{https://doi.org/$archive_doi$}{\color{linky}{Archive}} \ExternalLink
   \end{itemize}
 
   \vspace{2mm}
