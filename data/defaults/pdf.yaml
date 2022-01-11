@@ -1,4 +1,4 @@
 to: latex
 pdf-engine: latexmk
-pdf-engine-opt: -xelatex
+pdf-engine-opt: -lualatex
 output-file: paper.pdf

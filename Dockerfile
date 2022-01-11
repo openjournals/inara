@@ -8,7 +8,6 @@ RUN tlmgr update --self && tlmgr install \
   algorithms \
   booktabs \
   caption \
-  collection-xetex \
   environ \
   etoolbox \
   fancyvrb \
