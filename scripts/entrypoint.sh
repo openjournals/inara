@@ -58,22 +58,7 @@ shift 1
 
 # Option passed to pandoc so the article metadata is included (if given).
 if [ ! -z "$article_info_file" ]; then
-    # turn into a defaults file if it isn't one.
-    if head -n1 "$article_info_file" | grep -q '^metadata:'; then
-        article_info_option="--defaults=${article_info_file}"
-    else
-        tmpmeta="$(mktemp)"
-        pandoc --from=markdown-citations \
-               --metadata-file="${article_info_file}" \
-               --to=markdown-citations \
-               --lua-filter=$OPENJOURNALS_PATH/clean-metadata.lua \
-               --output="${tmpmeta}" \
-               --standalone \
-               /dev/null
-        sed -i'' -e '/^---$/d' "$tmpmeta"
-        article_info_option="--defaults=${tmpmeta}"
-        article_info_file="${tmpmeta}"
-    fi
+    article_info_option="--metadata=article-info-file=${article_info_file}"
 fi
 
 

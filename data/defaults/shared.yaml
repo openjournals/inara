@@ -2,36 +2,10 @@ from: markdown
 standalone: true
 
 metadata:
-  archive_doi: '10.5281'
-  doi: 'unavailable'
-  software_repository_url: 'https://github.com/openjournals'
-  software_review_url: 'https://github.com/openjournals'
-  citation_author: '¿citation_author?'
-  editor:
-    name: 'Open Journals'
-    url: 'https://joss.theoj.org'
-    github_user: '@openjournals'
-  issue: '¿ISSUE?'
-  page: '¿PAGE?'
-  published:
-    year: 1970
-    month: 1
-    day: 1
-  submitted:
-    year: 1970
-    month: 1
-    day: 1
-  reviewers:
-    - 'openjournals'
-  submitted_at: '1970-01-01'
-  published_at: '1970-01-01'
-  volume: '¿VOL?'
-  doi_batch_id: 'N/A'
-  formatted_doi: 'DOI unavailable'
-  paper_url: 'NO PAPER URL'
   footer-csl: 'footer.csl'
 
-  # All papers are currently written in English.
+  # All papers are currently written in English. We place it here so it
+  # cannot be overwritten in the paper YAML.
   lang: 'en-US'
 
 resource-path:
@@ -43,11 +17,11 @@ filters:
     path: inline-cited-references.lua
   - type: citeproc
   - type: lua
-    path: time.lua
-  - type: lua
     path: add-images.lua
   - type: lua
     path: normalize-metadata.lua
+  - type: lua
+    path: time.lua
   - type: lua
     path: name-parser.lua
   - type: lua

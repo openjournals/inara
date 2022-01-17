@@ -6,7 +6,7 @@
            version="4.4.0"
            xsi:schemaLocation="http://www.crossref.org/schema/4.4.0 http://www.crossref.org/schemas/crossref4.4.0.xsd">
   <head>
-    <doi_batch_id>$doi_batch_id$</doi_batch_id>
+    <doi_batch_id>$if(doi_batch_id)$${doi_batch_id}$else$${timestamp}$endif$</doi_batch_id>
     <timestamp>$timestamp$</timestamp>
     <depositor>
       <depositor_name>JOSS Admin</depositor_name>
@@ -31,9 +31,9 @@
           <year>$year$</year>
         </publication_date>
         <journal_volume>
-          <volume>$volume$</volume>
+          <volume>$article.volume$</volume>
         </journal_volume>
-        <issue>$issue$</issue>
+        <issue>$article.issue$</issue>
       </journal_issue>
       <journal_article publication_type="full_text">
         <titles>

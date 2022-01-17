@@ -32,12 +32,13 @@ function Meta (meta)
         ['container-title'] = meta.journal_name,
         ['container-title-short'] = meta.journal_abbrev_title,
         ['ISSN'] = meta.journal_issn,
-        ['issue'] = tostring(meta.article.issue),
-        ['page'] = tostring(meta.article.fpage),
-        ['volume'] = tostring(meta.article.volume),
+        ['issue'] = stringify(meta.article.issue),
+        ['page'] = stringify(meta.article.fpage),
+        ['volume'] = stringify(meta.article.volume),
         ['submitted'] = meta.submitted,
+        ['published'] = meta.published,
         ['editor'] = meta.editor.name,
-        ['url'] = 'https://doi.org/' .. stringify(meta.doi),
+        ['url'] = 'https://doi.org/' .. stringify(meta.article.doi),
         ['doi'] = meta.doi or meta.article.doi
       }
     },

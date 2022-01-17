@@ -28,8 +28,8 @@
     pdfpubtype={journal},
     pdfvolumenum={$volume$},
     pdfissuenum={$issue$},
-    $if(formatted_doi)$
-    pdfdoi={$formatted_doi$},
+    $if(article.doi)$
+    pdfdoi={$article.doi$},
     $endif$
     $if(author-meta)$
     pdfcopyright={Copyright (c) $year$, $author-meta$},
@@ -459,7 +459,7 @@ $endif$
   %\hrule
   \sffamily\small
 
-  {\bfseries DOI:} \href{https://doi.org/$formatted_doi$}{\color{linky}{$formatted_doi$}}
+  {\bfseries DOI:} \href{https://doi.org/$article.doi$}{\color{linky}{$article.doi$}}
 
   \vspace{2mm}
 

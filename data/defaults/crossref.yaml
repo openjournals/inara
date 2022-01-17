@@ -1,5 +1,7 @@
 to: html5
 
-filters: []
+filters:
+  - type: lua
+    path: doi-batch-id.lua
 
 template: '${.}/../templates/default.crossref'

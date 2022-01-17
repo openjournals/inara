@@ -1,8 +1,5 @@
-local sample_date = {
-  year = 1970,
-  month = 1,
-  day = 1,
-}
+local sample_date = '1970-01-01'
+
 local function format_date (date_table)
   local date_format = '%d %B %Y'
   return os.date(date_format, os.time(date_table))
@@ -16,17 +13,29 @@ local function copy_string_values (tbl)
   return result
 end
 
+local function date_array(date_metavalue)
+  local date_string = pandoc.utils.stringify(date_metavalue)
+  local year, month, day, hour, min, sec =
+    date_string:match '^(%d%d%d%d)-(%d%d)-(%d%d)'
+  return {
+    year = year,
+    month = month,
+    day = day,
+  }
+end
+
 function Meta (meta)
   local curtime = os.date('*t')
   meta.timestamp = meta.timestamp or os.date('%Y%m%d%H%M%S')
-  meta.submitted_parts = copy_string_values(meta.submitted or sample_date)
-  meta.published_parts = copy_string_values(meta.published or sample_date)
 
-  meta.day = meta.published_parts.day or meta.day or tostring(curtime.day)
-  meta.month = meta.published_parts.month or meta.month or tostring(curtime.month)
-  meta.year = meta.published_parts.year or meta.year or tostring(curtime.year)
+  meta.submitted_parts = date_array(meta.submitted_at or sample_date)
+  meta.published_parts = date_array(meta.published_at or sample_date)
 
-  meta.submitted = format_date(meta.submitted)
-  meta.published = format_date(meta.published)
+  meta.day = meta.published_parts.day or tostring(curtime.day)
+  meta.month = meta.published_parts.month or tostring(curtime.month)
+  meta.year = meta.published_parts.year or tostring(curtime.year)
+
+  meta.submitted = format_date(meta.submitted_parts)
+  meta.published = format_date(meta.published_parts)
   return meta
 end
