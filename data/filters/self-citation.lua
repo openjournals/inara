@@ -8,9 +8,11 @@ local function authors_to_csl_json (authors)
   local result = pandoc.List()
   for _, author in ipairs(authors) do
     result:insert {
-      family = author.surname or author.family,
-      given = author['given-names'] or author.given,
-      suffix = author.suffix,
+      ['family'] = author.surname,
+      -- ['given'] = author.given,
+      ['suffix'] = author.suffix,
+      ['dropping-particle'] = author['dropping-particle'],
+      ['non-dropping-particle'] = author['non-dropping-particle'],
     }
   end
   return result

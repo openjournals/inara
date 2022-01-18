@@ -23,7 +23,7 @@ filters:
   - type: lua
     path: time.lua
   - type: lua
-    path: name-parser.lua
+    path: normalize-author-names.lua
   - type: lua
     path: self-citation.lua
   - type: lua
