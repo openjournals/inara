@@ -52,6 +52,7 @@ function Meta (meta)
   -- Normalize authors and affiliations; also sets article author-notes
   -- to keep track of equal contributors and corresponding authors.
   meta = normalize_authors(meta)
+  meta.affiliation = meta.affiliations
 
   -- ensure 'article' table is available
   meta.article = meta.article or {}
