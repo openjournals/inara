@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<doi_batch xmlns="http://www.crossref.org/schema/4.4.0"
+<doi_batch xmlns="http://www.crossref.org/schema/5.3.1"
            xmlns:ai="http://www.crossref.org/AccessIndicators.xsd"
            xmlns:rel="http://www.crossref.org/relations.xsd"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           version="4.4.0"
-           xsi:schemaLocation="http://www.crossref.org/schema/4.4.0 http://www.crossref.org/schemas/crossref4.4.0.xsd">
+           version="5.3.1"
+           xsi:schemaLocation="http://www.crossref.org/schema/5.3.1 http://www.crossref.org/schemas/crossref5.3.1.xsd">
   <head>
     <doi_batch_id>$if(doi_batch_id)$${doi_batch_id}$else$${timestamp}$endif$</doi_batch_id>
     <timestamp>$timestamp$</timestamp>
