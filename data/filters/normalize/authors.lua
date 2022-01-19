@@ -1,5 +1,6 @@
 local List = require 'pandoc.List'
 local stringify = pandoc.utils.stringify
+local type = pandoc.utils.type
 
 --- Split a string on the given separator char.
 local function split_string (str, sep)
@@ -51,9 +52,6 @@ return function (meta)
     then
       local name, notes = extract_notes(author.name)
       author.name = name
-      author.affiliation = author.affiliation
-        and split_string(stringify(author.affiliation), ',')
-        or nil
       if notes:find_if(is_equal_contributor_note) then
         author['equal-contrib'] = true
       end
@@ -62,6 +60,9 @@ return function (meta)
         author['cor-id'] = add_corresponding_author(author)
       end
     end
+    author.affiliation = author.affiliation
+      and split_string(stringify(author.affiliation), ',')
+      or nil
   end
   for i, aff in ipairs(affiliations or {}) do
     aff.id = aff.index or tostring(i)
