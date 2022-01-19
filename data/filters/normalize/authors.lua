@@ -46,7 +46,9 @@ return function (meta)
   local authors = meta.authors
   local affiliations = meta.affiliations
   for _, author in ipairs(authors) do
-    if author.name then
+    if author.name and
+       pandoc.List{'string', 'Inlines'}:includes(type(author.name))
+    then
       local name, notes = extract_notes(author.name)
       author.name = name
       author.affiliation = author.affiliation

@@ -39,6 +39,12 @@ surname, depending on the details of how the name is used.
 - `dropping-particle`
 - `non-dropping-particle`
 
+### Literal names
+
+The automatic construction of the full name from parts is geared
+towards common Western names. It may therefore be necessary
+sometimes to provide the display name explicitly. This is possible
+by setting the `literal` field, e.g., `literal: 宮水 三葉`.
 
 ### Example
 
@@ -51,9 +57,23 @@ authors:
     dropping-particle: van
     surname: Beethoven
     affiliation: '3'
-    
+
   - given: Louis
     non-dropping-particle: de
     surname: Broglie
     affiliation: '4'
+```
+
+The name parts can also be collected under the author's `name`:
+
+``` yaml
+authors:
+  - name:
+      given: Kari
+      surname: Nordmann
+
+  - name:
+      literal: 立花 瀧
+      given: 瀧
+      surname: 立花
 ```

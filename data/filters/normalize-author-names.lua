@@ -14,7 +14,7 @@ local function parse_name (unparsed_name)
   local bibtex = bibtex_template:format(stringify(unparsed_name))
   local name = pandoc.read(bibtex, 'bibtex').meta.references[1].author[1]
   if type(name) ~= 'table' then
-    return {name = pandoc.Inlines(unparsed_name)}
+    return {name = stringify(unparsed_name)}
   else
     -- most dropping particles are really non-dropping
     if name['dropping-particle'] and not name['non-dropping-particle'] then
@@ -31,20 +31,24 @@ local to_name_table = {
   Inlines = parse_name,
   Blocks = parse_name,
   string = parse_name,
-  table = function (t) return t end
+  table = function (t)
+    name = t.name or t.literal
+    t.literal = nil
+    t.name = name and stringify(name) or nil
+    return t
+  end
 }
 
 --- Normalize the name(s) of an author. The return value is a table
 --- object with the following fields:
 --
--- `name`: full name / display name (Inlines)
+-- `name`: full name / display name (string)
 -- `given`: given names
 -- `surname`: family name or last name
 -- `prefix`:
 --
 -- All fields but `name` are optional.
 local function normalize_name (name)
-
   -- ensure basic table structure
   local namify = to_name_table[type(name)] or
     error('Cannot normalize author of type ' .. type(name))
@@ -64,12 +68,12 @@ local function normalize_name (name)
   local surname_aliases = {'family_name', 'family', 'last', 'lastname'}
   for _, alias in ipairs(surname_aliases) do
     name.surname = name.surname or
-      (name[alias] and pandoc.Inlines(name[alias]))
+      (name[alias] and stringify(name[alias]))
     name[alias] = nil
   end
 
-  -- ensure full name (a.k.a, display name) is set and of type Inlines.
-  name.name = name.name and pandoc.Inlines(name.name) or nil
+  -- ensure full name (a.k.a, display name) is set and of type 'string'.
+  name.name = name.name and stringify(name.name) or nil
   if not name.name then
     local literal = pandoc.List{}
     for _, name_part in ipairs{'given', 'dropping-particle',
@@ -90,6 +94,8 @@ function Meta (meta)
       meta.authors[i][k] = v
     end
   end
+
+  meta.author = meta.authors
 
   -- set "author-meta" field using display names
   meta['author-meta'] = table.concat(
