@@ -81,11 +81,6 @@ function Meta (meta)
     meta.reviewers[i] = stringify(reviewer):gsub('^@', '')
   end
 
-  meta['author-meta'] = table.concat(
-    meta.authors:map(function (auth) return stringify(auth.name) end),
-    ', '
-  )
-
   -- Unset author notes unless it contains values: The existence of this
   -- value affects the JATS template, and the output becomes invalid if
   -- the `<author-notes>` element is present but empty.

@@ -51,17 +51,17 @@ local function normalize_name (name)
   name = namify(name)
 
   -- normalize given name field
-  name.given = name.given and pandoc.Inlines(name.given) or nil
+  name.given = name.given and stringify(name.given) or nil
   local given_names_aliases = {'given-names', 'given_name', 'first', 'firstname'}
   for _, alias in ipairs(given_names_aliases) do
     name.given = name.given or
-      (name[alias] and pandoc.Inlines(name[alias]))
+      (name[alias] and stringify(name[alias]))
     name[alias] = nil
   end
 
   -- normalize surname name field
-  name.surname = name.surname and pandoc.Inlines(name.surname) or nil
-  local surname_aliases = {'family_name', 'family', 'lastname'}
+  name.surname = name.surname and stringify(name.surname) or nil
+  local surname_aliases = {'family_name', 'family', 'last', 'lastname'}
   for _, alias in ipairs(surname_aliases) do
     name.surname = name.surname or
       (name[alias] and pandoc.Inlines(name[alias]))
@@ -71,20 +71,13 @@ local function normalize_name (name)
   -- ensure full name (a.k.a, display name) is set and of type Inlines.
   name.name = name.name and pandoc.Inlines(name.name) or nil
   if not name.name then
-    name.name = pandoc.Inlines{}
+    local literal = pandoc.List{}
     for _, name_part in ipairs{'given', 'dropping-particle',
-                               'non-dropping-particle', 'surname'} do
-      name.name:extend(
-        name[name_part] and
-        (pandoc.Inlines(name[name_part]) .. {pandoc.Space()}) or {}
-      )
+                               'non-dropping-particle', 'surname',
+                               'suffix'} do
+      literal:extend(name[name_part] and {stringify(name[name_part])} or {})
     end
-    -- pop trailing space
-    name.name[#name.name] = nil
-
-    name.name:extend(
-      name.suffix and ({pandoc.Str',', pandoc.Space()} .. name.suffix) or {}
-    )
+    name.name = table.concat(literal, ' ')
   end
 
   return name
@@ -98,6 +91,12 @@ function Meta (meta)
       meta.authors[i][k] = v
     end
   end
+
+  -- set "author-meta" field using display names
+  meta['author-meta'] = table.concat(
+    meta.authors:map(function (auth) return auth.name end),
+    ', '
+  )
 
   return meta
 end

@@ -25,24 +25,35 @@ The respective field names are
 
 - `given` (aliases: `first`, `firstname`)
 - `surname` (aliases: `family`)
-- `dropping-particle`
-- `non-dropping-particle`
 - `suffix`
 
 The full display name will be constructed from these parts, unless
 the `name` attribute is given as well.
 
+### Particles
+
+It's usually enough to place particles like "van", "von", "della",
+etc. at the end of the given name or at the beginning of the
+surname, depending on the details of how the name is used.
+
+- `dropping-particle`
+- `non-dropping-particle`
+
+
 ### Example
 
 ```yaml
 authors:
+  - name: John Doe
+    affiliation: '1'
+
   - given: Ludwig
     dropping-particle: van
     surname: Beethoven
-    affiliation: '1'
+    affiliation: '3'
     
   - given: Louis
     non-dropping-particle: de
     surname: Broglie
-    affiliation: '2'
+    affiliation: '4'
 ```

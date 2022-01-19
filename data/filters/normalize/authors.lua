@@ -12,7 +12,7 @@ end
 
 local function extract_notes(metainlines)
   local notes = List()
-  local span = pandoc.Span(setmetatable(metainlines, {}))
+  local span = pandoc.Span(metainlines)
   local new_span = pandoc.walk_inline(
     span, {
       Note = function (x)
@@ -46,17 +46,19 @@ return function (meta)
   local authors = meta.authors
   local affiliations = meta.affiliations
   for _, author in ipairs(authors) do
-    local name, notes = extract_notes(author.name)
-    author.name = name
-    author.affiliation = author.affiliation
-      and split_string(stringify(author.affiliation), ',')
-      or nil
-    if notes:find_if(is_equal_contributor_note) then
-      author['equal-contrib'] = true
-    end
-    if notes:find_if(is_corresponding_author_note) or
-       author['corresponding'] then
-      author['cor-id'] = add_corresponding_author(author)
+    if author.name then
+      local name, notes = extract_notes(author.name)
+      author.name = name
+      author.affiliation = author.affiliation
+        and split_string(stringify(author.affiliation), ',')
+        or nil
+      if notes:find_if(is_equal_contributor_note) then
+        author['equal-contrib'] = true
+      end
+      if notes:find_if(is_corresponding_author_note) or
+        author['corresponding'] then
+        author['cor-id'] = add_corresponding_author(author)
+      end
     end
   end
   for i, aff in ipairs(affiliations or {}) do
