@@ -23,7 +23,7 @@ necessary to provide the relevant parts explicitly.
 
 The respective field names are
 
-- `given` (aliases: `first`, `firstname`)
+- `given-names` (aliases: `given`, `first`, `firstname`)
 - `surname` (aliases: `family`)
 - `suffix`
 
@@ -53,14 +53,15 @@ authors:
   - name: John Doe
     affiliation: '1'
 
-  - given: Ludwig
+  - given-names: Ludwig
     dropping-particle: van
     surname: Beethoven
     affiliation: '3'
 
+  # not recommended, but common aliases can be used for name parts.
   - given: Louis
     non-dropping-particle: de
-    surname: Broglie
+    family: Broglie
     affiliation: '4'
 ```
 
@@ -69,11 +70,11 @@ The name parts can also be collected under the author's `name`:
 ``` yaml
 authors:
   - name:
-      given: Kari
+      given-names: Kari
       surname: Nordmann
 
   - name:
       literal: 立花 瀧
-      given: 瀧
+      given-names: 瀧
       surname: 立花
 ```

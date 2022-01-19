@@ -55,10 +55,11 @@ local function normalize_name (name)
   name = namify(name)
 
   -- normalize given name field
-  name.given = name.given and stringify(name.given) or nil
-  local given_names_aliases = {'given-names', 'given_name', 'first', 'firstname'}
+  local given = 'given-names'
+  name[given] = name[given] and stringify(name[given]) or nil
+  local given_names_aliases = {'given', 'given_name', 'first', 'firstname'}
   for _, alias in ipairs(given_names_aliases) do
-    name.given = name.given or
+    name[given] = name[given] or
       (name[alias] and stringify(name[alias]))
     name[alias] = nil
   end
@@ -76,7 +77,7 @@ local function normalize_name (name)
   name.name = name.name and stringify(name.name) or nil
   if not name.name then
     local literal = pandoc.List{}
-    for _, name_part in ipairs{'given', 'dropping-particle',
+    for _, name_part in ipairs{'given-names', 'dropping-particle',
                                'non-dropping-particle', 'surname',
                                'suffix'} do
       literal:extend(name[name_part] and {stringify(name[name_part])} or {})

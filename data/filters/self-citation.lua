@@ -9,7 +9,9 @@ local function authors_to_csl_json (authors)
   for _, author in ipairs(authors) do
     result:insert {
       ['family'] = author.surname,
-      -- ['given'] = author.given,
+      -- we don't want given names in the self citation
+      -- FIXME: this should be handled by the CSL for self citations.
+      -- ['given'] = author['given-names'],
       ['suffix'] = author.suffix,
       ['dropping-particle'] = author['dropping-particle'],
       ['non-dropping-particle'] = author['non-dropping-particle'],
