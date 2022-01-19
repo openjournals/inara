@@ -42,10 +42,10 @@
         <contributors>
 $for(authors/first)$
           <person_name sequence="first" contributor_role="author">
-$if(it.given)$
-            <given_name>${it.given}</given_name>
+$if(it.given-names)$
+            <given_name>${it.given-names}</given_name>
 $endif$
-            <surname>$if(it.dropping-particle)$${it.dropping-particle} $endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
+            <surname>$if(it.dropping-particle)$${it.dropping-particle} $endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.surname}</surname>
 $if(it.suffix)$
             <suffix>${it.suffix}</suffix>
 $endif$
@@ -57,10 +57,10 @@ $endfor$
 $for(authors/rest)$
           <person_name sequence="$if(it.equal_contrib)$first$else$additional$endif$"
                        contributor_role="author">
-$if(it.given)$
-            <given_name>${it.given}</given_name>
+$if(it.given-names)$
+            <given_name>${it.given-names}</given_name>
 $endif$
-            <surname>$if(it.dropping-particle)$${it.dropping-particle} $endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.family}</surname>
+            <surname>$if(it.dropping-particle)$${it.dropping-particle} $endif$$if(it.non-dropping-particle)$${it.non-dropping-particle} $endif$${it.surname}</surname>
 $if(it.suffix)$
             <suffix>${it.suffix}</suffix>
 $endif$
