@@ -17,7 +17,7 @@
   <body>
     <journal>
       <journal_metadata>
-        <full_title>$journal.name$</full_title>
+        <full_title>$journal.title$</full_title>
         <abbrev_title>$journal.abbrev-title$</abbrev_title>
         <issn media_type="electronic">$journal.issn$</issn>
         <doi_data>

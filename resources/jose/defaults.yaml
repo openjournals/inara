@@ -3,14 +3,32 @@ csl: /usr/local/share/openjournals/apa.csl
 
 variables:
   joss_resource_url: 'N/A'
-  journal:
-    abbrev-title: 'JOSE'
-    alias: 'jose'
-    issn: '2475-9066'
-    name: 'Journal of Open Source Education'
-    url: 'https://jose.theoj.org/'
-    doi: '10.21105/jose'
 
 metadata:
   aas_logo_path: '/usr/local/share/openjournals/jose/aas-logo.png'
   logo_path: '/usr/local/share/openjournals/jose/logo.png'
+
+  journal:
+    abbrev-title: 'JOSE'
+    alias: 'jose'
+    title: 'Journal of Open Source Education'
+    name: 'Journal of Open Source Education'
+    url: 'https://jose.theoj.org/'
+    doi: '10.21105/jose'
+    publisher-name: 'Open Journals'
+    issn: '2475-9066'
+    eissn: '2577-3569'
+
+  link-citations: true
+
+  copyright:
+    statement: >-
+      Authors of papers retain copyright and release the work under a
+      Creative Commons Attribution 4.0 International License (CC BY 4.0)
+    holder: The article authors
+    year: 2021
+    type: open-access
+    link: https://creativecommons.org/licenses/by/4.0/
+    text: >-
+      Authors of papers retain copyright and release the work under a
+      Creative Commons Attribution 4.0 International License (CC BY 4.0)

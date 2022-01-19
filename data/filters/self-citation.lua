@@ -33,7 +33,7 @@ function Meta (meta)
           ['date-parts'] = {{meta.published_parts.year}}
         },
         ['publisher'] = meta.publisher,
-        ['container-title'] = meta.journal.name,
+        ['container-title'] = meta.journal.title,
         ['container-title-short'] = meta.journal['abbrev-title'],
         ['ISSN'] = meta.journal.issn,
         ['issue'] = stringify(meta.article.issue),

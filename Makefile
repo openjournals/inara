@@ -16,9 +16,9 @@ TARGET_FOLDER = publishing-artifacts
 ARTICLE_INFO_FILE = $(OPENJOURNALS_PATH)/default-article-info.yaml
 
 .PHONY: all
-all: pdf html jats
+all: pdf html jats crossref jats
 
-.PHONY: pdf html jats
+.PHONY: pdf html jats crossref native
 pdf: $(TARGET_FOLDER)/paper.pdf
 html: $(TARGET_FOLDER)/paper.html
 jats:	$(TARGET_FOLDER)/paper.jats
@@ -36,7 +36,6 @@ $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 	  --defaults=$*.yaml \
 	  --defaults=$(OPENJOURNALS_PATH)/$(JOURNAL)/defaults.yaml \
 	  --resource-path=.:$(OPENJOURNALS_PATH):$(dir $(ARTICLE)) \
-	  --metadata-file=$(OPENJOURNALS_PATH)/$(JOURNAL)/journal-metadata.yaml \
 	  --metadata=article-info-file=$(ARTICLE_INFO_FILE) \
 	  --variable=$(JOURNAL) \
 	  --output=$@ \

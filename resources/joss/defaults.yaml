@@ -5,10 +5,26 @@ metadata:
   journal:
     abbrev-title: 'JOSS'
     alias: 'joss'
-    issn: '2475-9066'
-    name: 'Journal of Open Source Software'
     url: 'https://joss.theoj.org/'
     doi: '10.21105/joss'
+    title: 'Journal of Open Source Software'
+    publisher-name: 'Open Journals'
+    issn: '2475-9066'
+    eissn: '2475-9066'
+
+  link-citations: true
+
+  copyright:
+    statement: >-
+      Authors of papers retain copyright and release the work under a
+      Creative Commons Attribution 4.0 International License (CC BY 4.0)
+    holder: The article authors
+    year: 2021
+    type: open-access
+    link: https://creativecommons.org/licenses/by/4.0/
+    text: >-
+      Authors of papers retain copyright and release the work under a
+      Creative Commons Attribution 4.0 International License (CC BY 4.0)
 
   aas_logo_path: 'joss/aas-logo.png'
   logo_path: 'joss/logo.png'

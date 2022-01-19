@@ -91,7 +91,6 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
         --defaults="$OPENJOURNALS_PATH"/"${JOURNAL}"/defaults.yaml \
         ${article_info_option} \
 	      --resource-path=.:${input_dir}:${OPENJOURNALS_PATH} \
-	      --metadata-file=${OPENJOURNALS_PATH}/${JOURNAL}/journal-metadata.yaml \
 	      --variable="${JOURNAL}" \
         --variable=draft:"$draft_variable" \
         --output="paper.${format}" \
