@@ -1,3 +1,4 @@
+#!/bin/sh
 validator_url="https://jats-validator.hubmed.org/dtd/"
 
 usage ()
