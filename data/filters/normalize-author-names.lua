@@ -87,7 +87,6 @@ function Meta (meta)
   for i, author in ipairs(meta.authors) do
     local name = normalize_name(author.name or author)
     for k, v in pairs(name) do
-      print(k, stringify(v))
       meta.authors[i][k] = v
     end
   end
