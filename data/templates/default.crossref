@@ -17,12 +17,12 @@
   <body>
     <journal>
       <journal_metadata>
-        <full_title>$journal_name$</full_title>
-        <abbrev_title>$journal_abbrev_title$</abbrev_title>
-        <issn media_type="electronic">$journal_issn$</issn>
+        <full_title>$journal.name$</full_title>
+        <abbrev_title>$journal.abbrev-title$</abbrev_title>
+        <issn media_type="electronic">$journal.issn$</issn>
         <doi_data>
-          <doi>10.21105/$journal_alias$</doi>
-          <resource>$journal_url$</resource>
+          <doi>10.21105/$journal.alias$</doi>
+          <resource>$journal.url$</resource>
         </doi_data>
       </journal_metadata>
       <journal_issue>

@@ -3,11 +3,13 @@ csl: /usr/local/share/openjournals/apa.csl
 
 variables:
   joss_resource_url: 'N/A'
-  journal_abbrev_title: 'JOSE'
-  journal_alias: 'jose'
-  journal_issn: '2475-9066'
-  journal_name: 'Journal of Open Source Education'
-  journal_url: 'https://jose.theoj.org/'
+  journal:
+    abbrev-title: 'JOSE'
+    alias: 'jose'
+    issn: '2475-9066'
+    name: 'Journal of Open Source Education'
+    url: 'https://jose.theoj.org/'
+    doi: '10.21105/jose'
 
 metadata:
   aas_logo_path: '/usr/local/share/openjournals/jose/aas-logo.png'

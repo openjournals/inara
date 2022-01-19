@@ -2,11 +2,13 @@ csl: apa.csl
 
 metadata:
   joss_resource_url: 'N/A'
-  journal_abbrev_title: 'JOSS'
-  journal_alias: 'joss'
-  journal_issn: '2475-9066'
-  journal_name: 'Journal of Open Source Software'
-  journal_url: 'https://joss.theoj.org/'
+  journal:
+    abbrev-title: 'JOSS'
+    alias: 'joss'
+    issn: '2475-9066'
+    name: 'Journal of Open Source Software'
+    url: 'https://joss.theoj.org/'
+    doi: '10.21105/joss'
 
   aas_logo_path: 'joss/aas-logo.png'
   logo_path: 'joss/logo.png'
