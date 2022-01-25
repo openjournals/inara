@@ -15,8 +15,8 @@ the mounted folder, is expected as the only argument.
 
 - The Docker image will generate PDF and JATS files by default. To
 select specific output formats to be generated use the `-o` flag.
-Supported options are: `pdf`, `jats`, `html`, and `crossref`. Use multiple outputs
-with a comma separated list.
+Supported options are: `pdf`, `jats`, `html`, and `crossref`. To get multiple outputs
+use a comma separated list.
 - By default PDF files will be compiled in _draft mode_ to include a draft
 watermark and linenumbers. To create a _production_ PDF add the `-p` flag.
 
