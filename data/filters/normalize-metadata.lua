@@ -38,9 +38,11 @@ end
 function Meta (meta)
   -- read values from metadata file; values from that file take precedence
   -- except for authors and title
-  for k, v in pairs(read_metadata(meta['article-info-file'])) do
-    if k ~= 'authors' and title ~= 'title' then
-      meta[k] = v
+  if meta['article-info-file'] then
+    for k, v in pairs(read_metadata(meta['article-info-file'])) do
+      if k ~= 'authors' and title ~= 'title' then
+        meta[k] = v
+      end
     end
   end
 
