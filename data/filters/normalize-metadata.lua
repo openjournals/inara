@@ -30,7 +30,7 @@ local defaults = {
 
 local function read_metadata(filename)
   local fh = io.open(stringify(filename))
-  local content = fh:read 'a'
+  local content = (fh:read 'a') .. '\n...\n' -- YAML separator required
   return pandoc.read(content, 'commonmark+yaml_metadata_block').meta
 end
 
@@ -40,7 +40,7 @@ function Meta (meta)
   -- except for authors and title
   if meta['article-info-file'] then
     for k, v in pairs(read_metadata(meta['article-info-file'])) do
-      if k ~= 'authors' and title ~= 'title' then
+      if k ~= 'authors' and k ~= 'title' then
         meta[k] = v
       end
     end
