@@ -8,7 +8,6 @@
 \usepackage{tikz}
 \usepackage[pdfa]{hyperref}
 \usepackage{hyperxmp}
-\usepackage{embedfile}
 \hypersetup{%
     unicode=true,
     pdfapart=3,
@@ -46,7 +45,6 @@ $endif$
     breaklinks=true
 }
 % https://tex.stackexchange.com/a/535849
-\embedfile[afrelationship={/Source},ucfilespec={\jobname.tex},mimetype={application/x-tex}]{\jobname.tex}
 % Create an OutputIntent in order to correctly specify colours
 \immediate\pdfobj stream attr{/N 3} file{sRGB.icc}
 \pdfcatalog{%
