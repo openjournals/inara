@@ -13,36 +13,36 @@
     unicode=true,
     pdfapart=3,
     pdfaconformance=B,
-    $if(title-meta)$
+$if(title-meta)$
     pdftitle={$title-meta$},
-    $endif$
-    $if(author-meta)$
+$endif$
+$if(author-meta)$
     pdfauthor={$author-meta$},
-    $endif$
-    $if(keywords)$
+$endif$
+$if(keywords)$
     pdfkeywords={$for(keywords)$$keywords$$sep$; $endfor$},
-    $endif$
+$endif$
     pdfpublication={$journal.title$},
     pdfpublisher={Open Journals},
     pdfissn={$journal.issn$},
     pdfpubtype={journal},
     pdfvolumenum={$volume$},
     pdfissuenum={$issue$},
-    $if(article.doi)$
+$if(article.doi)$
     pdfdoi={$article.doi$},
-    $endif$
-    $if(author-meta)$
+$endif$
+$if(author-meta)$
     pdfcopyright={Copyright (c) $year$, $author-meta$},
-    $endif$
+$endif$
     pdflicenseurl={http://creativecommons.org/licenses/by/4.0/},
-    $if(colorlinks)$
+$if(colorlinks)$
     colorlinks=true,
     linkcolor=$if(linkcolor)$$linkcolor$$else$Maroon$endif$,
     citecolor=$if(citecolor)$$citecolor$$else$Blue$endif$,
     urlcolor=$if(urlcolor)$$urlcolor$$else$Blue$endif$,
-    $else$
+$else$
     pdfborder={0 0 0},
-    $endif$
+$endif$
     breaklinks=true
 }
 % https://tex.stackexchange.com/a/535849
