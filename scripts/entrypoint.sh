@@ -21,7 +21,7 @@ set -- $args
 
 outformats=jats,pdf
 draft=true
-fail_if_warnings=--fail-if-warnings
+fail_if_warnings=
 article_info_file=
 verbosity=0
 
@@ -38,7 +38,7 @@ while true; do
             ;;
         (-p)
             draft=
-            fail_if_warnings=
+            fail_if_warnings=--fail-if-warnings
             shift 1
             ;;
         (-v)
