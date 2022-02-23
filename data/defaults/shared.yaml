@@ -36,4 +36,3 @@ dpi: 300
 
 default-image-extension: ".png"
 reference-links: true
-fail-if-warnings: true
