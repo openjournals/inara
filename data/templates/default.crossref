@@ -37,7 +37,7 @@
       </journal_issue>
       <journal_article publication_type="full_text">
         <titles>
-          <title>$title$</title>
+          <title>$title-meta$</title>
         </titles>
         <contributors>
 $for(authors/first)$

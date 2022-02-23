@@ -91,5 +91,8 @@ function Meta (meta)
     meta.article['author-notes'] = nil
   end
 
+  -- especially for crossref
+  meta['title-meta'] = stringify(meta.title)
+
   return meta
 end
