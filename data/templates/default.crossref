@@ -98,10 +98,10 @@ $endfor$
         </rel:program>
         <doi_data>
           <doi>$article.doi$</doi>
-          <resource>https://joss.theoj.org/joss-papers/$article.doi$</resource>
+          <resource>https://joss.theoj.org/papers/$article.doi$</resource>
           <collection property="text-mining">
             <item>
-              <resource mime_type="application/pdf">https://joss.theoj.org/joss-papers/${article.doi}.pdf</resource>
+              <resource mime_type="application/pdf">https://joss.theoj.org/papers/${article.doi}.pdf</resource>
             </item>
           </collection>
         </doi_data>
