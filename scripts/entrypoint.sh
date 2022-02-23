@@ -20,7 +20,8 @@ fi
 set -- $args
 
 outformats=jats,pdf
-draft_variable=true
+draft=true
+fail_if_warnings=--fail-if-warnings
 article_info_file=
 verbosity=0
 
@@ -36,7 +37,8 @@ while true; do
             shift 2
             ;;
         (-p)
-            draft_variable=
+            draft=
+            fail_if_warnings=
             shift 1
             ;;
         (-v)
@@ -92,8 +94,9 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
         ${article_info_option} \
 	      --resource-path=.:${input_dir}:${OPENJOURNALS_PATH} \
 	      --variable="${JOURNAL}" \
-        --variable=draft:"$draft_variable" \
+        --variable=draft:"$draft" \
         --output="paper.${format}" \
+        $fail_if_warnings \
         "$input_file" \
         "$@" || exit 1
     if [ "$verbosity" -gt 0 ]; then
