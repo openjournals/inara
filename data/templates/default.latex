@@ -85,33 +85,6 @@ $endif$
   \allowbreak
   \else\penalty6000\hspace{0pt plus 0.02em}\fi}
 
-
-% --- Pandoc does not distinguish between links like [foo](bar) and
-% --- [foo](foo) -- a simplistic Markdown model.  However, this is
-% --- wrong:  in links like [foo](foo) the text is the url, and must
-% --- be split correspondingly.
-% --- Here we detect links \href{foo}{foo}, and also links starting
-% --- with https://doi.org, and use path-like splitting (but not
-% --- escaping!) with these links.
-% --- Another vile thing pandoc does is the different escaping of
-% --- foo and bar.  This may confound our detection.
-% --- This problem we do not try to solve at present, with the exception
-% --- of doi-like urls, which we detect correctly.
-
-
-\makeatletter
-\let\href@Orig=\href
-\def\href@Urllike#1#2{\href@Orig{#1}{\begingroup
-    \def\Url@String{#2}\Url@FormatString
-    \endgroup}}
-\def\href@Notdoi#1#2{\def\tempa{#1}\def\tempb{#2}%
-  \ifx\tempa\tempb\relax\href@Urllike{#1}{#2}\else
-  \href@Orig{#1}{#2}\fi}
-\def\href#1#2{%
-  \IfBeginWith{#1}{https://doi.org}%
-  {\href@Urllike{#1}{#2}}{\href@Notdoi{#1}{#2}}}
-\makeatother
-
 $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
