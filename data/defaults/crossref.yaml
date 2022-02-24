@@ -1,4 +1,5 @@
 to: html5
+html-math-method: mathjax
 
 filters:
   - type: lua
