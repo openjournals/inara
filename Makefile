@@ -48,6 +48,9 @@ $(TARGET_FOLDER):
 docker-image: Dockerfile
 	docker build --tag openjournals/inara .
 
+push-docker-image:
+	docker push openjournals/inara
+
 $(OPENJOURNALS_PATH)/footer.csl: $(OPENJOURNALS_PATH)/apa.csl
 	sed -e 's/et-al-use-first="[0-9]*"/et-al-use-first="1"/g' \
 	    -e 's/et-al-min="[0-9]*"/et-al-min="3"/g' \

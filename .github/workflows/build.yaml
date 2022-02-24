@@ -1,0 +1,36 @@
+name: Image Builder
+
+on:
+  push:
+    # Build and publish after updating the default branch
+    branches:
+      - master
+    paths-ignore:
+      - '.dockerignore'
+      - 'docs/*'
+      - 'LICENSE'
+      - 'README.md'
+  pull_request:
+    # Build, but don't push on pull requests
+
+jobs:
+  # Build images and push them
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build minimal image
+        run: make docker-image
+
+      - name: Push
+        if: >-
+          github.event_name == 'push' &&
+          github.repository == 'openjournals/inara'
+        run: |
+          # Log into registry
+          echo "${{ secrets.DOCKER_HUB_TOKEN }}" |
+            docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
+          make push-docker-image
