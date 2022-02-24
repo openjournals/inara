@@ -4,7 +4,7 @@ on:
   push:
     # Build and publish after updating the default branch
     branches:
-      - master
+      - main
     paths-ignore:
       - '.dockerignore'
       - 'docs/*'
