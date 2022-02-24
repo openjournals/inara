@@ -22,10 +22,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build minimal image
+      - name: Build image
         run: make docker-image
 
-      - name: Push
+      - name: Push to Docker Hub
         if: >-
           github.event_name == 'push' &&
           github.repository == 'openjournals/inara'
@@ -34,3 +34,15 @@ jobs:
           echo "${{ secrets.DOCKER_HUB_TOKEN }}" |
             docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
           make push-docker-image
+
+      - name: Push to GitHub Container Registry
+        if: >-
+          github.event_name == 'push' &&
+          github.repository == 'openjournals/inara'
+        run: |
+          # Log into registry
+          echo "${{ secrets.GITHUB_TOKEN }}" |
+          docker login ghcr.io \
+              -u ${{ github.respository_owner }} \
+              --password-stdin
+          docker push ghcr.io/${{ github.repository }}
