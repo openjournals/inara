@@ -41,8 +41,8 @@ jobs:
           github.repository == 'openjournals/inara'
         run: |
           # Log into registry
-          echo "${{ secrets.GITHUB_TOKEN }}" |
+          echo "${{ secrets.GITHUB_TOKEN }}" | \
           docker login ghcr.io \
-              -u ${{ github.respository_owner }} \
+              -u ${{ github.actor }} \
               --password-stdin
           docker push ghcr.io/${{ github.repository }}
