@@ -95,6 +95,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
 	      --resource-path=.:${input_dir}:${OPENJOURNALS_PATH} \
 	      --variable="${JOURNAL}" \
         --variable=draft:"$draft" \
+        --metadata=draft:"$draft" \
         --output="paper.${format}" \
         $fail_if_warnings \
         "$input_file" \
