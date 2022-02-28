@@ -434,10 +434,10 @@ $for(affiliations)$
 \affil[$affiliations.index$]{$affiliations.name$}
 $endfor$
 $if(article.author-notes.corresp)$
-\affil[$article.author-notes.corresp$ $$\mathparagraph$$]{Corresponding author}
+\affil[$$\mathparagraph$$]{Corresponding author}
 $endif$
 $if(article.has-equal-contributors)$
-\affil[*]{$if(messgae.equal-contrib)$$message.equal-contrib$$else$These authors contributed equally.$endif$}
+\affil[*]{$if(message.equal-contrib)$$message.equal-contrib$$else$These authors contributed equally.$endif$}
 $endif$
 \date{\vspace{-2.5ex}}
 
