@@ -11,17 +11,14 @@ local function split_string (str, sep)
   return acc
 end
 
-local function extract_notes(metainlines)
-  local notes = List()
-  local span = pandoc.Span(metainlines)
-  local new_span = pandoc.walk_inline(
-    span, {
+local function extract_note(metainlines)
+  local note = List()
+  return metainlines:walk {
       Note = function (x)
-        notes:insert(pandoc.Div(x.content))
+        note = pandoc.utils.blocks_to_inlines(x.content)
         return {}
       end
-  })
-  return new_span.content, notes
+  }, note
 end
 
 local function is_corresponding_author_note (note)
@@ -50,14 +47,15 @@ return function (meta)
     if author.name and
        pandoc.List{'string', 'Inlines'}:includes(type(author.name))
     then
-      local name, notes = extract_notes(author.name)
+      local name, note = extract_note(author.name)
       author.name = name
-      if notes:find_if(is_equal_contributor_note) then
+      if is_equal_contributor_note(note) then
         author['equal-contrib'] = true
-      end
-      if notes:find_if(is_corresponding_author_note) or
+      elseif is_corresponding_author_note(note) or
         author['corresponding'] then
         author['cor-id'] = add_corresponding_author(author)
+      else
+        author['note'] = note
       end
     end
     author.affiliation = author.affiliation
