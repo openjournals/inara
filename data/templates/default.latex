@@ -427,7 +427,7 @@ $endif$
 $for(authors)$
 \author[$authors.affiliation$%
 $if(authors.equal-contrib)$*$endif$%
-$if(authors.cor-id)$\ensuremath\mathparagraph$endif$]{$authors.name$
+$if(authors.cor-id)$\ensuremath\mathparagraph$endif$]{$authors.name$%
 $if(it.note)$
   \thanks{$it.note$}%
 $endif$
