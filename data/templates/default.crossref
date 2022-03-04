@@ -150,6 +150,7 @@ $if(it/first)$
 $endif$
 $endfor$
 $endfor$
+            <unstructured_citation>${it.unstructured_citation}</unstructured_citation>
           </citation>
 $endfor$
         </citation_list>

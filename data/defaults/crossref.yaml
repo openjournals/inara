@@ -4,5 +4,7 @@ html-math-method: mathjax
 filters:
   - type: lua
     path: doi-batch-id.lua
+  - type: lua
+    path: flatten-references.lua
 
 template: '${.}/../templates/default.crossref'
