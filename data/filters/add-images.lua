@@ -6,6 +6,6 @@ local function insert (filepath)
 end
 
 function Meta (meta)
-  insert(meta.aas_logo_path)
-  insert(meta.logo_path)
+  if meta.aas_logo_path then insert(meta.aas_logo_path) end
+  if meta.logo_path     then insert(meta.logo_path)     end
 end

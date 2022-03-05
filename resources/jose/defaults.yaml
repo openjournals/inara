@@ -1,4 +1,4 @@
-csl: /usr/local/share/openjournals/apa.csl
+csl: apa.csl
 
 metadata:
   joss_resource_url: 'N/A'
@@ -26,6 +26,5 @@ metadata:
       Authors of papers retain copyright and release the work under a
       Creative Commons Attribution 4.0 International License (CC BY 4.0)
 
-  aas_logo_path: 'jose/aas-logo.png'
   logo_path: 'jose/logo.png'
 
