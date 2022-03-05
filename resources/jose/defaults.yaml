@@ -1,20 +1,13 @@
-template: jose/latex.template
 csl: /usr/local/share/openjournals/apa.csl
 
-variables:
-  joss_resource_url: 'N/A'
-
 metadata:
-  aas_logo_path: '/usr/local/share/openjournals/jose/aas-logo.png'
-  logo_path: '/usr/local/share/openjournals/jose/logo.png'
-
+  joss_resource_url: 'N/A'
   journal:
     abbrev-title: 'JOSE'
     alias: 'jose'
-    title: 'Journal of Open Source Education'
-    name: 'Journal of Open Source Education'
     url: 'https://jose.theoj.org/'
     doi: '10.21105/jose'
+    title: 'Journal of Open Source Education'
     publisher-name: 'Open Journals'
     issn: '2475-9066'
     eissn: '2577-3569'
@@ -32,3 +25,7 @@ metadata:
     text: >-
       Authors of papers retain copyright and release the work under a
       Creative Commons Attribution 4.0 International License (CC BY 4.0)
+
+  aas_logo_path: 'jose/aas-logo.png'
+  logo_path: 'jose/logo.png'
+
