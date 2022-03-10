@@ -21,7 +21,6 @@ set -- $args
 
 outformats=jats,pdf
 draft=true
-fail_if_warnings=
 article_info_file=
 verbosity=0
 
@@ -38,7 +37,6 @@ while true; do
             ;;
         (-p)
             draft=
-            fail_if_warnings=--fail-if-warnings
             shift 1
             ;;
         (-v)
@@ -97,7 +95,6 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
         --variable=draft:"$draft" \
         --metadata=draft:"$draft" \
         --output="paper.${format}" \
-        $fail_if_warnings \
         "$input_file" \
         "$@" || exit 1
     if [ "$verbosity" -gt 0 ]; then
