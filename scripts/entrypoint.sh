@@ -6,6 +6,7 @@ usage()
 {
     printf "Usage: %s [OPTIONS] INPUT_FILE\n" "$0"
     printf 'Options:\n'
+    printf '\t-l: create log files for all formats\n'
     printf '\t-m: article info file; YAML file contains article metadata\n'
     printf '\t-o: comma-separated list of output format; defaults to jats,pdf\n'
     printf '\t-p: flag to force the production of a publishing PDF\n'
@@ -13,7 +14,7 @@ usage()
     printf '\t-v: increase verbosity; can be given multiple times\n'
 }
 
-args=$(getopt 'o:m:pv' "$@")
+args=$(getopt 'lo:m:pv' "$@")
 if [ $? -ne 0 ]; then
     usage && exit 1
 fi
@@ -21,6 +22,7 @@ set -- $args
 
 outformats=jats,pdf
 draft=true
+log=
 article_info_file=
 verbosity=0
 
@@ -34,6 +36,10 @@ while true; do
             # we switch the directory later, so get the absolute path.
             article_info_file="$(realpath "$2")";
             shift 2
+            ;;
+        (-l)
+            log=true
+            shift 1
             ;;
         (-p)
             draft=
@@ -84,6 +90,11 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
     if [ "$verbosity" -gt 0 ]; then
          printf "Starting conversion to %s...\n" "$format"
     fi
+    if [ -z "$log" ]; then
+        logfile=/dev/null
+    else
+        logfile=paper.${format}.log
+    fi
     /usr/local/bin/pandoc \
 	      --data-dir="$OPENJOURNALS_PATH"/data \
         --defaults=shared \
@@ -95,6 +106,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
         --variable=draft:"$draft" \
         --metadata=draft:"$draft" \
         --output="paper.${format}" \
+        --log="$logfile" \
         "$input_file" \
         "$@" || exit 1
     if [ "$verbosity" -gt 0 ]; then
