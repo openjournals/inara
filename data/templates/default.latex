@@ -425,7 +425,7 @@ $if(subtitle)$
 $endif$
 
 $for(authors)$
-\author[$authors.affiliation$%
+\author[$for(authors.affiliation)$$authors.affiliation$$sep$,$endfor$%
 $if(authors.equal-contrib)$*$endif$%
 $if(authors.cor-id)$\ensuremath\mathparagraph$endif$]{$authors.name$%
 $if(it.note)$
