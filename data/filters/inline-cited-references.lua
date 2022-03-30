@@ -14,7 +14,7 @@ function Pandoc (doc)
     -- the bibliography entry. We work around this by setting `others`
     -- as the family name, but it's a hack.
     local author = ref.author
-    if #author > 0 and author[#author].literal == 'others' then
+    if author and #author > 0 and author[#author].literal == 'others' then
       author[#author].family = 'others'
       author[#author].literal = nil
     end
