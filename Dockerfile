@@ -20,6 +20,7 @@ RUN tlmgr update --self && tlmgr install \
   logreq \
   marginnote \
   mathspec \
+  orcidlink \
   pgf \
   preprint \
   seqsplit \

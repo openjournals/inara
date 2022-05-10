@@ -60,6 +60,7 @@ $endif$
 }
 \pdfvariable omitcidset=1
 \usepackage{caption}
+\usepackage{orcidlink}
 \usepackage{tcolorbox}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
@@ -401,6 +402,9 @@ $for(authors)$
 \author[$for(authors.affiliation)$$authors.affiliation$$sep$,$endfor$%
 $if(authors.equal-contrib)$*$endif$%
 $if(authors.cor-id)$\ensuremath\mathparagraph$endif$]{$authors.name$%
+$if(it.orcid)$
+  \,\orcidlink{${it.orcid}}\,%
+$endif$
 $if(it.note)$
   \thanks{$it.note$}%
 $endif$
@@ -453,7 +457,8 @@ $if(joss)$
 
   \vspace{2mm}
 
-  {\bfseries Editor:} \href{$editor.url$}{$editor.name$} \ExternalLink \\
+  {\bfseries Editor:} \href{$editor.url$}{$editor.name$} \ExternalLink
+  $if(editor.orcid)$\,\orcidlink{${editor.orcid}}$endif$ \\
   \vspace{1mm}
   $if(reviewers)$
   {\bfseries Reviewers:}
