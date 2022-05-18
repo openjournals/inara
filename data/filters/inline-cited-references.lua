@@ -8,6 +8,13 @@ function Pandoc (doc)
     if ref.doi then
       ref.doi = trim(pandoc.utils.stringify(ref.doi))
     end
+    -- the "ISSN" field sometimes contains two ISSNs, one for print and another
+    -- for the online version. Adding both leads to bad results (and invalid
+    -- JATS), so we keep only the first and discard the second.
+    if ref.issn then
+      ref.issn = ref.issn:match '(%d%d%d%d%-%d%d%d[%dxX])'
+    end
+
     -- The literal name `other` as the last author is treated as `et
     -- al.`. However, APA style does not work well when this is used, as
     -- it always includes the last author (preceded by an ellipses) in
