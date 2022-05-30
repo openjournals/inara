@@ -14,6 +14,10 @@ function Pandoc (doc)
     if ref.issn then
       ref.issn = ref.issn:match '(%d%d%d%d%-%d%d%d[%dxX])'
     end
+    -- Same for ISBN
+    if ref.isbn then
+      ref.isbn = ref.isbn:match '([%d%-]+[%dxX])%s*$'
+    end
 
     -- The literal name `other` as the last author is treated as `et
     -- al.`. However, APA style does not work well when this is used, as
