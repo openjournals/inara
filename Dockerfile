@@ -8,6 +8,7 @@ RUN tlmgr update --self && tlmgr install \
   algorithms \
   booktabs \
   caption \
+  collection-context \
   draftwatermark \
   environ \
   etoolbox \
@@ -31,15 +32,24 @@ RUN tlmgr update --self && tlmgr install \
   xkeyval \
   xstring
 
+
+ENV OSFONTDIR=/usr/share/fonts
+
+COPY ./fonts/libre-franklin $OSFONTDIR/libre-franklin
+
+RUN TERM=dumb luaotfload-tool --update \
+  && chmod -R o+w /opt/texlive/texdir/texmf-var \
+  && apk add --no-cache ttf-opensans \
+  && fc-cache -sfv $OSFONTDIR/libre-franklin \
+  && mtxrun --generate \
+  && mtxrun --script font --reload
+
 # Copy templates, images, and other resources
 ARG openjournals_path=/usr/local/share/openjournals
 COPY ./resources $openjournals_path
 COPY ./data $openjournals_path/data
 COPY ./scripts/clean-metadata.lua $openjournals_path
 COPY ./scripts/entrypoint.sh /usr/local/bin/inara
-
-RUN TERM=dumb luaotfload-tool --update \
-  && chmod -R o+w /opt/texlive/texdir/texmf-var
 
 ENV JOURNAL=joss
 ENV OPENJOURNALS_PATH=$openjournals_path
