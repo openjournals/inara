@@ -10,6 +10,7 @@ on:
       - 'docs/*'
       - 'LICENSE'
       - 'README.md'
+      - 'example/*'
   pull_request:
     # Build, but don't push on pull requests
 
