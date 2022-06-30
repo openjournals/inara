@@ -78,14 +78,6 @@ $endif$
 
 \usepackage{fixltx2e} % provides \textsubscript
 
-% --- Splitting \texttt --------------------------------------------------
-
-\let\textttOrig=\texttt
-\def\texttt#1{\expandafter\textttOrig{\seqsplit{#1}}}
-\renewcommand{\seqinsert}{\ifmmode
-  \allowbreak
-  \else\penalty6000\hspace{0pt plus 0.02em}\fi}
-
 $if(csl-refs)$
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
@@ -197,7 +189,6 @@ $endif$
     {\begin{flushleft}}
     {\end{flushleft}}
   \AB@maketitle}}
-\makeatletter
 \renewcommand\AB@affilsepx{ \protect\Affilfont}
 %\renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{2pt}}
 \renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{3pt}}
@@ -207,7 +198,6 @@ $endif$
         \setcounter{Maxaffil}{0}\fi
         \begingroup
         \let\href=\href@Orig
-        \let\texttt=\textttOrig
         \let\protect\@unexpandable@protect
         \def\thanks{\protect\thanks}\def\footnote{\protect\footnote}%
         \@temptokena=\expandafter{\AB@authors}%
@@ -305,20 +295,6 @@ $if(draft)$
 \linenumbers
 \usepackage{draftwatermark}
 $endif$
-
-
-% --- We redefined \texttt, but in sections and captions we want the
-% --- old definition
-\let\addcontentslineOrig=\addcontentsline
-\def\addcontentsline#1#2#3{\bgroup
-  \let\texttt=\textttOrig\addcontentslineOrig{#1}{#2}{#3}\egroup}
-\let\markbothOrig\markboth
-\def\markboth#1#2{\bgroup
-  \let\texttt=\textttOrig\markbothOrig{#1}{#2}\egroup}
-\let\markrightOrig\markright
-\def\markright#1{\bgroup
-  \let\texttt=\textttOrig\markrightOrig{#1}\egroup}
-
 
 $if(graphics)$
 \usepackage{graphicx,grffile}
