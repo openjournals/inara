@@ -389,6 +389,9 @@ $endif$
 $for(header-includes)$
 $header-includes$
 $endfor$
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
 
 $if(title)$
 \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
