@@ -412,7 +412,7 @@ Cross-references to equations work similar to those for floating
 elements. The difference is that, since captions are not supported
 for equations, the label must be included in the equation:
 
-    $$a^n + b^n = c^n \label{fermats}$$
+    $$a^n + b^n = c^n \label{fermat}$$
 
 Referencing, however, is identical, with `\autoref{eq:fermat}`
 resulting in "\autoref{eq:fermat}".
