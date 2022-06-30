@@ -58,9 +58,14 @@ return function (meta)
         author['note'] = note
       end
     end
-    author.affiliation = author.affiliation
-      and split_string(stringify(author.affiliation), ',')
-      or nil
+    if pandoc.utils.type(author.affiliation) == 'List'  then
+      author.affiliation = author.affiliation
+    else
+      author.affiliation = split_string(
+        stringify(author.affiliation or ''),
+        ','
+      )
+    end
   end
   for i, aff in ipairs(affiliations or {}) do
     aff.id = aff.index or tostring(i)
