@@ -1,5 +1,5 @@
--- Bail if we are converting to PDF.
-if FORMAT:match('tex') then
+-- Bail if we are converting to LaTeX.
+if FORMAT:match('latex') then
   return {}
 end
 
@@ -52,7 +52,8 @@ local function collect_figure_labels (para)
 end
 
 local function collect_equation_tags (span)
-  if span.classes[1] == 'equation' and span.attributes.label then
+  local eq = span.content[1]
+  if #span.content == 1 and eq.t == 'Math' and span.attributes.label then
     nequations = nequations + 1
     equation_labels[span.attributes.label] = tostring(nequations)
     labels[span.attributes.label] = {
@@ -62,7 +63,8 @@ local function collect_equation_tags (span)
 end
 
 local function find_label (txt)
-  return txt:match '\\label%{(.-)%}'
+  local before, label, after = txt:match '(.*)\\label%{(.-)%}(.*)'
+  return label, label and before .. after
 end
 
 local function parse_equation (txt)
@@ -108,9 +110,10 @@ return {
     end,
     Math = function (m)
       if m.mathtype == pandoc.DisplayMath then
-        local label = find_label(m.text)
+        local label, stripped = find_label(m.text)
         if label then
           local attr = pandoc.Attr(label, {'equation'}, {label=label})
+          m.text = stripped
           return pandoc.Span({m}, attr)
         end
       end
