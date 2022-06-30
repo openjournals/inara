@@ -1,0 +1,78 @@
+to: context
+pdf-engine: context
+output-file: paper.pdf
+filters:
+  - type: lua
+    path: draft.lua
+  - type: lua
+    path: self-citation.lua
+  - # Handle `\ref`, `\label`, and `\autoref` commands
+    type: lua
+    path: resolve-references.lua
+  - type: lua
+    path: context-numbered-equations.lua
+
+metadata:
+  reference-section-title: References
+
+variables:
+  # colors
+  colorlinks: true
+  linkcolor: lightblue
+  linkcontrastcolor: lightblue
+  license: |
+    Authors of papers retain copyright and release the work under a Creative
+    Commons Attribution 4.0 International License ({\sc CC~BY~4.0})
+
+  # Fonts
+  mainfont: OpenSans
+  sansfont: LibreFranklin
+  monofont: Hack
+
+
+  fontsize: 10pt
+  interlinespace: 13pt
+
+  # layout
+  # Size of A4 paper: 210 mm x 297 mm
+  papersize: A4
+  layout:
+    # top
+    - header=40mm
+    - headerdistance=0mm
+    - top=0mm
+    - topspace=10mm
+
+    # left
+    - backspace=65mm
+    - leftedge=9.5mm
+    - leftedgedistance=0mm
+    - leftmargin=48mm
+    - leftmargindistance=8mm
+
+    # right
+    - rightedge=0mm
+    - rightmargin=8mm
+    - rightmargindistance=0mm
+
+    # bottom
+    - bottom=10mm
+    - bottomdistance=0mm
+    - footerdistance=12mm
+    - footer=12mm
+
+    # text
+    - height=277mm
+    - width=137mm
+
+  pagenumbering:
+    - alternative=singlesided
+    - location={footer,margin}
+    - state=start
+
+  papersize: a4
+  pdfa: 3a
+  whitespace: none
+  # Use the international standard
+  pdfaiccprofile: sRGB.icc
+  pdfaintent: sRGB IEC61966-2.1

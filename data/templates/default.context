@@ -1,0 +1,469 @@
+\definecolor[lightblue]  [c=.66, m=.39, y=0,   k=0]
+\definecolor[grey]       [c=.40, m=.31, y=.32, k=.10]
+\definecolor[orcidgreen] [x=A6CE39]
+
+\usemodule[tikz]
+
+$if(context-lang)$
+\mainlanguage[$context-lang$]
+$endif$
+$if(context-dir)$
+\setupalign[$context-dir$]
+\setupdirections[bidi=on,method=two]
+$endif$
+% Enable hyperlinks
+\setupinteraction
+  [state=start,
+$if(title)$
+  title={$title$},
+$endif$
+$if(subtitle)$
+  subtitle={$subtitle$},
+$endif$
+$if(author)$
+  author={$for(author)$$author$$sep$; $endfor$},
+$endif$
+$if(keywords)$
+  keyword={$for(keywords)$$keywords$$sep$; $endfor$},
+$endif$
+  style=$linkstyle$,
+  color=$linkcolor$,
+  contrastcolor=$linkcontrastcolor$]
+
+% make chapter, section bookmarks visible when opening document
+\placebookmarks[chapter, section, subsection, subsubsection, subsubsubsection, subsubsubsubsection][chapter, section]
+\setupinteractionscreen[option={bookmark,title}]
+
+$if(papersize)$
+\setuppapersize[$for(papersize)$${papersize}$sep$,$endfor$]
+$endif$
+$if(layout)$
+\setuplayout[$for(layout)$$layout$$sep$,$endfor$]
+$endif$
+$if(pagenumbering)$
+\setuppagenumbering[$for(pagenumbering)$$pagenumbering$$sep$,$endfor$]
+$else$
+\setuppagenumbering[location={footer,middle}]
+$endif$
+$if(pdfa)$
+% attempt to generate PDF/A
+\setupbackend
+  [format=PDF/A-$pdfa$,
+   profile={$if(pdfaiccprofile)$$for(pdfaiccprofile)$$pdfaiccprofile$$sep$,$endfor$$else$sRGB.icc$endif$},
+   intent=$if(pdfaintent)$$pdfaintent$$else$sRGB IEC61966-2.1$endif$]
+$endif$
+\setupbackend[export=yes]
+\setupstructure[state=start,method=auto]
+
+% use microtypography
+\definefontfeature[default][default][script=latn, protrusion=quality, expansion=quality, itlc=yes, textitalics=yes, onum=yes, pnum=yes]
+\definefontfeature[default:tnum][default][tnum=yes, pnum=no]
+\definefontfeature[smallcaps][script=latn, protrusion=quality, expansion=quality, smcp=yes, onum=yes, pnum=yes]
+\setupalign[hz,hanging]
+\setupitaliccorrection[global, always]
+
+\setupbodyfontenvironment
+  [default]
+  [text=0.9,
+   script=0.7,
+   scriptscript=0.5,
+   a=1.000,
+   b=1.200,
+   c=1.440,
+   d=1.728,
+   *=\currentfontscale, % wildcard
+   x=0.8,
+   xx=0.6,
+   big=1.2,
+   small=0.8,
+   interlinespace=2.7ex,
+   em=italic] % use italic as em, not slanted
+
+\definefallbackfamily[mainface][rm][CMU Serif][preset=range:greek, force=yes]
+\definefontfamily[mainface][rm][$if(mainfont)$$mainfont$$else$Latin Modern Roman$endif$]
+\definefontfamily[mainface][mm][$if(mathfont)$$mathfont$$else$Latin Modern Math$endif$]
+\definefontfamily[mainface][ss][$if(sansfont)$$sansfont$$else$Latin Modern Sans$endif$][tf=file:$sansfont$-SemiBold,tfc=file:$sansfont$-SemiBold,tfb=file:$sansfont$-SemiBold,tfa=file:$sansfont$-SemiBold,bf=file:$sansfont$-Bold]
+\definefontfamily[mainface][tt][$if(monofont)$${monofont}$else$Latin Modern Typewriter$endif$][rscale=0.9]
+\setupbodyfont[mainface$if(fontsize)$,${fontsize}$endif$]
+
+\setupwhitespace[$if(whitespace)$${whitespace}$else$medium$endif$]
+$if(indenting)$
+\setupindenting[$for(indenting)$${indenting}$sep$,$endfor$]
+$endif$
+$if(interlinespace)$
+\setupinterlinespace[$for(interlinespace)$$interlinespace$$sep$,$endfor$]
+$endif$
+
+\startsetups[footertext]
+  \startframed[
+    frame=off,
+    framecolor=lightblue,
+    topframe=on,
+    offset=0mm,
+    toffset=2ex,
+    align=normal,
+    width=max
+  ]
+    \tfx\setupinterlinespace $self-citation/nowrap$
+  \stopframed
+\stopsetups
+
+\startsetups[journalLogo]
+  \startframed[frame=off,width=max,align=flushright]
+    \externalfigure[/usr/local/share/openjournals/joss/new-logo.png]
+  \stopframed
+\stopsetups
+
+\startsetups[orcidlogo]
+  \starttikzpicture
+    [
+      x=0.046875,
+      y=0.046875,
+      inner sep=0pt,
+      outer sep=0pt,
+    ]%
+      \fill[orcidgreen] (128,128) circle (128);% outer
+      \fill[white] (70,177) rectangle (86,70);% i bottom
+      \fill[white] (78,200) circle (10);% i dot
+      \fill[white] (109,177) -- (150,177) %
+      .. controls (190,177) and (208,149)%
+      .. (208,123)%
+      .. controls (208,96) and (186,70)%
+      .. (150,70)%
+      -- (109,70)%
+      -- (109,177) -- cycle%
+      (124,84)%
+      -- (150,84)%
+      .. controls (186,84) and (192,110)%
+      .. (192,123)%
+      .. controls (192,145) and (178,163)%
+      .. (150,163) -- (124,163)%
+      -- (124,84) -- cycle;% D
+  \stoptikzpicture
+\stopsetups
+
+\startsetups[openlogos]
+  \startframed[frame=off,width=max,align=flushright]
+
+    \starttikzpicture
+      [
+        draw=grey,
+        x=1pt,
+        y=1pt,
+        scale=0.25,
+        line width=2.5pt
+      ]
+      \draw (10,68) -- (10,72) arc (180:0:21) -- (52,46);
+      \draw (31,31) circle (26);
+      \path[fill=grey](31,31)circle(8.8);
+    \stoptikzpicture
+
+  ~\quad
+
+  %%% CC %%%
+  \starttikzpicture
+    [
+      y=1pt,
+      x=1pt,
+      yscale=-0.38,
+      xscale=0.38,
+      inner sep=0pt,
+      outer sep=0pt,
+      draw=grey,
+    ]
+    %% \path[fill=grey] (37.7850,28.5010) circle (0.8138cm);
+    \path[fill=grey]
+      (37.441,-3.500) .. controls (46.3920,-3.5000) and
+      (54.013,-0.375) .. (60.298, 5.872) .. controls (63.306, 8.881) and
+      (65.593,12.320) .. (67.155,16.186) .. controls (68.716,20.053) and
+      (69.499,24.157) .. (69.499,28.500) .. controls (69.499,32.881) and
+      (68.726,36.986) .. (67.185,40.813) .. controls (65.642,44.641) and
+      (63.365,48.023) .. (60.357,50.956) .. controls (57.234,54.041) and
+      (53.691,56.404) .. (49.728,58.042) .. controls (45.767,59.680) and
+      (41.671,60.499) .. (37.443,60.499) .. controls (33.215,60.499) and
+      (29.167,59.691) .. (25.300,58.070) .. controls (21.434,56.452) and
+      (17.967,54.109) .. (14.900,51.043) .. controls (11.833,47.977) and
+      ( 9.500,44.519) .. ( 7.900,40.671) .. controls ( 6.300,36.823) and
+      ( 5.500,32.767) .. ( 5.500,28.500) .. controls ( 5.500,24.271) and
+      ( 6.309,20.205) .. ( 7.928,16.300) .. controls ( 9.547,12.395) and
+      (11.900, 8.900) .. (14.985, 5.814) .. controls (21.080,-0.394) and
+      (28.565,-3.500) .. (37.441,-3.500)
+      -- cycle(37.5570,2.2720) .. controls (30.2430,2.2720) and
+      (24.090, 4.825) .. (19.099, 9.929) .. controls (16.584,12.482) and
+      (14.651,15.348) .. (13.299,18.529) .. controls (11.945,21.710) and
+      (11.270,25.034) .. (11.270,28.501) .. controls (11.270,31.930) and
+      (11.945,35.235) .. (13.299,38.414) .. controls (14.652,41.597) and
+      (16.584,44.435) .. (19.099,46.930) .. controls (21.613,49.426) and
+      (24.450,51.329) .. (27.614,52.645) .. controls (30.775,53.959) and
+      (34.090,54.616) .. (37.557,54.616) .. controls (40.985,54.616) and
+      (44.307,53.951) .. (47.530,52.617) .. controls (50.749,51.282) and
+      (53.651,49.360) .. (56.243,46.846) .. controls (61.233,41.970) and
+      (63.727,35.856) .. (63.727,28.502) .. controls (63.727,24.959) and
+      (63.079,21.607) .. (61.784,18.445) .. controls (60.491,15.283) and
+      (58.604,12.465) .. (56.130, 9.987) .. controls (50.984, 4.844) and
+      (44.795, 2.272) .. (37.557, 2.272)
+      -- cycle(37.1560,23.1870)
+      -- (32.8690,25.4160) .. controls (32.411,24.465) and
+      (31.850,23.797) .. (31.184,23.416) .. controls (30.517,23.036) and
+      (29.898,22.845) .. (29.326,22.845) .. controls (26.470,22.845) and
+      (25.040,24.730) .. (25.040,28.502) .. controls (25.040,30.216) and
+      (25.402,31.586) .. (26.125,32.615) .. controls (26.849,33.644) and
+      (27.916,34.159) .. (29.326,34.159) .. controls (31.193,34.159) and
+      (32.507,33.244) .. (33.270,31.416)
+      -- (37.2120,33.4160) .. controls (36.374,34.979) and
+      (35.212,36.207) .. (33.726,37.102) .. controls (32.242,37.998) and
+      (30.603,38.445) .. (28.812,38.445) .. controls (25.955,38.445) and
+      (23.649,37.570) .. (21.897,35.816) .. controls (20.145,34.064) and
+      (19.269,31.626) .. (19.269,28.503) .. controls (19.269,25.455) and
+      (20.155,23.037) .. (21.926,21.246) .. controls (23.697,19.456) and
+      (25.935,18.560) .. (28.641,18.560) .. controls (32.604,18.558) and
+      (35.441,20.101) .. (37.156,23.187)
+      -- cycle(55.6130,23.1870)
+      -- (51.3840,25.4160) .. controls (50.9270,24.4650) and
+      (50.364,23.797) .. (49.698,23.416) .. controls (49.030,23.036) and
+      (48.391,22.845) .. (47.784,22.845) .. controls (44.927,22.845) and
+      (43.497,24.730) .. (43.497,28.502) .. controls (43.497,30.216) and
+      (43.860,31.586) .. (44.583,32.615) .. controls (45.306,33.644) and
+      (46.372,34.159) .. (47.784,34.159) .. controls (49.649,34.159) and
+      (50.964,33.244) .. (51.725,31.416)
+      -- (55.7250,33.4160) .. controls (54.8500,34.9790) and
+      (53.668,36.207) .. (52.184,37.102) .. controls (50.698,37.998) and
+      (49.079,38.445) .. (47.327,38.445) .. controls (44.431,38.445) and
+      (42.118,37.570) .. (40.386,35.816) .. controls (38.650,34.064) and
+      (37.784,31.626) .. (37.784,28.503) .. controls (37.784,25.455) and
+      (38.669,23.037) .. (40.442,21.246) .. controls (42.212,19.456) and
+      (44.450,18.560) .. (47.155,18.560) .. controls (51.117,18.558) and
+      (53.938,20.101) .. (55.613,23.187) -- cycle;
+    \stoptikzpicture
+
+    \quad
+
+    %%% OSI %%%
+    \starttikzpicture[y=0.80pt, x=0.80pt, yscale=-0.05, xscale=0.05, inner sep=0pt, outer sep=0pt]
+      \startscope[line join=round]
+        \path [draw=grey, fill=none, line width=1.9pt] % line width=15.37pt
+          (398.4044,595.2782) .. controls (438.7252,580.3040) and (459.7740,551.4647) ..
+          (459.7740,501.8306) .. controls (459.7740,452.1964) and (417.9488,408.4600) ..
+          (365.6875,408.3750) .. controls (310.5385,408.2854) and (268.9356,452.0150) ..
+          (269.6009,501.8306) .. controls (270.2661,551.6461) and (294.0225,584.7857) ..
+          (332.0473,596.7695) --
+          (264.6892,762.4797) .. controls (174.5360,739.1420) and (82.8451,632.7877) ..
+          (82.8451,501.8306) .. controls (82.8451,346.7214) and (207.4779,220.9806) ..
+          (363.6875,220.9806) .. controls (519.8970,220.9806) and (646.5299,346.7214) ..
+          (646.5299,501.8306) .. controls (646.5299,634.8252) and (555.7091,739.6955) ..
+          (463.6324,762.9458) --
+          cycle;
+
+        \path [cm={{0.62188,0.0,0.0,0.62188,(741.3993,442.86307)}}, fill=grey]
+          (-185.0430,486.4596) .. controls (-183.5196,486.9753) and (-182.0430,488.0768) ..
+          (-180.6133,489.7643) .. controls (-179.1602,491.4518) and (-177.7071,493.7721) ..
+          (-176.2539,496.7253) --
+          (-169.0469,511.0690) --
+          (-176.6758,511.0690) --
+          (-183.3906,497.6042) .. controls (-185.1250,494.0886) and (-186.8125,491.7565) ..
+          (-188.4531,490.6081) .. controls (-190.0703,489.4597) and (-192.2852,488.8854) ..
+          (-195.0977,488.8854) --
+          (-202.8320,488.8854) --
+          (-202.8320,511.0690) --
+          (-209.9336,511.0690) --
+          (-209.9336,458.5807) --
+          (-193.9023,458.5807) .. controls (-187.9024,458.5808) and (-183.4258,459.8347) ..
+          (-180.4727,462.3424) .. controls (-177.5196,464.8503) and (-176.0430,468.6355) ..
+          (-176.0430,473.6979) .. controls (-176.0430,477.0026) and (-176.8165,479.7448) ..
+          (-178.3633,481.9245) .. controls (-179.8868,484.1042) and (-182.1133,485.6159) ..
+          (-185.0430,486.4596)
+          (-202.8320,464.4167) --
+          (-202.8320,483.0495) --
+          (-193.9023,483.0495) .. controls (-190.4805,483.0495) and (-187.9024,482.2643) ..
+          (-186.1680,480.6940) .. controls (-184.4102,479.1003) and (-183.5313,476.7683) ..
+          (-183.5313,473.6979) .. controls (-183.5313,470.6276) and (-184.4102,468.3190) ..
+          (-186.1680,466.7721) .. controls (-187.9024,465.2019) and (-190.4805,464.4167) ..
+          (-193.9023,464.4167) --
+          (-202.8320,464.4167);
+
+        \path[cm={{0.53989,0.0,0.0,0.51642,(738.70955,538.65137)}},draw=grey, line width=0.0602pt]
+          (-174.3803,399.4047)
+          arc (-0.012:180.012:42.626301 and 44.564)
+          arc (-180.012:0.012:42.626301 and 44.564)
+          -- cycle;
+      \stopscope
+    \stoptikzpicture
+  \stopframed
+\stopsetups
+\definetext[firstpage][header][\directsetup{openlogos}]
+
+\setupheadertexts[edge][\directsetup{journalLogo}][]
+\setupfootertexts[\directsetup{footertext}][]
+
+\setuplinenumbering[
+  color=grey,
+  style=\tfxx,
+  location=left,
+  align=flushright,
+  distance=-1.5em
+]
+
+\setuphead [title]
+  [style={\tfd\setupinterlinespace[line=24pt]\ss}, color={lightblue}, header=firstpage, number=no]
+\setuphead [section] [style={\tfc\setupinterlinespace\ss}, color={lightblue}]
+\setuphead [subsection] [style={\tfb\ss},color={lightblue}]
+\setuphead[subsubsection][style={\tfa\ss},color={lightblue}]
+\setuphead[subsubsubsection][style={\tf\ss\it},color={lightblue}]
+\setuphead[subsubsubsubsection][style={\tfx\ss\it},color={lightblue}]
+
+$if(headertext)$
+\setupheadertexts$for(headertext)$[$headertext$]$endfor$
+$endif$
+$if(footertext)$
+\setupfootertexts$for(footertext)$[$footertext$]$endfor$
+$endif$
+$if(number-sections)$
+$else$
+\setuphead[section, subsection, subsubsection, subsubsubsection, subsubsubsubsection][number=no]
+$endif$
+
+\definedescription
+  [description]
+  [headstyle=bold, style=normal, location=hanging, width=broad, margin=1cm, alternative=hanging]
+
+\definedescription
+  [metadata]
+  [headstyle=bold, style=normal, location=hanging, width=line, margin=no, alternative=hanging, indenting=no, hang=none]
+
+\setupitemize[autointro]    % prevent orphan list intro
+\setupitemize[indentnext=no]
+
+\defineitemgroup[enumerate]
+\setupenumerate[each][fit][itemalign=left,distance=.5em,style={\feature[+][default:tnum]}]
+
+\setupxtable[frame=off]
+\setupxtable[head][topframe=on,bottomframe=on]
+\setupxtable[body][]
+\setupxtable[foot][bottomframe=on]
+
+$if(csl-refs)$
+\definemeasure[cslhangindent][1.5em]
+\definenarrower[hangingreferences][left=\measure{cslhangindent}]
+\definestartstop [cslreferences] [
+	$if(csl-hanging-indent)$
+	before={%
+	  \starthangingreferences[left]
+      \setupindenting[-\leftskip,yes,first]
+      \doindentation
+  	},
+  after=\stophangingreferences,
+	$endif$
+]
+$endif$
+
+%% \setupfloat[figure][default={here,nonumber}]
+\setupfloats[spacebefore=9mm,spaceafter=9mm]
+%% \setupcaptions[spaceafter=9mm]
+
+$if(includesource)$
+$for(sourcefile)$
+\attachment[file=$curdir$/$sourcefile$,method=hidden]
+$endfor$
+$endif$
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\starttext\blank[-1em]
+
+
+$if(title)$
+\blank[disable]
+\title[title={$title$}]
+$if(author)$
+\smallskip
+{
+\tfa
+$for(authors)$
+  ${it.name}\high{$for(it.affiliation)$\,${it}$sep$,$endfor$%
+$if(it.equal-contrib)$\,*$endif$%
+$if(it.cor-id)$\,¶$endif$}%
+$if(it.orcid)$\,\goto{\low{\setup[orcidlogo]}}[url(https://orcid.org/$it.orcid$)]\,$endif$%
+$sep$,
+$endfor$
+}
+$endif$
+\blank[big]
+{
+\startparagraph
+  \tfx
+  \setuplocalinterlinespace[line=10pt]
+$for(affiliations)$
+${it.index}~${it.name}$sep$\enspace%
+$endfor$
+$if(article.has-equal-contributors)$
+\enspace{}*~%
+$if(message.equal-contrib)$${message.equal-contrib}$else$These authors contributed equally$endif$
+$endif$
+$if(article.author-notes.corresp)$
+\enspace¶~Corresponding author
+$endif$
+\stopparagraph
+}
+\blank[big]
+$endif$
+
+\margintext[metadata][line=1]{%
+  \blank[-line]
+  \tf
+
+  \setupinteraction[color=grey]
+  \startalignment[flushright,nothyphenated]%
+  \useURL[articledoi][https://doi.org/$article.doi$][][$article.doi$]
+  \useURL[review][$software_review_url$][][Review]
+  \useURL[repo][$software_repository_url$][][Repository]
+  \useURL[archive][https://doi.org/$archive_doi$][][Archive]
+  \useURL[editor][$editor.url$][][$editor.name$]
+
+  {DOI}\\\from[articledoi]
+  \blank[big]
+
+  {Software}\\\color[grey]{\from[review]\,\|\,\from[repo]\,\|\,\from[archive]}
+  \blank[big]
+
+  {Editor}\\ \from[editor]
+  \blank[big]
+
+  {Reviewers}\\
+$for(reviewers)$
+  \useURL[$it$][https://github.com/$it$][][@$it$]
+  \from[$it$]
+$sep$\\
+$endfor$
+  \blank[big]
+
+  {Submitted}\\ \color[grey]{$submitted$}
+  \blank[big]
+
+  {Published}\\\color[grey]{$published$}
+  \blank[big]
+
+  {License}\\\color[grey]{$license$}
+
+\stopalignment
+}
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+$if(draft)$
+\startlinenumbering
+$endif$
+
+$body$
+
+$if(draft)$
+\stoplinenumbering
+$endif$
+
+$for(include-after)$
+$include-after$
+$endfor$
+\stoptext
