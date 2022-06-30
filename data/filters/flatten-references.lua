@@ -26,6 +26,7 @@ end
 
 function Meta (meta)
   for i, ref in ipairs(meta.references) do
+    ref.unstructured_citation = make_unstructured_citation(meta, ref)
     for k, v in pairs(ref) do
       if pandoc.utils.type(v) == 'Inlines' then
         ref[k] = pandoc.utils.stringify(v)
@@ -34,7 +35,6 @@ function Meta (meta)
     if ref.type == 'book' then
       ref.isbook = true
     end
-    ref.unstructured_citation = make_unstructured_citation(meta, ref)
   end
   return meta
 end
