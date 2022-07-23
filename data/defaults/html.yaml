@@ -1,5 +1,6 @@
 to: html
-
+extract-media: media
 filters:
-  - type: lua
-    path: extract-images.lua
+  []
+  # - type: lua
+  #   path: extract-images.lua
