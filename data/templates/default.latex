@@ -468,6 +468,16 @@ $endif$
   This article and software are linked with research article DOI \href{https://doi.org/$aas-doi$}{\color{linky}{$aas-doi$}}, published in the $aas-journal$.
   $endif$
 
+  $if(europar-doi)$
+  \vspace{4mm}
+  {\bfseries In partnership with}\\
+  \vspace{2mm}
+  \includegraphics[width=4cm]{$europar_logo_path$}
+  \vspace{2mm}
+  \newline
+  JOSS Special Issue for Euro-Par 2022 Artefacts \href{https://doi.org/$europar-doi$}{\color{linky}{$europar-doi$}}
+  $endif$
+
   \end{flushleft}
 }
 

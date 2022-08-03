@@ -7,5 +7,6 @@ end
 
 function Meta (meta)
   if meta.aas_logo_path then insert(meta.aas_logo_path) end
+  if meta.europar_logo_path then insert(meta.europar_logo_path) end
   if meta.logo_path     then insert(meta.logo_path)     end
 end
