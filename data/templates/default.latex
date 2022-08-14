@@ -241,6 +241,9 @@ $endif$
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
 
+%% Font settings
+\usepackage{fontsetup} % Lazy way to get proper Greek lowercase glyphs
+
 % Use Hack https://sourcefoundry.org/hack/
 \setmonofont{Hack}
 

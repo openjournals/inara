@@ -15,12 +15,14 @@ RUN tlmgr update --self && tlmgr install \
   fancyvrb \
   float \
   fontspec \
+  fontsetup \
   latexmk \
   lineno \
   listings \
   logreq \
   marginnote \
   mathspec \
+  newcomputermodern \
   orcidlink \
   pgf \
   preprint \
