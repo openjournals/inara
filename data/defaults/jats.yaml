@@ -1,4 +1,5 @@
 to: jats_publishing+element_citations
+output-file: paper.jats
 
 filters:
   - # Handle `\ref`, `\label`, and `\autoref` commands

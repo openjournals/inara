@@ -95,12 +95,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
     else
         logfile=paper.${format}.log
     fi
-    # special case, as output file must have a `.pdf` extension
-    if [ "$format" = 'contextpdf' ]; then
-        outfile="paper.context.pdf"
-    else
-        outfile="paper.${format}"
-    fi
+    # Note that the output file must be defined in the format's defaults file.
     /usr/local/bin/pandoc \
 	      --data-dir="$OPENJOURNALS_PATH"/data \
         --defaults=shared \
@@ -111,7 +106,6 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
 	      --variable="${JOURNAL}" \
         --variable=draft:"$draft" \
         --metadata=draft:"$draft" \
-        --output="${outfile}" \
         --log="$logfile" \
         "$input_file" \
         "$@" || exit 1

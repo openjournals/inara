@@ -1,4 +1,5 @@
 to: html5
+output-file: paper.crossref
 html-math-method: mathjax
 
 filters:

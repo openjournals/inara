@@ -1,4 +1,5 @@
 to: html
+output-file: paper.html
 extract-media: media
 filters:
   []

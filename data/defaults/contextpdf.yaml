@@ -1,6 +1,6 @@
 to: context
 pdf-engine: context
-output-file: paper.pdf
+output-file: paper.context.pdf
 filters:
   - type: lua
     path: draft.lua

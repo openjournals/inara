@@ -1,4 +1,5 @@
 to: docx
+output-file: paper.docx
 
 filters:
   - # Handle `\ref`, `\label`, and `\autoref` commands
