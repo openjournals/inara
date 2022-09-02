@@ -1,5 +1,6 @@
 to: jats_publishing+element_citations
 output-file: paper.jats
+extract-media: media
 
 filters:
   - # Handle `\ref`, `\label`, and `\autoref` commands
