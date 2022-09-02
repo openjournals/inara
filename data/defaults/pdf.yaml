@@ -4,6 +4,8 @@ pdf-engine-opt: -lualatex
 output-file: paper.pdf
 filters:
   - type: lua
+    path: add-images.lua
+  - type: lua
     path: draft.lua
   - type: lua
     path: self-citation.lua

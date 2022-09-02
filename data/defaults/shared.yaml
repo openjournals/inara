@@ -20,8 +20,6 @@ filters:
     path: inline-cited-references.lua
   - type: citeproc
   - type: lua
-    path: add-images.lua
-  - type: lua
     path: normalize-metadata.lua
   - type: lua
     path: time.lua
