@@ -1,0 +1,7 @@
+to: latex
+output-file: paper.preprint.tex
+template: preprint.latex
+variables:
+  # styling options
+  colorlinks: true
+
