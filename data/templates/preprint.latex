@@ -320,7 +320,37 @@ $if(subtitle)$
 \makeatother
 \subtitle{$subtitle$}
 $endif$
-\author{$for(author)$$author$$sep$ \and $endfor$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Authors and Affiliations
+
+\usepackage[affil-it]{authblk}
+\usepackage{orcidlink}
+%% \renewcommand\Authsep{, }
+\setlength{\affilsep}{1em}
+$for(authors)$
+\author[$for(authors.affiliation)$$authors.affiliation$$sep$,$endfor$%
+  $if(authors.equal-contrib)$*$endif$%
+  $if(authors.cor-id)$\ensuremath\mathparagraph$endif$]{$authors.name$%
+  $if(it.orcid)$
+  \,\orcidlink{${it.orcid}}\,%
+  $endif$
+  $if(it.note)$
+  \thanks{$it.note$}%
+  $endif$
+}
+$endfor$
+
+$for(affiliations)$
+\affil[$affiliations.index$]{$affiliations.name$}
+$endfor$
+$if(article.author-notes.corresp)$
+\affil[$$\mathparagraph$$]{Corresponding author}
+$endif$
+$if(article.has-equal-contributors)$
+\affil[*]{$if(message.equal-contrib)$$message.equal-contrib$$else$These authors contributed equally.$endif$}
+$endif$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \date{$date$}
 
 \begin{document}
