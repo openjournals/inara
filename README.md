@@ -51,3 +51,12 @@ E.g., to generate only a PDF file, the command would be
 
 The generated output will be written to folder
 `publishing-artifacts`.
+
+### Dependencies
+
+Inara is build on pandoc, and requires a recent pandoc version.
+The latest pandoc version can be downloaded from
+<https://github.com/jgm/pandoc/releases/latest>.
+
+PDFs are generated via LaTeX; for best results, all packages
+listed in `Dockerfile` should be installed.
