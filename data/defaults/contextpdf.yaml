@@ -1,6 +1,7 @@
 to: context
 pdf-engine: context
 output-file: paper.context.pdf
+top-level-division: section
 filters:
   - type: lua
     path: draft.lua
