@@ -53,14 +53,11 @@ paper by @upper1974.
 
 # Statement of Need
 
-The journal publisher, in most cases where you'd be reading this, Open
-Journals, maintains a detailed and helpful
+JOSS maintains a detailed and helpful
 [article](https://joss.readthedocs.io/en/latest/submitting.html) on the
 requirements that articles must satisfy in order to be considered for
-publication in that journal. However, submission requirements do not
-help with the technical aspects of paper writing. The process for JOSS
-and similar journals is different, in that the paper should be written
-in the lightweight markup language *Markdown*.
+Publication. However, the linked article does not provide guidance on using the lightweight markup language *Markdown*, which is the required format for papers submitted to JOSS.
+
 
 This article explains the technical details and describes the publishing
 system's capabilities. It can also be used as a test document, or serve
