@@ -417,8 +417,8 @@ realms of software, but it can also be converted into many different
 output formats. The archiving standard for scientific articles is JATS,
 and the most popular publishing format is PDF. Open Journals has built
 its pipeline based on [pandoc](https://pandoc.org), a universal document
-converter that can produce both of these publishing formats -- and many
-more.
+converter that can produce both JATS and PDF -- along with many
+others.
 
 A common method for PDF generation is to go via LaTeX. However, support
 for tagging -- a requirement for accessible PDFs -- is not readily
