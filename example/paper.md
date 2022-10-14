@@ -95,8 +95,6 @@ below gives a small example.
 +---------------------+-------------------------+-----------------------+
 | underline           | `[underline]{.ul}`      | [underline]{.ul}      |
 +---------------------+-------------------------+-----------------------+
-| small caps          | `[Small Caps]{.sc}`     | [Small Caps]{.sc}     |
-+---------------------+-------------------------+-----------------------+
 | inline code         | `` `return 23` ``       | `return 23`           |
 +---------------------+-------------------------+-----------------------+
 
@@ -108,7 +106,7 @@ Link syntax is `[link description](targetURL)`. E.g., this link to the
 [Journal of Open Source Software](https://joss.theoj.org/) is written as \
 `[Journal of Open Source Software](https://joss.theoj.org/)`.
 
-Open Journal publications are not limited by the constraints of print
+Open Journal publications are not limited by the constraints of print 
 publications. We encourage authors to use hyperlinks for websites and
 other external resources. However, the standard scientific practice of
 citing the relevant publications should be followed regardless.
