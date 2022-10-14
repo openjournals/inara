@@ -359,13 +359,7 @@ authors:
 
 # Internal references
 
-Markdown has no default mechanism to handle document internal
-references, often called "cross-references". This conflicts with goal of
-[Open Journals] is to provide authors with a seamless and pleasant
-writing experience. This includes convenient cross-reference generation,
-which is why a limited set of LaTeX commands are supported. In a
-nutshell, elements that were marked with `\label` and can be referenced
-with `\ref` and `\autoref`.
+The goal of Open Journals is to provide authors with a seamless and pleasant writing experience. Since Markdown has no default mechanism to handle document internal references, known as “cross-references”, Open Journals supports a limited set of LaTex commands. In brief, elements that were marked with `\label` and can be referenced with `\ref` and `\autoref`.
 
 [Open Journals]: https://theoj.org
 
