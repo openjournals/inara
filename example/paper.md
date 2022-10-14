@@ -184,15 +184,6 @@ Software should use an OSI-approved license.
 
 [^1]: An open license that allows reuse.
 ```
-
-Note numbers do not have to be sequential, they will be reordered
-automatically in the publishing step. In fact, the identifier of a note
-can be any sequence of characters, like `[^marker]`, but may not contain
-whitespace characters.
-
-[^markers]: Although it should be noted that some publishers prefer
-    symbols or letters as footnote markers.
-
 The above example results in the following output:
 
 > Articles are published under a Creative Commons license[^1].
@@ -200,6 +191,13 @@ The above example results in the following output:
 >
 > [^1]: An open license that allows reuse.
 
+Note: numbers do not have to be sequential, they will be reordered
+automatically in the publishing step. In fact, the identifier of a note
+can be any sequence of characters, like `[^marker]`, but may not contain
+whitespace characters.
+
+[^markers]: It should be noted that some publishers prefer
+    symbols or letters as footnote markers.
 
 ## Blocks
 
