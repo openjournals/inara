@@ -217,7 +217,7 @@ Headings are added with `#` followed by a space, where each additional
 ```
 
 Please start headings on the first level. The maximum supported level is
-5, but paper authors should usually try to limit themselves to headings
+5, but paper authors are encouraged to limit themselves to headings
 of the first two or three levels.
 
 #### Deeper nesting
