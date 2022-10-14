@@ -37,10 +37,10 @@ This article describes the features of the Journal of Open Source
 Software [@smith2018] publishing pipeline. The publishing method
 is similar to the model described by @krewinkel2017, in that
 Markdown is used as the input format. The author-provided files
-serves as the source for all generated publishing artifacts.
+serve as the source for all generated publishing artifacts.
 
-Apart from the main text, articles should also provide a metadata
-section at the beginning of this article is formatted using
+Apart from the main text, articles must also provide a metadata
+section at the beginning of the article formatted using
 [YAML], a human-friendly data serialization language
 [@yaml_website]. This information is included in the title and
 sidebar of the generated PDF.
@@ -67,15 +67,14 @@ as a template that can be used as a starting point.
 
 Markdown is based on email conventions. It was developed by John Gruber
 and Aaron Swartz. This section provides a brief introduction to Markdown
-syntax. Certain details or alternatives will be omitted,
+syntax. Certain details or alternatives will be omitted.
 
 If you are already familiar with Markdown, then you may want to skip
 this section and continue with the description of [article metadata].
 
 ## Inline markup
 
-The markup in Markdown should be semantic, not presentations. The table
-below gives a small example.
+The markup in Markdown should be semantic, not presentations. The table below has some basic examples.
 
 +---------------------+-------------------------+-----------------------+
 | Markup              | Markdown example        | Rendered output       |
@@ -158,11 +157,8 @@ suffixes, and suppression of author names in citations.
 
 ### Mathematical Formulæ
 
-Equations and other math content has is marked by dollar signs (`$`). A
-single dollar sign should be used for math that will appear directly
-within the text, and `$$` should be used when the formula is to be
-presented in "display" style, i.e., centered and on a separate line. The
-formula itself must be given using TeX syntax.
+Mark equations and other math content with dollar signs (`$`). 
+Use a single dollar sign (`$`) for math that will appear directly within the text. Use two dollar signs (`$$`) when the formula is to be presented centered and on a separate line, in "display" style. The formula itself must be given using TeX syntax.
 
 To give some examples: When discussing a variable $x$ or a short formula
 like $\sin \frac{\pi}{2}$, we would write `$x$` and `$\sin
