@@ -1,0 +1,31 @@
+name: Compile example paper
+
+on:
+  # Build any branch
+  push:
+    paths:
+      - 'example/*'
+  pull_request:
+      - 'example/*'
+    # Build, but don't push on pull requests
+
+jobs:
+  # Build PDFs
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build PDF
+        run: >-
+          docker run openjournals/inara:latest \
+              -o pdf,contextpdf example/paper.md
+
+      - name: Upload PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: paper
+          path: example/paper.pdf
