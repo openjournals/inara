@@ -6,13 +6,13 @@ on:
     paths:
       - 'example/*'
   pull_request:
+    paths:
       - 'example/*'
     # Build, but don't push on pull requests
 
 jobs:
-  # Build PDFs
   build:
-    name: Build Docker image
+    name: Example PDF
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +21,14 @@ jobs:
 
       - name: Build PDF
         run: >-
-          docker run openjournals/inara:latest \
-              -o pdf,contextpdf example/paper.md
+          docker run \
+              --volume "$(pwd):/data" \
+              --user "$(id -u):$(id -g)" \
+              openjournals/inara:latest \
+              -o contextpdf example/paper.md
 
       - name: Upload PDF
         uses: actions/upload-artifact@v3
         with:
           name: paper
-          path: example/paper.pdf
+          path: example/paper.context.pdf
