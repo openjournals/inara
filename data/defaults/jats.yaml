@@ -13,6 +13,12 @@ filters:
     type: lua
     path: remove-references-heading.lua
 
+  - # Turn ORCID identifiers into proper URIs; this is the generic
+    # representation required by the spec, but impractical to use with LaTeX. We
+    # do it here for that reason.
+    type: lua
+    path: orcid-uri.lua
+
 # This needs more work before we can really enable it.
 #   - type: lua
 #     path: extract-images.lua
