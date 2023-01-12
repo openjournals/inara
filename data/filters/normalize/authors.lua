@@ -40,6 +40,42 @@ local function is_equal_contributor_note (note)
   return str:match '[Ee]qual' and str:match 'contrib'
 end
 
+-- ORCID
+local orcid_pattern =
+  '^(%d%d%d%d)%-?(%d%d%d%d)%-?(%d%d%d%d)%-?(%d%d%d)([%dXx])$'
+local function normalize_orcid (orcid)
+  if not orcid then
+    return nil
+  end
+  orcid_str = stringify(orcid)
+
+  -- Strictly speaking, an ORCID is an URL, but we allow users to
+  -- omit schema and host. Keep the digits.
+  orcid_str = orcid_str:gsub('^https://orcid%.org/', '')
+  local b1, b2, b3, b4, check = orcid_str:match(orcid_pattern)
+  if not (b1 and b2 and b3 and b4 and check) then
+    return nil
+  end
+
+  local digits = b1 .. b2 .. b3 .. b4
+
+  local total = 0;
+  for digit in digits:gmatch '.' do
+    total = (total + tonumber(digit)) * 2
+  end
+
+  local remainder = total % 11
+  local result = (12 - remainder) % 11
+
+  local is_valid = result == 10
+    and check:upper() == "X"
+    or tonumber(check) == result
+
+  return is_valid
+    and string.format('%s-%s-%s-%s%s', b1, b2, b3, b4, check)
+    or nil
+end
+
 return function (meta)
   local authors = meta.authors
   local affiliations = meta.affiliations
@@ -66,6 +102,7 @@ return function (meta)
         ','
       )
     end
+    author.orcid = normalize_orcid(author.orcid)
   end
   for i, aff in ipairs(affiliations or {}) do
     aff.id = aff.index or tostring(i)
