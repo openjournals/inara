@@ -230,7 +230,7 @@ $endif$
   \else
     \usepackage{fontspec}
   \fi
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Ligatures=Common,Scale=MatchLowercase}
 
 \fi
 % use upquote if available, for straight quotes in verbatim environments
