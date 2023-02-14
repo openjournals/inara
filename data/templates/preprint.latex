@@ -170,9 +170,12 @@ $if(graphics)$
 \def\fps@figure{htbp}
 \makeatother
 $endif$
+$if(svg)$
+\usepackage{svg}
+$endif$
 $if(strikeout)$
 $-- also used for underline
-\usepackage[normalem]{ulem}
+\usepackage{soul}
 $endif$
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
