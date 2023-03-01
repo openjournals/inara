@@ -1,0 +1,9 @@
+to: cff.lua
+output-file: CITATION.cff
+
+filters:
+  - # Turn ORCID identifiers into proper URIs; this is the generic
+    # representation required by the spec, but impractical to use with LaTeX. We
+    # do it here for that reason.
+    type: lua
+    path: orcid-uri.lua
