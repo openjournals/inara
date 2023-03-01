@@ -1,0 +1,37 @@
+cff-version: 1.2.0
+authors:
+- family-names: Krewinkel
+  given-names: Albert
+  orcid: "https://orcid.org/0000-0002-9455-0796"
+- family-names: Bazán
+  given-names: Juanjo
+  orcid: "https://orcid.org/0000-0001-7699-3983"
+- family-names: Smith
+  given-names: Arfon M.
+  orcid: "https://orcid.org/0000-0002-3957-2474"
+contact:
+- email: albert@zeitkraut.de
+  family-names: Krewinkel
+  given-names: Albert
+message: If you use this software, please cite our article in JOSS.
+preferred-citation:
+  authors:
+  - family-names: Krewinkel
+    given-names: Albert
+    orcid: "https://orcid.org/0000-0002-9455-0796"
+  - family-names: Bazán
+    given-names: Juanjo
+    orcid: "https://orcid.org/0000-0001-7699-3983"
+  - family-names: Smith
+    given-names: Arfon M.
+    orcid: "https://orcid.org/0000-0002-3957-2474"
+  issn: 2475-9066
+  journal: Journal of Open Source Software
+  publisher:
+    name: Open Journals
+  title: Article Writing with Markdown and the Open Journals publishing
+    pipeline
+  type: article
+  url: NO PAPER URL
+title: Article Writing with Markdown and the Open Journals publishing
+  pipeline
