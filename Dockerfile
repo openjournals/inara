@@ -1,4 +1,4 @@
-FROM pandoc/latex:3.1.0-alpine
+FROM pandoc/latex:3.1.1-alpine
 
 RUN apk add --no-cache ttf-hack
 
