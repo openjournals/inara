@@ -1,6 +1,4 @@
 #!/bin/sh
-set -e
-
 # Get target formats. Default is to generate both JATS and PDF.
 usage()
 {
@@ -19,6 +17,7 @@ if [ $? -ne 0 ]; then
     usage && exit 1
 fi
 set -- $args
+set -e
 
 outformats=jats,pdf
 draft=true
