@@ -1,0 +1,29 @@
+csl: apa.csl
+
+metadata:
+  joss_resource_url: 'N/A'
+  journal:
+    abbrev-title: 'ReScience-C'
+    alias: 'resciencec'
+    url: 'https://rescience.theoj.org/'
+    doi: '10.21105/resciencec'
+    title: 'The ReScience C journal'
+    publisher-name: 'Open Journals'
+    issn: '2430-3658'
+    eissn: '2430-3658'
+
+  link-citations: true
+
+  copyright:
+    statement: >-
+      Authors of papers retain copyright and release the work under a
+      Creative Commons Attribution 4.0 International License (CC BY 4.0)
+    holder: The article authors
+    year: 2022
+    type: open-access
+    link: https://creativecommons.org/licenses/by/4.0/
+    text: >-
+      Authors of papers retain copyright and release the work under a
+      Creative Commons Attribution 4.0 International License (CC BY 4.0)
+
+  logo_path: 'resciencec/logo.png'
