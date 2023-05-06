@@ -1,0 +1,512 @@
+%% ----------------------------------------------------------------------------
+%% ReScience article template
+%% Copyright (c) 2018 N.P. Rougier,
+%% Released under a Creative Commons Attribution 4.0 International license.
+%% ----------------------------------------------------------------------------
+%% Dependencies:
+%%  * metadata.tex
+%% ----------------------------------------------------------------------------
+%% 2020-07-18 B. Roukema
+%%   - Change DOI links in references to open access DOI oadoi.org;
+%%   - Insert \sloppy option for references;
+%%   - Make URL texts copy/pastable by redefining \nolinkurl;
+%%   - Remove space from eprint identifers.
+%%
+%% 2023-05-06 Albert Krewinkel
+%%   - Adapted to OpenJournals Inara requirements.
+%% ----------------------------------------------------------------------------
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{rescience}[2019/04/12 Style for ReScience articles]
+
+\documentclass[a4paper, oneside, 10pt]{article}
+
+% ---- Encoding ---------------------------------------------------------------
+% \RequirePackage[utf8]{inputenc}
+
+
+% --- Langage -----------------------------------------------------------------
+\RequirePackage[american]{babel}
+
+
+% --- Various packages --------------------------------------------------------
+\RequirePackage{ifthen}
+\RequirePackage{tabularx}
+\RequirePackage{tikz}
+\RequirePackage{marginnote}
+\RequirePackage{csquotes}
+$if(tables)$
+\RequirePackage{longtable,booktabs,array}
+$endif$
+$if(strikeout)$
+$-- also used for underline
+\usepackage{soul}
+$endif$
+
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+$if(highlighting-macros)$
+$highlighting-macros$
+$endif$
+
+$if(graphics)$
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+$endif$
+
+
+% --- Mathematics -------------------------------------------------------------
+\RequirePackage{amsmath}
+
+% --- Page layout -------------------------------------------------------------
+\RequirePackage[a4paper]{geometry}
+\geometry{left=4.5cm, right=3cm, top=3cm, bottom=3.5cm,
+          heightrounded, headheight=12.1pt,
+          marginparwidth=3cm, marginparsep=0.75cm, footskip=2cm}
+\reversemarginpar
+
+
+% --- Font stack --------------------------------------------------------------
+
+%% PDFLaTeX
+%% \RequirePackage[light,condensed]{roboto} % Sans Serif
+%% \RequirePackage[default,light,semibold,tabular]{sourceserifpro} % Roman
+%% \RequirePackage[varqu]{zi4} % Monotype
+%% \makeatletter
+%% \def\bfseries@sf{sb}
+%% \makeatother
+
+% XeLaTeX
+%% \RequirePackage{fontspec}
+%% \defaultfontfeatures{Ligatures=TeX}
+%% \setmainfont{Source Serif Pro}[
+%%   Path = ./source-serif-pro/SourceSerifPro-, Extension = .otf,
+%%   UprightFont= Light,
+%%   ItalicFont = LightIt,
+%%   BoldFont   = Regular,
+%%   BoldItalicFont = It,
+%% ]
+%% \setsansfont{Roboto Condensed}[
+%%   Path = ./roboto/RobotoCondensed-, Extension = .ttf,
+%%   UprightFont = Light,
+%%   BoldFont = Regular,
+%%   ItalicFont = LightItalic
+%% ]
+
+%% \setmonofont{Source Code Pro}[
+%%   Path = ./source-code-pro/SourceCodePro-, Extension = .otf,
+%%   UprightFont = Light,
+%%   BoldFont = Regular
+%% ]
+
+%% \newfontfamily\RobotoCon{Roboto Condensed}[
+%%   Path = ./roboto/RobotoCondensed-, Extension = .ttf,
+%%   UprightFont = Regular,
+%%   BoldFont = Bold
+%% ]
+
+%% \newfontfamily\Roboto{Roboto}[
+%%   Path = ./roboto/Roboto-, Extension = .ttf,
+%%   UprightFont = Regular,
+%%   BoldFont = Black
+%% ]
+
+%% \newfontfamily\SpaceRoboto{Roboto}[
+%%   Path = ./roboto/Roboto-, Extension = .ttf,
+%%   UprightFont = Regular,
+%%   BoldFont = Medium,
+%%   UprightFeatures={LetterSpace=35},
+%%   BoldFeatures={LetterSpace=35}
+%% ]
+
+\newcommand{\SpaceRoboto}{}
+\newcommand{\RobotoCon}{}
+\newcommand{\Roboto}{}
+
+
+\RequirePackage{microtype}
+
+
+% --- Colors ------------------------------------------------------------------
+\RequirePackage{xcolor}
+\definecolor{darkred}{HTML}{CF232B}
+\definecolor{darkblue}{HTML}{2B23CF}
+\definecolor{darkgray}{HTML}{555555}
+\definecolor{lightgray}{HTML}{cccccc}
+\colorlet{citecolor}{black}
+\colorlet{linkcolor}{darkgray}
+\colorlet{urlcolor}{darkgray}
+
+
+% -- Section titles & ToC -----------------------------------------------------
+\RequirePackage{titlesec}
+%% \titleformat{\section}
+%%             {\Large\sffamily\bfseries}{\thesection}{0.25em}{}
+%% \titleformat{\subsection}
+%%             {\large\sffamily\bfseries}{\thesection}{0.25em}{}
+
+\titleformat{\section}{\Large\sffamily\bfseries}
+            {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesection}}\hskip 0.5em}}{0em}{}
+\titleformat{\subsection}{\large\sffamily\bfseries}
+     {\llap{{\textcolor{lightgray}{\normalfont\sffamily\thesubsection}}\hskip 0.5em}}{0em}{}
+
+\titleformat{\subsubsection}[runin]
+            {\normalfont\sffamily\bfseries}{}{0em}{}[\mbox{ --- }]
+\titlespacing{\subsubsection}
+             {0pt}                        % left
+             {3.25ex plus 1ex minus .2ex} % before
+             {0pt}                        % after
+
+
+%% \allsectionsfont{\normalfont\sffamily}
+
+
+% --- Captions ----------------------------------------------------------------
+\RequirePackage[labelsep=period]{caption}
+\renewcommand{\captionfont}{\small}
+\renewcommand{\captionlabelfont}{\small\sffamily\bfseries}
+%% \captionsetup[figure]{justification=justified, singlelinecheck=false}
+%% \captionsetup[table]{justification=justified, singlelinecheck=false}
+%% \captionsetup[listing]{justification=justified, singlelinecheck=false}
+
+
+% --- Hyperref & colors -------------------------------------------------------
+\RequirePackage[pdfusetitle,
+            bookmarks=true,
+            breaklinks=true,
+            pdfborder={0 0 0},
+            citecolor=citecolor,
+            linkcolor=linkcolor,
+            urlcolor=urlcolor,
+            colorlinks=true,
+            linktocpage=false,
+            hyperindex=true,
+            colorlinks=true,
+            linktocpage=false,
+            linkbordercolor=white]{hyperref}
+\hypersetup{linkcolor=black,urlcolor=darkgray}
+\urlstyle{sf}
+
+
+% --- Listings ----------------------------------------------------------------
+\RequirePackage{listings}
+\lstset{%
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{black},
+  commentstyle=\color{gray},
+  stringstyle=\color{black},
+  backgroundcolor=\color{white},
+  numbers=none,
+  numberstyle=\ttfamily,
+  stepnumber=2,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  frame=none,
+  framerule=0.5pt,
+  tabsize=2,
+  rulesep=5em,
+  captionpos=b,
+  breaklines=true,
+  breakatwhitespace=false,
+  framexleftmargin=0em,
+  xleftmargin=0em,
+  framexrightmargin=0em,
+  xrightmargin=0em,
+  aboveskip=0.5em,
+  belowskip=0.5em,
+}
+
+
+% --- Text Layout -------------------------------------------------------------
+% No indentation at beginning of a new paragraph
+\setlength\parindent{0pt}
+
+% No space between items in itemize and enuemrate lists
+\RequirePackage{enumitem}
+%\setlist[itemize]{noitemsep}
+%\setlist[enumerate]{noitemsep}
+
+\renewcommand*{\marginfont}{\scriptsize\sffamily}
+
+%\linespread{1.1}
+
+
+% --- Authors block -----------------------------------------------------------
+\RequirePackage{authblk,etoolbox}
+\makeatletter
+% patch \maketitle so that it doesn't center
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+% patch \maketitle so that the font size for the title is normal
+\patchcmd{\@maketitle}{\LARGE}{\LARGE\sffamily\bfseries\vspace{-2.em}}{}{}
+% patch the patch by authblk so that the author block is flush left
+\def\maketitle{{%
+  \renewenvironment{tabular}[2][]
+    {\begin{flushleft}}
+    {\end{flushleft}}
+  \AB@maketitle}}
+\makeatother
+\setlength{\affilsep}{0.25em}
+\renewcommand\Affilfont{\normalfont\sffamily\footnotesize}
+\renewcommand\Authfont{\sffamily\bfseries\small}
+% \renewcommand\Authands{\normalfont\sffamily\small}
+\makeatletter
+\renewcommand\AB@affilsepx{ -- \protect\Affilfont}
+\makeatother
+
+
+% --- Various convenient macros -----------------------------------------------
+\RequirePackage[many]{tcolorbox}
+\newtcbox{\iconbox}[1][]{%
+  enhanced,nobeforeafter,tcbox raise base,
+  boxrule=0.4pt, top=0pt, bottom=-1pt,
+  right=.1pt, left=.1pt, arc=1pt, boxsep=1pt,
+  fontupper={\tiny \sffamily}, before upper={\vphantom{dlg}},
+  colframe=white, colback=black!10!white, coltext=black}
+\newcommand{\orcid}[1]{\href{https://orcid.org/#1}{\iconbox{ID}}}
+\newcommand{\doi}[1]{\href{http://oadoi.org/#1}{#1}}
+\newcommand{\github}[1]{\href{https://github.com/#1}{github.com/#1}}
+
+% See https://tex.stackexchange.com/questions/99316/symbol-for-external-links
+\newcommand{\ExternalLink}{%
+    \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{%
+        \begin{scope}[x=1ex, y=1ex]
+            \clip (-0.1,-0.1)
+                --++ (-0, 1.2)
+                --++ (0.6, 0)
+                --++ (0, -0.6)
+                --++ (0.6, 0)
+                --++ (0, -1);
+            \path[draw,
+                line width = 0.5,
+                rounded corners=0.5]
+                (0,0) rectangle (1,1);
+        \end{scope}
+        \path[draw, line width = 0.5] (0.5, 0.5)
+            -- (1, 1);
+        \path[draw, line width = 0.5] (0.6, 1)
+            -- (1, 1) -- (1, 0.6);
+        }
+    }
+
+
+% --- Headers & footers -------------------------------------------------------
+
+\def \codeURL{https://github.com/rescience-c/template}
+\def \codeDOI{}
+\def \dataURL{}
+\def \dataDOI{}
+\def \editorNAME{}
+\def \editorORCID{}
+\def \reviewerINAME{}
+\def \reviewerIORCID{}
+\def \reviewerIINAME{}
+\def \reviewerIIORCID{}
+\def \dateRECEIVED{$submitted_at$}
+\def \dateACCEPTED{}
+\def \datePUBLISHED{$published_at$}
+\def \articleTITLE{$title$}
+\def \articleTYPE{Editorial}
+\def \articleDOMAIN{}
+\def \articleBIBLIOGRAPHY{bibliography.bib}
+\def \articleYEAR{$year$}
+\def \reviewURL{$review_issue_url$}
+\def \articleABSTRACT{$abstract$}
+\def \replicationCITE{}
+\def \replicationBIB{}
+\def \replicationURL{}
+\def \replicationDOI{}
+\def \contactNAME{Nicolas P. Rougier}
+\def \contactEMAIL{Nicolas.Rougier@inria.fr}
+\def \articleKEYWORDS{rescience c, rescience x}
+\def \journalNAME{ReScience C}
+\def \journalVOLUME{$volume$}
+\def \journalISSUE{$issue$}
+\def \articleNUMBER{}
+\def \articleDOI{$doi$}
+\def \authorsFULL{Konrad Hinsen and Nicolas P. Rougier}
+\def \authorsABBRV{K. Hinsen and N.P. Rougier}
+\def \authorsSHORT{Hinsen and Rougier}
+\title{\articleTITLE}
+\date{}
+\author[1,2,\orcid{0000-0003-0330-9428}]{Konrad Hinsen}
+\author[3,4,5,\orcid{0000-0002-6972-589X}]{Nicolas P. Rougier}
+\affil[1]{Centre de Biophysique Moléculaire, CNRS UPR4301, Orléans, France}
+\affil[2]{Synchrotron SOLEIL, Division Expériences, Gif sur Yvette, France}
+\affil[3]{INRIA Bordeaux Sud-Ouest, Bordeaux, France}
+\affil[4]{LaBRI, Université de Bordeaux, Institut Polytechnique de Bordeaux, Centre National de la Recherche Scientifique, UMR 5800, Talence, France}
+\affil[5]{Institut des Maladies Neurodégénératives, Université  de Bordeaux, Centre National de la Recherche Scientifique, UMR 5293, Bordeaux, France}
+
+
+\RequirePackage{fancyhdr}
+\pagestyle{fancy}
+\fancypagestyle{plain}{}
+\renewcommand{\headrulewidth}{0.0pt}
+\lhead{
+  \ifthenelse{\value{page}=1}{}
+             {\scriptsize \sffamily \articleTITLE}
+}
+\chead{}
+\rhead{\scriptsize \sffamily \bfseries
+  \ifdefempty{\articleDOI}{
+    % UNDER REVIEW
+    \fbox{UNDER REVIEW}
+    %\fcolorbox{lightgray}{lightgray}{\textcolor{white}{UNDER REVIEW}}
+  }
+}
+\renewcommand{\footrulewidth}{0.0pt}
+\lfoot{\scriptsize \sffamily
+  \href{https://rescience.github.io/}{\bfseries \textcolor{black}{\journalNAME}}
+    \ifdefempty{\journalVOLUME}{}{\journalVOLUME.\journalISSUE~(\#\articleNUMBER)}
+     -- \authorsSHORT~\articleYEAR}
+\cfoot{}
+\rfoot{\scriptsize \sffamily \thepage}
+
+% --- Copyright statement -----------------------------------------------------
+\RequirePackage{float}
+\floatstyle{plain}
+\newfloat{statement}{b!}{sst}
+
+
+% --- PDF Information ---------------------------------------------------------
+\hypersetup{
+  pdfauthor={\authorsFULL},
+  pdftitle={\articleTITLE},
+  pdfkeywords={\articleKEYWORDS},
+  pdfsubject={\articleTYPE, \articleDOMAIN},
+  pdfcreator={ReScience C (rescience.github.io)},
+  %  pdfproducer={}
+}
+
+$if(csl-refs)$
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+               {% don't indent paragraphs
+                 \setlength{\parindent}{0pt}
+                 % turn on hanging indent if param 1 is 1
+                 \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+                 % set entry spacing
+                 \ifnum #2 > 0
+                 \setlength{\parskip}{#2\baselineskip}
+                 \fi
+               }%
+               {}
+               \usepackage{calc}
+               \newcommand{\CSLBlock}[1]{#1\hfill\break}
+               \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+               \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+               \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+               $endif$
+
+% --- Title -------------------------------------------------------------------
+\title{
+  {\normalfont \sffamily \normalsize \textcolor{darkred}
+    {
+      \ifdefempty{\articleDOMAIN}{
+        \articleTYPE\\
+      }{
+        \articleTYPE~/~\articleDOMAIN\\
+      }
+    }
+  }
+  \vspace{-.25em} \RobotoCon \articleTITLE
+}
+
+
+%% ============================================================================
+
+\begin{document}
+
+%% --- Top left header --------------------------------------------------------
+\begin{tikzpicture}[remember picture, overlay]
+  \node [shape=rectangle, draw=darkred, fill=darkred, yshift=-34mm,
+        anchor=north west, minimum width=3.75cm, minimum height=10mm]
+        at (current page.north west) {};
+  \node [text=white, anchor=center, yshift=-39mm, xshift=1.875cm]
+         at (current page.north west) {\small \SpaceRoboto RESCIENCE C};
+\end{tikzpicture}
+
+
+%% --- Title -------------------------------------------------------------------
+{\let\newpage\relax\maketitle} \maketitle
+
+
+%% --- Margin information -----------------------------------------------------
+\marginnote{
+  \footnotesize \sffamily
+  \textbf{Edited by}\\
+  \ifdefempty{\editorNAME}{\textcolor{darkgray}{(Editor)}}
+             {\editorNAME\ifdefempty{\editorORCID}{}{$$^{\orcid{\editorORCID}}$$}}\\
+  ~\\
+  %%
+  \ifdefempty{\reviewerINAME}{}
+  {
+  \textbf{Reviewed by}\\
+  \ifdefempty{\reviewerINAME}{\textcolor{darkgray}{}}
+             {\reviewerINAME\ifdefempty{\reviewerIORCID}{}{$$^{\orcid{\reviewerIORCID}}$$}\\}
+  \ifdefempty{\reviewerIINAME}{\textcolor{darkgray}{}}
+             {\reviewerIINAME\ifdefempty{\reviewerIIORCID}{}{$$^{\orcid{\reviewerIIORCID}}$$}\\}
+  ~\\
+  }
+  %%
+  \textbf{Received}\\
+  \ifdefempty{\dateRECEIVED}{---}{\dateRECEIVED}\\
+  ~\\
+  %%
+  \textbf{Published}\\
+  \ifdefempty{\datePUBLISHED}{---}{\datePUBLISHED}\\
+  ~\\
+  %%
+  \textbf{DOI}\\
+  \ifdefempty{\articleDOI}{---}{\articleDOI}
+}
+
+
+%% --- Bottom statement -------------------------------------------------------
+\newcommand{\container}[1]{\def\@container{#1}}
+\begin{container}
+  \afterpage {
+    \begin{statement}
+      \scriptsize \sffamily
+      \hrule \vskip .5em
+      Copyright © \articleYEAR~\authorsABBRV,
+      released under a Creative Commons Attribution 4.0 International license.
+
+      Correspondence should be addressed to
+      \contactNAME~(\href{mailto:\contactEMAIL}{\contactEMAIL})
+
+      The authors have declared that no competing interests exist.
+
+%%       \ifdefempty{\codeURL}{}
+%%       {Code is available at
+%%       \href{\codeURL}{\detokenize\expandafter{\codeURL}}\ifdefempty{\codeDOI}{.}{ -- DOI \doi{\codeDOI}.}\ifdefempty{\codeSWH}{.}{ -- SWH  \href{https://archive.softwareheritage.org/\codeSWH/}{\detokenize\expandafter{\codeSWH}}.}}
+
+      \ifdefempty{\dataURL}{}
+      {Data is available at
+      \href{\dataURL}{\detokenize\expandafter{\dataURL}}\ifdefempty{\dataDOI}{.}{ -- DOI \doi{\dataDOI}.}}
+
+      \ifdefempty{\reviewURL}{}
+     {Open peer review is available at \href{\reviewURL}{\detokenize\expandafter{\reviewURL}}.}
+    \end{statement}
+  }
+\end{container}
+
+$body$
+
+\hypersetup{linkcolor=black,urlcolor=darkgray}
+
+
+\end{document}

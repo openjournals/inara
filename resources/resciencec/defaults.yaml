@@ -1,5 +1,5 @@
 csl: apa.csl
-
+template: ${.}/template.tex
 metadata:
   joss_resource_url: 'N/A'
   journal:

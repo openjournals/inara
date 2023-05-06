@@ -1,6 +1,6 @@
 FROM pandoc/latex:3.1.1-alpine
 
-RUN apk add --no-cache ttf-hack
+RUN apk add --no-cache ttf-hack ttf-opensans
 
 # Install additional LaTeX packages
 RUN tlmgr update --self && tlmgr install \
@@ -10,6 +10,7 @@ RUN tlmgr update --self && tlmgr install \
   caption \
   collection-context \
   draftwatermark \
+  enumitem \
   environ \
   etoolbox \
   fancyvrb \
@@ -22,6 +23,7 @@ RUN tlmgr update --self && tlmgr install \
   logreq \
   marginnote \
   mathspec \
+  mathtools \
   newcomputermodern \
   orcidlink \
   pgf \
@@ -34,6 +36,7 @@ RUN tlmgr update --self && tlmgr install \
   xkeyval \
   xstring
 
+RUN tlmgr install pdfcol tikzfill
 
 ENV OSFONTDIR=/usr/share/fonts
 
@@ -41,7 +44,6 @@ COPY ./fonts/libre-franklin $OSFONTDIR/libre-franklin
 
 RUN TERM=dumb luaotfload-tool --update \
   && chmod -R o+w /opt/texlive/texdir/texmf-var \
-  && apk add --no-cache ttf-opensans \
   && fc-cache -sfv $OSFONTDIR/libre-franklin \
   && mtxrun --generate \
   && mtxrun --script font --reload
