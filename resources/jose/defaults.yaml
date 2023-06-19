@@ -27,4 +27,5 @@ metadata:
       Creative Commons Attribution 4.0 International License (CC BY 4.0)
 
   logo_path: 'jose/logo.png'
-
+  aas_logo_path: null
+  europar_logo_path: null
