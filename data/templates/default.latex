@@ -429,7 +429,9 @@ $endif$
   {\bfseries DOI:} \href{https://doi.org/$article.doi$}{\color{linky}{$article.doi$}}
 
   \vspace{2mm}
-
+  $if(retraction)$
+  $-- Retraction notices don't show Software info
+  $else$
   {\bfseries Software}
   \begin{itemize}
     \setlength\itemsep{0em}
@@ -439,8 +441,12 @@ $endif$
   \end{itemize}
 
   \vspace{2mm}
+  $endif$
 
 $if(joss)$
+  $if(retraction)$
+  $-- Retraction notices don't show Editor/Reviewers info
+  $else$
   \par\noindent\hrulefill\par
 
   \vspace{2mm}
@@ -458,9 +464,14 @@ $if(joss)$
   \end{itemize}
   $endif$
   \vspace{2mm}
+  $endif$
 $endif$
 
+  $if(retraction)$
+  $-- Retraction notices don't have submission date
+  $else$
   {\bfseries Submitted:} $submitted$\\
+  $endif$
   {\bfseries Published:} $published$
 
   \vspace{2mm}
