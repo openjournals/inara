@@ -5,7 +5,7 @@ metadata:
   journal:
     abbrev-title: 'JOSE'
     alias: 'jose'
-    url: 'https://jose.theoj.org/'
+    url: 'https://jose.theoj.org'
     doi: '10.21105/jose'
     title: 'Journal of Open Source Education'
     publisher-name: 'Open Journals'

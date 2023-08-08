@@ -5,7 +5,7 @@ metadata:
   journal:
     abbrev-title: 'ReScience-C'
     alias: 'resciencec'
-    url: 'https://rescience.theoj.org/'
+    url: 'https://rescience.theoj.org'
     doi: '10.21105/resciencec'
     title: 'The ReScience C journal'
     publisher-name: 'Open Journals'
