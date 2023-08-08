@@ -45,7 +45,7 @@ local function preferred_citation(meta)
     ['start'] = article.fpage,
     ['title'] = stringify(meta.title),
     ['type'] = 'article',
-    ['url'] = ('%s%/papers/%s'):format(journal.url, stringify(article.doi)),
+    ['url'] = ('%s/papers/%s'):format(journal.url, stringify(article.doi)),
     ['volume'] = article.volume,
   }
 end
