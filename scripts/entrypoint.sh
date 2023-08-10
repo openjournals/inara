@@ -8,11 +8,11 @@ usage()
     printf '\t-m: article info file; YAML file contains article metadata\n'
     printf '\t-o: comma-separated list of output format; defaults to jats,pdf\n'
     printf '\t-p: flag to force the production of a publishing PDF\n'
-
+    printf '\t-r: flag to produce a retraction-notice publishing PDF\n'
     printf '\t-v: increase verbosity; can be given multiple times\n'
 }
 
-args=$(getopt 'lo:m:pv' "$@")
+args=$(getopt 'lo:m:prv' "$@")
 if [ $? -ne 0 ]; then
     usage && exit 1
 fi
@@ -21,6 +21,7 @@ set -e
 
 outformats=jats,pdf
 draft=true
+retraction=
 log=
 article_info_file=
 verbosity=0
@@ -42,6 +43,10 @@ while true; do
             ;;
         (-p)
             draft=
+            shift 1
+            ;;
+        (-r)
+            retraction=true
             shift 1
             ;;
         (-v)
@@ -103,6 +108,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
         ${article_info_option} \
 	      --resource-path=.:${input_dir}:${OPENJOURNALS_PATH} \
 	      --variable="${JOURNAL}" \
+        --variable=retraction:"$retraction" \
         --variable=draft:"$draft" \
         --metadata=draft:"$draft" \
         --log="$logfile" \
