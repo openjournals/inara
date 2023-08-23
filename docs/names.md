@@ -36,13 +36,13 @@ It's usually enough to place particles like "van", "von", "della",
 etc. at the end of the given name or at the beginning of the
 surname, depending on the details of how the name is used.
 
-- `dropping-particle`
-- `non-dropping-particle`
+- `dropping-particle` (e.g. `"as cited in Beethoven et al."`)
+- `non-dropping-particle` (e.g. `"as cited in de Broglie et al."`)
 
 ### Literal names
 
 The automatic construction of the full name from parts is geared
-towards common Western names. It may therefore be necessary
+towards common English names. It may therefore be necessary
 sometimes to provide the display name explicitly. This is possible
 by setting the `literal` field, e.g., `literal: 宮水 三葉`.
 
@@ -52,6 +52,10 @@ by setting the `literal` field, e.g., `literal: 宮水 三葉`.
 authors:
   - name: John Doe
     affiliation: '1'
+
+  - given-names: Gabriel José de la Concordia
+    surname: García Márquez
+    affiliation: '2'
 
   - given-names: Ludwig
     dropping-particle: van
