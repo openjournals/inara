@@ -20,6 +20,7 @@ use a comma separated list.
 - By default PDF files will be compiled in _draft mode_ to include a draft
 watermark and linenumbers. To create a _production_ PDF add the `-p` flag.
 - There is a special flag `-r` meant for retraction notices that don't need to show Software/Editor/Reviewes/Submission-date information.
+- The target journal can be set using the `JOURNAL` ENV VAR. Currently the valid values are: `joss`, `jose` or `resciencec`
 
 **Example:**
 
