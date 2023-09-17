@@ -1,6 +1,6 @@
 # inara
 
-Tools to create JOSS/JOSE publishing artifacts.
+Tools to create Open Journals publishing artifacts.
 
 The package is designed to be usable either via its Makefile, or
 through a Docker image.
