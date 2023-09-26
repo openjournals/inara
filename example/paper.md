@@ -34,7 +34,7 @@ tags:
 # Summary
 
 This article describes the features of the Journal of Open Source
-Software [@smith2018] publishing pipeline. The publishing method
+Software [@usesMethodIn:smith2018] publishing pipeline. The publishing method
 is similar to the model described by @krewinkel2017, in that
 Markdown is used as the input format. The author-provided files
 serves as the source for all generated publishing artifacts.

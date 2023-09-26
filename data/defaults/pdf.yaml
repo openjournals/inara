@@ -8,7 +8,7 @@ filters:
   - type: lua
     path: draft.lua
   - type: lua
-    path: self-citation.lua
+    path: insert-cito-in-ref.lua
 variables:
   # styling options
   colorlinks: true
