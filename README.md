@@ -62,3 +62,5 @@ The latest pandoc version can be downloaded from
 
 PDFs are generated via LaTeX; for best results, all packages
 listed in `Dockerfile` should be installed.
+
+You will also need the [Hack](https://github.com/source-foundry/Hack) font by `source-foundry`.

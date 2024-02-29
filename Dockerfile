@@ -16,9 +16,13 @@ RUN tlmgr update --self && tlmgr install \
   float \
   fontspec \
   fontsetup \
+  hyperxmp \
+  ifmtarg \
   latexmk \
   lineno \
   listings \
+  luacode \
+  lualatex-math \
   logreq \
   marginnote \
   mathspec \
@@ -26,7 +30,9 @@ RUN tlmgr update --self && tlmgr install \
   orcidlink \
   pgf \
   preprint \
+  selnolig \
   seqsplit \
+  soul \
   tcolorbox \
   titlesec \
   trimspaces \
