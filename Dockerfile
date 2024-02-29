@@ -4,7 +4,7 @@ RUN apk add --no-cache ttf-hack
 
 # Install dependencies for diagrams
 RUN apk add --no-cache graphviz
-RUN apk add --no-cache nodejs
+RUN apk add --no-cache nodejs npm
 RUN npm install -g @mermaid-js/mermaid-cli
 
 # Install additional LaTeX packages
