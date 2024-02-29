@@ -2,6 +2,11 @@ FROM pandoc/latex:3.1.1-alpine
 
 RUN apk add --no-cache ttf-hack
 
+# Install dependencies for diagrams
+RUN apk add --no-cache graphviz
+RUN apk add --no-cache nodejs npm
+RUN npm install -g @mermaid-js/mermaid-cli
+
 # Install additional LaTeX packages
 RUN tlmgr update --self && tlmgr install \
   algorithmicx \
@@ -16,9 +21,13 @@ RUN tlmgr update --self && tlmgr install \
   float \
   fontspec \
   fontsetup \
+  hyperxmp \
+  ifmtarg \
   latexmk \
   lineno \
   listings \
+  luacode \
+  lualatex-math \
   logreq \
   marginnote \
   mathspec \
@@ -26,7 +35,9 @@ RUN tlmgr update --self && tlmgr install \
   orcidlink \
   pgf \
   preprint \
+  selnolig \
   seqsplit \
+  soul \
   tcolorbox \
   titlesec \
   trimspaces \
