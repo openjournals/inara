@@ -64,3 +64,8 @@ PDFs are generated via LaTeX; for best results, all packages
 listed in `Dockerfile` should be installed.
 
 You will also need the [Hack](https://github.com/source-foundry/Hack) font by `source-foundry`.
+
+To render diagrams you will need to have installed the relevant diagram library:
+
+- mermaid: `npm install -g @mermaid-js/mermaid-cli`
+- graphviz: ([consult docs](https://graphviz.org/download/))
