@@ -2,6 +2,11 @@ FROM pandoc/latex:3.2.0-alpine
 
 RUN apk add --no-cache ttf-hack
 
+# Install dependencies for diagrams
+RUN apk add --no-cache graphviz
+RUN apk add --no-cache nodejs
+RUN npm install -g @mermaid-js/mermaid-cli
+
 # Install additional LaTeX packages
 RUN tlmgr update --self && tlmgr install \
   algorithmicx \
