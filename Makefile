@@ -16,14 +16,16 @@ TARGET_FOLDER = publishing-artifacts
 ARTICLE_INFO_FILE = $(OPENJOURNALS_PATH)/default-article-info.yaml
 
 .PHONY: all
-all: pdf html jats crossref jats
+all: cff pdf html jats crossref native preprint
 
-.PHONY: pdf html jats crossref native
+.PHONY: cff pdf html jats crossref native preprint
+cff: $(TARGET_FOLDER)/paper.cff
 pdf: $(TARGET_FOLDER)/paper.pdf
 html: $(TARGET_FOLDER)/paper.html
 jats:	$(TARGET_FOLDER)/paper.jats
 native:	$(TARGET_FOLDER)/paper.native
 crossref:	$(TARGET_FOLDER)/paper.crossref
+preprint:	$(TARGET_FOLDER)/paper.preprint
 
 $(TARGET_FOLDER)/paper.%: $(ARTICLE) \
 		$(INARA_DATA_PATH)/defaults/%.yaml \
@@ -59,6 +61,10 @@ $(OPENJOURNALS_PATH)/footer.csl: $(OPENJOURNALS_PATH)/apa.csl
 
 .PHONY: clean
 clean:
+	rm -rf $(TARGET_FOLDER)/paper.cff
+	rm -rf $(TARGET_FOLDER)/paper.crossref
 	rm -rf $(TARGET_FOLDER)/paper.html
 	rm -rf $(TARGET_FOLDER)/paper.jats
+	rm -rf $(TARGET_FOLDER)/paper.native
 	rm -rf $(TARGET_FOLDER)/paper.pdf
+	rm -rf $(TARGET_FOLDER)/paper.preprint
