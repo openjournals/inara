@@ -99,6 +99,12 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
     else
         logfile=paper.${format}.log
     fi
+    extra_args=
+    if [ "$format" = "jats" ]; then
+        [ "$verbosity" -gt 0 ] && printf 'Creating folder "paper.jats"\n'
+        mkdir -p "paper.jats"
+    fi
+
     # Note that the output file must be defined in the format's defaults file.
     /usr/local/bin/pandoc \
 	      --data-dir="$OPENJOURNALS_PATH"/data \
