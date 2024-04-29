@@ -58,7 +58,12 @@ $endif$
     >>
   ]
 }
+
+$if(arxiv)$
+$-- \pdfvariable omitcidset=* requires lualatex but arxiv.org only does pdflatex.
+$else$
 \pdfvariable omitcidset=1
+$endif$
 \usepackage{caption}
 \usepackage{orcidlink}
 \usepackage{tcolorbox}
@@ -134,7 +139,11 @@ $endif$
 \fancyhf{}
 %\renewcommand{\headrulewidth}{0.50pt}
 \renewcommand{\headrulewidth}{0pt}
+$if(arxiv)$
+$-- arxiv submissions don't get journal's logo
+$else$
 \fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{$logo_path$}}
+$endif$
 \fancyhead[C]{}
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
@@ -243,11 +252,18 @@ $endif$
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
 
+$if(arxiv)$
+$else$
 %% Font settings
 \usepackage{fontsetup} % Lazy way to get proper Greek lowercase glyphs
+$endif$
 
+$if(arxiv)$
+$-- \setmonofont requires lualatex but arxiv.org only does pdflatex.
+$else$
 % Use Hack https://sourcefoundry.org/hack/
 \setmonofont{Hack}
+$endif$
 
 $if(colorlinks)$
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
@@ -426,11 +442,23 @@ $endif$
   %\hrule
   \sffamily\small
 
+  $if(arxiv)$
+  {\bfseries Preprint:} Prepared for submission to $journal.title$
+  $else$
   {\bfseries DOI:} \href{https://doi.org/$article.doi$}{\color{linky}{$article.doi$}}
+  $endif$
 
   \vspace{2mm}
   $if(retraction)$
   $-- Retraction notices don't show Software info
+  $elseif(arxiv)$
+  {\bfseries Software}
+  \begin{itemize}
+    \setlength\itemsep{0em}
+    \item \href{$software_repository_url$}{\color{linky}{Repository}} \ExternalLink
+  \end{itemize}
+
+  \vspace{2mm}
   $else$
   {\bfseries Software}
   \begin{itemize}
@@ -443,7 +471,9 @@ $endif$
   \vspace{2mm}
   $endif$
 
-$if(joss)$
+$if(arxiv)$
+$-- arxiv submissions don't get Editor, Reviewer, etc
+$elseif(joss)$
   $if(retraction)$
   $-- Retraction notices don't show Editor/Reviewers info
   $else$
@@ -469,10 +499,13 @@ $endif$
 
   $if(retraction)$
   $-- Retraction notices don't have submission date
+  {\bfseries Published:} $published$
+  $elseif(arxiv)$
+  $-- arxiv submissions won't necessarily have journal submission date
   $else$
   {\bfseries Submitted:} $submitted$\\
-  $endif$
   {\bfseries Published:} $published$
+  $endif$
 
   \vspace{2mm}
   {\bfseries License}\\
