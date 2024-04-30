@@ -1,0 +1,14 @@
+to: latex
+output-file: paper.arxiv.tex
+filters:
+  - type: lua
+    path: add-images.lua
+  - type: lua
+    path: draft.lua
+variables:
+  arxiv: true
+  # styling options
+  colorlinks: true
+  linkcolor: '[rgb]{0.0, 0.5, 1.0}'
+  urlcolor: '[rgb]{0.0, 0.5, 1.0}'
+
