@@ -6,37 +6,21 @@ RUN apk add --no-cache ttf-hack
 RUN tlmgr update --self && tlmgr install \
   algorithmicx \
   algorithms \
-  booktabs \
-  caption \
   collection-context \
   draftwatermark \
   environ \
-  etoolbox \
-  fancyvrb \
-  float \
-  fontspec \
   fontsetup \
   hyperxmp \
-  ifmtarg \
   latexmk \
   lineno \
-  listings \
-  luacode \
-  lualatex-math \
-  logreq \
   marginnote \
-  mathspec \
   newcomputermodern \
   orcidlink \
-  pgf \
   preprint \
-  selnolig \
   seqsplit \
-  soul \
   tcolorbox \
   titlesec \
   trimspaces \
-  xcolor \
   xkeyval \
   xstring
 
