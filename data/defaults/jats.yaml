@@ -1,6 +1,6 @@
 to: jats_publishing+element_citations
-output-file: paper.jats
-extract-media: media
+output-file: paper.jats/paper.jats
+extract-media: paper.jats
 
 filters:
   - # Handle `\ref`, `\label`, and `\autoref` commands
@@ -19,6 +19,6 @@ filters:
     type: lua
     path: orcid-uri.lua
 
-# This needs more work before we can really enable it.
-#   - type: lua
-#     path: extract-images.lua
+  - # Ensure that images are placed on the top-level, not in subfolders.
+    type: lua
+    path: unify-image-paths.lua

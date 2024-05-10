@@ -134,13 +134,13 @@ Images that are larger than the text area are scaled to fit the page. It
 can sometimes be useful to give images an explicit height and/or width,
 e.g. when adding an image as part of a paragraph. The Markdown `![Nyan
 cat](nyan-cat.png){height="9pt"}` includes the image "nyan-cat.png"
-![Nyan cat](nyan-cat.png){height="9pt"} while scaling it to a height of
+![Nyan cat](images/nyan-cat.png){height="9pt"} while scaling it to a height of
 9 pt.
 
 
 ![The "Mandrill" standard test image, sometimes erroneously called
 "Baboon", is a popular sample photo and used in image processing
-research.](mandrill.jpg){#fig:mandrill}
+research.](images/mandrill.jpg){#fig:mandrill}
 
 ### Citations
 
@@ -378,7 +378,7 @@ with `\ref` and `\autoref`.
 
 ![View of coastal dunes in a nature reserve on Sylt, an island in the
 North Sea. Sylt (Danish: *Slid*) is Germany's northernmost
-island.](sylt.jpg){#sylt width="100%"}
+island.](images/sylt.jpg){#sylt width="100%"}
 
 ## Tables and figures
 
