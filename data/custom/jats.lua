@@ -19,7 +19,7 @@ local function unnest (filepath, contents)
   return newpath
 end
 
-function Pandoc (doc)
+function Writer (doc, opts)
   -- Ensure that all images have been fetched.
   doc = mediabag.fill(doc)
   local newpath
@@ -30,10 +30,14 @@ function Pandoc (doc)
     mediabag.delete(fp)
     mediabag.insert(newpath, mt, contents)
   end
-  return doc:walk {
+  doc = doc:walk {
     Image = function (img)
       img.src = updated_filepath[img.src] or img.src
       return img
     end
   }
+  pandoc.mediabag.write('paper.jats')
+  return pandoc.write(doc, 'jats_publishing+element_citations', opts)
 end
+
+Template = pandoc.template.default 'jats'
