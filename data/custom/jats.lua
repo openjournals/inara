@@ -40,4 +40,4 @@ function Writer (doc, opts)
   return pandoc.write(doc, 'jats_publishing+element_citations', opts)
 end
 
-Template = pandoc.template.default 'jats'
+Template = pandoc.template.default 'jats_publishing'
