@@ -102,7 +102,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
     extra_args=
     if [ "$format" = "jats" ]; then
         [ "$verbosity" -gt 0 ] && printf 'Creating folder "paper.jats"\n'
-        mkdir -p "paper.jats"
+        mkdir -p "jats"
     fi
 
     # Note that the output file must be defined in the format's defaults file.
