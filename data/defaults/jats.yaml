@@ -1,5 +1,5 @@
 to: jats.lua
-output-file: paper.jats/paper.jats
+output-file: jats/paper.jats
 
 
 filters:

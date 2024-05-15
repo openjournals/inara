@@ -36,7 +36,7 @@ function Writer (doc, opts)
       return img
     end
   }
-  pandoc.mediabag.write('paper.jats')
+  pandoc.mediabag.write('jats')
   return pandoc.write(doc, 'jats_publishing+element_citations', opts)
 end
 
