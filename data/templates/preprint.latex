@@ -348,7 +348,9 @@ $for(affiliations)$
 \affil[$affiliations.index$]{$affiliations.name$}
 $endfor$
 $if(article.author-notes.corresp)$
-\affil[$$\mathparagraph$$]{Corresponding author}
+\affil[$$\mathparagraph$$]{Corresponding author: %
+  $for(authors)$$if(authors.cor-id)$$authors.email$ $endif$$endfor$%
+}
 $endif$
 $if(article.has-equal-contributors)$
 \affil[*]{$if(message.equal-contrib)$$message.equal-contrib$$else$These authors contributed equally.$endif$}
