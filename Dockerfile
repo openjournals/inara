@@ -1,4 +1,4 @@
-FROM pandoc/latex:3.2.0-alpine
+FROM pandoc/latex:edge-alpine
 
 RUN apk add --no-cache ttf-hack
 
@@ -40,7 +40,7 @@ RUN TERM=dumb luaotfload-tool --update \
 ARG openjournals_path=/usr/local/share/openjournals
 COPY ./resources $openjournals_path
 COPY ./data $openjournals_path/data
-COPY ./scripts/entrypoint.sh /usr/local/bin/inara
+COPY ./inara.lua /usr/local/bin/inara
 
 ENV JOURNAL=joss
 ENV OPENJOURNALS_PATH=$openjournals_path
