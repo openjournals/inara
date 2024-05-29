@@ -25,8 +25,12 @@ local function date_array(date_metavalue)
 end
 
 function Meta (meta)
-  local curtime = os.date('*t')
-  meta.timestamp = meta.timestamp or os.date('%Y%m%d%H%M%S')
+  local epoch = os.getenv 'SOURCE_DATE_EPOCH'
+    and os.time { year = 1970, month = 1, day = 1, hour = 0, min = 0,
+                  sec = tonumber(os.getenv 'SOURCE_DATE_EPOCH') }
+    or os.time()
+  local curtime = os.date('*t', epoch)
+  meta.timestamp = meta.timestamp or os.date('!%Y%m%d%H%M%S', epoch)
 
   meta.submitted_parts = date_array(meta.submitted_at or sample_date)
   meta.published_parts = date_array(meta.published_at or sample_date)
