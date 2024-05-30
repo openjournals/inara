@@ -1,0 +1,25 @@
+name: JATS validation
+
+on:
+  push:
+    paths:
+      - 'test/expected-paper.jats/paper.jats'
+  pull_request:
+    paths:
+      - 'test/expected-paper.jats/paper.jats'
+
+jobs:
+  build:
+    name: Verify expected JATS
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install XML validator
+        run: |
+          sudo apt install libxml2-utils
+
+      - name: Test image
+        run: |
+          make validate-jats
