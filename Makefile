@@ -69,6 +69,11 @@ clean:
 	rm -rf $(TARGET_FOLDER)/paper.pdf
 	rm -rf $(TARGET_FOLDER)/paper.preprint
 	rm -rf $(TARGET_FOLDER)/paper.preprint.tex
+	rm -rf test/JATS-Publishing-1-2-MathML2-XSD.zip
+	rm -rf test/JATS-journalpublishing1-elements.xsd
+	rm -rf test/JATS-journalpublishing1.xsd
+	rm -rf test/standard-modules
+	rm -rf /tmp/JATS-Publishing-1-2-MathML2-XSD
 
 
 ## Tests
@@ -91,3 +96,18 @@ test-%:
 	$(INARA_TEST_CMD) -o $* example/paper.md
 	diff example/$(GOLDEN_FILE) test/expected-$(GOLDEN_FILE)
 
+NCBI_FTP = "ftp://ftp.ncbi.nih.gov/pub/jats/publishing/1.2/xsd/"
+test/JATS-Publishing-1-2-MathML2-XSD.zip:
+	curl --output $@ \
+	  "$(NCBI_FTP)/JATS-Publishing-1-2-MathML2-XSD.zip"
+
+test/JATS-journalpublishing1.xsd: \
+		test/JATS-Publishing-1-2-MathML2-XSD.zip
+	unzip -q -d /tmp $<
+	cp -a /tmp/JATS-Publishing-1-2-MathML2-XSD/* test
+	rm -rf /tmp/JATS-Publishing-1-2-MathML2-XSD
+
+.PHONY: validate-jats
+validate-jats: test/expected-paper.jats/paper.jats \
+		test/JATS-journalpublishing1.xsd
+	xmllint --schema test/JATS-journalpublishing1.xsd $< --noout

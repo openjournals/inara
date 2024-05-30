@@ -4,3 +4,9 @@
 /example/paper.jats
 /example/paper.crossref
 /example/paper.preprint.tex
+
+# JATS schema files
+/test/JATS-Publishing-1-2-MathML2-XSD.zip
+/test/JATS-journalpublishing1-elements.xsd
+/test/JATS-journalpublishing1.xsd
+/test/standard-modules
