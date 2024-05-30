@@ -82,7 +82,7 @@ INARA_TEST_CMD = docker run --rm -it \
 .PHONY: test golden-tests test-jats test-%
 test: golden-tests
 
-test-golden: test-crossref test-jats test-preprint
+test-golden: test-crossref test-jats test-pdf test-preprint
 
 test-jats:     GOLDEN_FILE = paper.jats/paper.jats
 test-preprint: GOLDEN_FILE = paper.preprint.tex
