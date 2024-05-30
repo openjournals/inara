@@ -13,6 +13,8 @@ on:
       - 'example/*'
   pull_request:
     # Build, but don't push on pull requests
+    branches:
+      - main
 
 jobs:
   # Build images and push them
@@ -29,6 +31,10 @@ jobs:
                  --tag=${{ github.repository }} \
                  --tag=ghcr.io/${{ github.repository }} \
                  .
+
+      - name: Test image
+        run: |
+          make test
 
       - name: Push to Docker Hub
         if: >-
