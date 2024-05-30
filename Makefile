@@ -68,3 +68,26 @@ clean:
 	rm -rf $(TARGET_FOLDER)/paper.native
 	rm -rf $(TARGET_FOLDER)/paper.pdf
 	rm -rf $(TARGET_FOLDER)/paper.preprint
+	rm -rf $(TARGET_FOLDER)/paper.preprint.tex
+
+
+## Tests
+
+# Command used to invoke Inara. Sets an environment variable that makes the
+# program ignore the real date.
+INARA_TEST_CMD = docker run --rm -it \
+	--env SOURCE_DATE_EPOCH=1234567890 \
+	-v $${PWD}:/data openjournals/inara:latest
+
+.PHONY: test golden-tests test-jats test-%
+test: golden-tests
+
+test-golden: test-crossref test-jats test-pdf test-preprint
+
+test-jats:     GOLDEN_FILE = paper.jats/paper.jats
+test-preprint: GOLDEN_FILE = paper.preprint.tex
+test-%:        GOLDEN_FILE = paper.$*
+test-%:
+	$(INARA_TEST_CMD) -o $* example/paper.md
+	diff example/$(GOLDEN_FILE) test/expected-$(GOLDEN_FILE)
+

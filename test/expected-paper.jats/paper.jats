@@ -1,0 +1,732 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.2 20190208//EN"
+                  "JATS-publishing1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title>Journal of Open Source Software</journal-title>
+<abbrev-journal-title>JOSS</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic">2475-9066</issn>
+<publisher>
+<publisher-name>Open Journals</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="publisher-id">0</article-id>
+<article-id pub-id-type="doi">N/A</article-id>
+<title-group>
+<article-title>Article Writing with Markdown and the Open Journals
+publishing pipeline</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author" corresp="yes">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-9455-0796</contrib-id>
+<name>
+<surname>Krewinkel</surname>
+<given-names>Albert</given-names>
+</name>
+<email>albert@zeitkraut.de</email>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+<xref ref-type="corresp" rid="cor-1"><sup>*</sup></xref>
+</contrib>
+<contrib contrib-type="author" equal-contrib="yes">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0001-7699-3983</contrib-id>
+<name>
+<surname>Bazán</surname>
+<given-names>Juanjo</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+</contrib>
+<contrib contrib-type="author" equal-contrib="yes">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-3957-2474</contrib-id>
+<name>
+<surname>Smith</surname>
+<given-names>Arfon M.</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-3"/>
+</contrib>
+<aff id="aff-1">
+<institution-wrap>
+<institution>Open Journals</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-2">
+<institution-wrap>
+<institution>Pandoc Development Team</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-3">
+<institution-wrap>
+<institution>GitHub</institution>
+</institution-wrap>
+</aff>
+</contrib-group>
+<author-notes>
+<corresp id="cor-1">* E-mail: <email>albert@zeitkraut.de</email></corresp>
+</author-notes>
+<pub-date date-type="pub" publication-format="electronic" iso-8601-date="2022-06-29">
+<day>29</day>
+<month>6</month>
+<year>2022</year>
+</pub-date>
+<volume>¿VOL?</volume>
+<issue>¿ISSUE?</issue>
+<fpage>¿PAGE?</fpage>
+<permissions>
+<copyright-statement>Authors of papers retain copyright and release the
+work under a Creative Commons Attribution 4.0 International License (CC
+BY 4.0)</copyright-statement>
+<copyright-year>2022</copyright-year>
+<copyright-holder>The article authors</copyright-holder>
+<license license-type="open-access" xlink:href="https://creativecommons.org/licenses/by/4.0/">
+<license-p>Authors of papers retain copyright and release the work under
+a Creative Commons Attribution 4.0 International License (CC BY
+4.0)</license-p>
+</license>
+</permissions>
+<kwd-group kwd-group-type="author">
+<kwd>reference</kwd>
+<kwd>example</kwd>
+<kwd>markdown</kwd>
+<kwd>publishing</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<sec id="summary">
+  <title>Summary</title>
+  <p>This article describes the features of the Journal of Open Source
+  Software
+  (<xref alt="Smith et al., 2018" rid="ref-smith2018" ref-type="bibr">Smith
+  et al., 2018</xref>) publishing pipeline. The publishing method is
+  similar to the model described by Krewinkel &amp; Winkler
+  (<xref alt="2017" rid="ref-krewinkel2017" ref-type="bibr">2017</xref>),
+  in that Markdown is used as the input format. The author-provided
+  files serves as the source for all generated publishing artifacts.</p>
+  <p>Apart from the main text, articles should also provide a metadata
+  section at the beginning of this article is formatted using
+  <ext-link ext-link-type="uri" xlink:href="https://yaml.org">YAML</ext-link>,
+  a human-friendly data serialization language
+  (<xref alt="The Official YAML Web Site, 2022" rid="ref-yaml_website" ref-type="bibr"><italic>The
+  Official YAML Web Site</italic>, 2022</xref>). This information is
+  included in the title and sidebar of the generated PDF.</p>
+  <p>Authors who face difficulties while writing are referred to the
+  paper by Upper
+  (<xref alt="1974" rid="ref-upper1974" ref-type="bibr">1974</xref>).</p>
+</sec>
+<sec id="statement-of-need">
+  <title>Statement of Need</title>
+  <p>The journal publisher, in most cases where you’d be reading this,
+  Open Journals, maintains a detailed and helpful
+  <ext-link ext-link-type="uri" xlink:href="https://joss.readthedocs.io/en/latest/submitting.html">article</ext-link>
+  on the requirements that articles must satisfy in order to be
+  considered for publication in that journal. However, submission
+  requirements do not help with the technical aspects of paper writing.
+  The process for JOSS and similar journals is different, in that the
+  paper should be written in the lightweight markup language
+  <italic>Markdown</italic>.</p>
+  <p>This article explains the technical details and describes the
+  publishing system’s capabilities. It can also be used as a test
+  document, or serve as a template that can be used as a starting
+  point.</p>
+</sec>
+<sec id="markdown-primer">
+  <title>Markdown primer</title>
+  <p>Markdown is based on email conventions. It was developed by John
+  Gruber and Aaron Swartz. This section provides a brief introduction to
+  Markdown syntax. Certain details or alternatives will be omitted,</p>
+  <p>If you are already familiar with Markdown, then you may want to
+  skip this section and continue with the description of
+  <xref alt="article metadata" rid="article-metadata">article
+  metadata</xref>.</p>
+  <sec id="inline-markup">
+    <title>Inline markup</title>
+    <p>The markup in Markdown should be semantic, not presentations. The
+    table below gives a small example.</p>
+    <table-wrap>
+      <caption>
+        <p>Basic inline markup and examples.</p>
+      </caption>
+      <table>
+        <colgroup>
+          <col width="30%" />
+          <col width="36%" />
+          <col width="33%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th align="left">Markup</th>
+            <th align="center">Markdown example</th>
+            <th align="center">Rendered output</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="left">emphasis</td>
+            <td align="center"><monospace>*this*</monospace></td>
+            <td align="center"><italic>this</italic></td>
+          </tr>
+          <tr>
+            <td align="left">strong emphasis</td>
+            <td align="center"><monospace>**that**</monospace></td>
+            <td align="center"><bold>that</bold></td>
+          </tr>
+          <tr>
+            <td align="left">strikeout</td>
+            <td align="center"><monospace>~~not this~~</monospace></td>
+            <td align="center"><strike>not this</strike></td>
+          </tr>
+          <tr>
+            <td align="left">subscript</td>
+            <td align="center"><monospace>H~2~O</monospace></td>
+            <td align="center">H<sub>2</sub>O</td>
+          </tr>
+          <tr>
+            <td align="left">superscript</td>
+            <td align="center"><monospace>Ca^2+^</monospace></td>
+            <td align="center">Ca<sup>2+</sup></td>
+          </tr>
+          <tr>
+            <td align="left">underline</td>
+            <td align="center"><monospace>[underline]{.ul}</monospace></td>
+            <td align="center"><underline>underline</underline></td>
+          </tr>
+          <tr>
+            <td align="left">inline code</td>
+            <td align="center"><monospace>`return 23`</monospace></td>
+            <td align="center"><monospace>return 23</monospace></td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+    <sec id="links">
+      <title>Links</title>
+      <p>Link syntax is
+      <monospace>[link description](targetURL)</monospace>. E.g., this
+      link to the
+      <ext-link ext-link-type="uri" xlink:href="https://joss.theoj.org/">Journal
+      of Open Source Software</ext-link> is written as
+      <monospace>[Journal of Open Source Software](https://joss.theoj.org/)</monospace>.</p>
+      <p>Open Journal publications are not limited by the constraints of
+      print publications. We encourage authors to use hyperlinks for
+      websites and other external resources. However, the standard
+      scientific practice of citing the relevant publications should be
+      followed regardless.</p>
+    </sec>
+    <sec id="images">
+      <title>Images</title>
+      <p>Markdown syntax for an image is that of a link, preceded by an
+      exclamation mark <monospace>!</monospace>.</p>
+      <p>The main use of images in papers is within figures. An image is
+      treated as a figure if</p>
+      <list list-type="order">
+        <list-item>
+          <p>it has a non-empty description, which will be used as the
+          figure label and</p>
+        </list-item>
+        <list-item>
+          <p>it is the only element in a paragraph, i.e., it must be
+          surrounded by blank lines.</p>
+        </list-item>
+      </list>
+      <p>Example:</p>
+      <code language="markdown">![Figure caption](path/to/image.png)</code>
+      <p>Images that are larger than the text area are scaled to fit the
+      page. It can sometimes be useful to give images an explicit height
+      and/or width, e.g. when adding an image as part of a paragraph.
+      The Markdown
+      <monospace>![Nyan cat](nyan-cat.png){height=&quot;9pt&quot;}</monospace>
+      includes the image “nyan-cat.png”
+      <inline-graphic mimetype="image" mime-subtype="png" xlink:href="nyan-cat.png">
+        <alt-text>Nyan cat</alt-text>
+      </inline-graphic> while scaling it to a height of 9 pt.</p>
+      <fig id="figU003Amandrill">
+        <caption><p>The “Mandrill” standard test image, sometimes
+        erroneously called “Baboon”, is a popular sample photo and used
+        in image processing research.</p></caption>
+        <graphic mimetype="image" mime-subtype="jpeg" xlink:href="mandrill.jpg" />
+      </fig>
+    </sec>
+    <sec id="citations">
+      <title>Citations</title>
+      <p>Bibliographic data should be collected in a file
+      <monospace>paper.bib</monospace>; it should be formatted in the
+      BibLaTeX format, although plain BibTeX is acceptable as well. All
+      major citation managers offer to export these formats.</p>
+      <p>Cite a bibliography entry by referencing its identifier:
+      <monospace>[@upper1974]</monospace> will create the reference
+      “(<xref alt="Upper, 1974" rid="ref-upper1974" ref-type="bibr">Upper,
+      1974</xref>)”. Omit the brackets when referring to the author as
+      part of a sentence: “For a case study on writers block, see Upper
+      (<xref alt="1974" rid="ref-upper1974" ref-type="bibr">1974</xref>).”
+      Please refer to the
+      <ext-link ext-link-type="uri" xlink:href="https://pandoc.org/MANUAL#extension-citations">pandoc
+      manual</ext-link> for additional features, including page
+      locators, prefixes, suffixes, and suppression of author names in
+      citations.</p>
+    </sec>
+    <sec id="mathematical-formulæ">
+      <title>Mathematical Formulæ</title>
+      <p>Equations and other math content has is marked by dollar signs
+      (<monospace>$</monospace>). A single dollar sign should be used
+      for math that will appear directly within the text, and
+      <monospace>$$</monospace> should be used when the formula is to be
+      presented in “display” style, i.e., centered and on a separate
+      line. The formula itself must be given using TeX syntax.</p>
+      <p>To give some examples: When discussing a variable
+      <inline-formula><alternatives>
+      <tex-math><![CDATA[x]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>x</mml:mi></mml:math></alternatives></inline-formula>
+      or a short formula like <inline-formula><alternatives>
+      <tex-math><![CDATA[\sin \frac{\pi}{2}]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mo>sin</mml:mo><mml:mfrac><mml:mi>π</mml:mi><mml:mn>2</mml:mn></mml:mfrac></mml:mrow></mml:math></alternatives></inline-formula>,
+      we would write <monospace>$x$</monospace> and
+      <monospace>$\sin \frac{\pi}{2}$</monospace>, respectively.
+      However, for more complex formulæ, display style is more
+      appropriate. Writing
+      <monospace>$$\int_{-\infty}^{+\infty} e^{-x^2} \, dx = \sqrt{\pi}$$</monospace>
+      will give us</p>
+      <p><disp-formula><alternatives>
+      <tex-math><![CDATA[\int_{-\infty}^{+\infty} e^{-x^2} \, dx = \sqrt{\pi}]]></tex-math>
+      <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msubsup><mml:mo>∫</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mi>∞</mml:mi></mml:mrow><mml:mrow><mml:mo>+</mml:mo><mml:mi>∞</mml:mi></mml:mrow></mml:msubsup><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:msup><mml:mspace width="0.167em"></mml:mspace><mml:mi>d</mml:mi><mml:mi>x</mml:mi><mml:mo>=</mml:mo><mml:msqrt><mml:mi>π</mml:mi></mml:msqrt></mml:mrow></mml:math></alternatives></disp-formula></p>
+      <p>Numbered equations and internal cross-references are discussed
+      <xref alt="futher below" rid="equations">futher below</xref>.</p>
+    </sec>
+    <sec id="footnotes">
+      <title>Footnotes</title>
+      <p>Syntax for footnotes centers around the “caret” character
+      <monospace>^</monospace>. The symbol is also used as a delimiter
+      for superscript text and thereby mirrors the superscript numbers
+      used to mark a footnote in the final
+      text.<xref ref-type="fn" rid="fn1">1</xref></p>
+      <code language="markdown">Articles are published under a Creative Commons license[^1].
+Software should use an OSI-approved license.
+
+[^1]: An open license that allows reuse.</code>
+      <p>Note numbers do not have to be sequential, they will be
+      reordered automatically in the publishing step. In fact, the
+      identifier of a note can be any sequence of characters, like
+      <monospace>[^marker]</monospace>, but may not contain whitespace
+      characters.</p>
+      <p>The above example results in the following output:</p>
+      <disp-quote>
+        <p>Articles are published under a Creative Commons
+        license<xref ref-type="fn" rid="fn2">2</xref>. Software should
+        use an OSI-approved license.</p>
+      </disp-quote>
+    </sec>
+  </sec>
+  <sec id="blocks">
+    <title>Blocks</title>
+    <p>The larger components of a document are called “blocks”.</p>
+    <sec id="headings">
+      <title>Headings</title>
+      <p>Headings are added with <monospace>#</monospace> followed by a
+      space, where each additional <monospace>#</monospace> demotes the
+      heading to a level lower in the hierarchy:</p>
+      <code language="markdown"># Section
+
+## Subsection
+
+### Subsubsection</code>
+      <p>Please start headings on the first level. The maximum supported
+      level is 5, but paper authors should usually try to limit
+      themselves to headings of the first two or three levels.</p>
+      <sec id="deeper-nesting">
+        <title>Deeper nesting</title>
+        <p>Forth- and fifth-level subsections – like this one and the
+        following heading – are supported by the system; however, their
+        use is discouraged.</p>
+        <sec id="avoiding-excessive-nesting">
+          <title>Avoiding excessive nesting</title>
+          <p>Usually <xref alt="lists" rid="lists">lists</xref>, as
+          described in the next section, should be preferred over forth-
+          and fifth-level headings.</p>
+        </sec>
+      </sec>
+    </sec>
+    <sec id="lists">
+      <title>Lists</title>
+      <p>Bullet lists and numbered lists, a.k.a. enumerations, offer an
+      additional method to present sequential and hierarchical
+      information.</p>
+      <code language="markdown">- apples
+- citrus fruits
+  - lemons
+  - oranges</code>
+      <list list-type="bullet">
+        <list-item>
+          <p>apples</p>
+        </list-item>
+        <list-item>
+          <p>citrus fruits</p>
+          <list list-type="bullet">
+            <list-item>
+              <p>lemons</p>
+            </list-item>
+            <list-item>
+              <p>oranges</p>
+            </list-item>
+          </list>
+        </list-item>
+      </list>
+      <p>Enumerations start with the number of the first item. Using the
+      the first two
+      <ext-link ext-link-type="uri" xlink:href="https://en.wikipedia.org/wiki/Laws_of_thermodynamics">laws
+      of thermodynamics</ext-link> as example.</p>
+      <code language="markdown">0. If two systems are each in thermal equilibrium with a third, they are
+   also in thermal equilibrium with each other.
+1. In a process without transfer of matter, the change in internal
+   energy, $\Delta U$, of a thermodynamic system is equal to the energy
+   gained as heat, $Q$, less the thermodynamic work, $W$, done by the
+   system on its surroundings. $$\Delta U = Q - W$$</code>
+      <p>Rendered:</p>
+      <list list-type="order">
+        <list-item>
+          <label>0.</label>
+          <p>If two systems are each in thermal equilibrium with a
+          third, they are also in thermal equilibrium with each
+          other.</p>
+        </list-item>
+        <list-item>
+          <label>1.</label>
+          <p>In a process without transfer of matter, the change in
+          internal energy, <inline-formula><alternatives>
+          <tex-math><![CDATA[\Delta U]]></tex-math>
+          <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>U</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>,
+          of a thermodynamic system is equal to the energy gained as
+          heat, <inline-formula><alternatives>
+          <tex-math><![CDATA[Q]]></tex-math>
+          <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>Q</mml:mi></mml:math></alternatives></inline-formula>,
+          less the thermodynamic work, <inline-formula><alternatives>
+          <tex-math><![CDATA[W]]></tex-math>
+          <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>W</mml:mi></mml:math></alternatives></inline-formula>,
+          done by the system on its surroundings.
+          <disp-formula><alternatives>
+          <tex-math><![CDATA[\Delta U = Q - W]]></tex-math>
+          <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>U</mml:mi><mml:mo>=</mml:mo><mml:mi>Q</mml:mi><mml:mo>−</mml:mo><mml:mi>W</mml:mi></mml:mrow></mml:math></alternatives></disp-formula></p>
+        </list-item>
+      </list>
+    </sec>
+  </sec>
+</sec>
+<sec id="article-metadata">
+  <title>Article metadata</title>
+  <sec id="names">
+    <title>Names</title>
+    <p>Providing an author name is straight-forward: just set the
+    <monospace>name</monospace> attribute. However, sometimes
+    fine-grained control over the name is required.</p>
+    <sec id="name-parts">
+      <title>Name parts</title>
+      <p>There are many ways to describe the parts of names; we support
+      the following:</p>
+      <list list-type="bullet">
+        <list-item>
+          <p>given names,</p>
+        </list-item>
+        <list-item>
+          <p>surname,</p>
+        </list-item>
+        <list-item>
+          <p>dropping particle,</p>
+        </list-item>
+        <list-item>
+          <p>non-dropping particle,</p>
+        </list-item>
+        <list-item>
+          <p>and suffix.</p>
+        </list-item>
+      </list>
+      <p>We use a heuristic to parse names into these components. This
+      parsing may produce the wrong result, in which case it is
+      necessary to provide the relevant parts explicitly.</p>
+      <p>The respective field names are</p>
+      <list list-type="bullet">
+        <list-item>
+          <p><monospace>given-names</monospace> (aliases:
+          <monospace>given</monospace>, <monospace>first</monospace>,
+          <monospace>firstname</monospace>)</p>
+        </list-item>
+        <list-item>
+          <p><monospace>surname</monospace> (aliases:
+          <monospace>family</monospace>)</p>
+        </list-item>
+        <list-item>
+          <p><monospace>suffix</monospace></p>
+        </list-item>
+      </list>
+      <p>The full display name will be constructed from these parts,
+      unless the <monospace>name</monospace> attribute is given as
+      well.</p>
+    </sec>
+    <sec id="particles">
+      <title>Particles</title>
+      <p>It’s usually enough to place particles like “van”, “von”,
+      “della”, etc. at the end of the given name or at the beginning of
+      the surname, depending on the details of how the name is used.</p>
+      <list list-type="bullet">
+        <list-item>
+          <p><monospace>dropping-particle</monospace></p>
+        </list-item>
+        <list-item>
+          <p><monospace>non-dropping-particle</monospace></p>
+        </list-item>
+      </list>
+    </sec>
+    <sec id="literal-names">
+      <title>Literal names</title>
+      <p>The automatic construction of the full name from parts is
+      geared towards common Western names. It may therefore be necessary
+      sometimes to provide the display name explicitly. This is possible
+      by setting the <monospace>literal</monospace> field, e.g.,
+      <monospace>literal: Tachibana Taki</monospace>. This feature
+      should only be used as a last resort. </p>
+    </sec>
+    <sec id="example">
+      <title>Example</title>
+      <code language="yaml">authors:
+  - name: John Doe
+    affiliation: '1'
+
+  - given-names: Ludwig
+    dropping-particle: van
+    surname: Beethoven
+    affiliation: '3'
+
+  # not recommended, but common aliases can be used for name parts.
+  - given: Louis
+    non-dropping-particle: de
+    family: Broglie
+    affiliation: '4'</code>
+      <p>The name parts can also be collected under the author’s
+      <monospace>name</monospace>:</p>
+      <code language="yaml">authors:
+  - name:
+      given-names: Kari
+      surname: Nordmann</code>
+      <p> </p>
+    </sec>
+  </sec>
+</sec>
+<sec id="internal-references">
+  <title>Internal references</title>
+  <p>Markdown has no default mechanism to handle document internal
+  references, often called “cross-references”. This conflicts with goal
+  of <ext-link ext-link-type="uri" xlink:href="https://theoj.org">Open
+  Journals</ext-link> is to provide authors with a seamless and pleasant
+  writing experience. This includes convenient cross-reference
+  generation, which is why a limited set of LaTeX commands are
+  supported. In a nutshell, elements that were marked with
+  <monospace>\label</monospace> and can be referenced with
+  <monospace>\ref</monospace> and <monospace>\autoref</monospace>.</p>
+  <fig id="sylt">
+    <caption><p>View of coastal dunes in a nature reserve on Sylt, an
+    island in the North Sea. Sylt (Danish: <italic>Slid</italic>) is
+    Germany’s northernmost island.</p></caption>
+    <graphic mimetype="image" mime-subtype="jpeg" xlink:href="sylt.jpg" />
+  </fig>
+  <sec id="tables-and-figures">
+    <title>Tables and figures</title>
+    <p>Tables and figures can be referenced if they are given a
+    <italic>label</italic> in the caption. In pure Markdown, this can be
+    done by adding an empty span
+    <monospace>[]{label=&quot;floatlabel&quot;}</monospace> to the
+    caption. LaTeX syntax is supported as well:
+    <monospace>\label{floatlabel}</monospace>.</p>
+    <p>Link to a float element, i.e., a table or figure, with
+    <monospace>\ref{identifier}</monospace> or
+    <monospace>\autoref{identifier}</monospace>, where
+    <monospace>identifier</monospace> must be defined in the float’s
+    caption. The former command results in just the float’s number,
+    while the latter inserts the type and number of the referenced
+    float. E.g., in this document
+    <monospace>\autoref{proglangs}</monospace> yields
+    “<xref alt="Table 2" rid="proglangs">Table 2</xref>”, while
+    <monospace>\ref{proglangs}</monospace> gives
+    “<xref alt="2" rid="proglangs">2</xref>”.</p>
+    <table-wrap>
+      <caption>
+        <p>Comparison of programming languages used in the publishing
+        tool. </p>
+      </caption>
+      <table>
+        <colgroup>
+          <col width="15%" />
+          <col width="25%" />
+          <col width="28%" />
+          <col width="18%" />
+          <col width="13%" />
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Language</th>
+            <th align="center">Typing</th>
+            <th align="center">Garbage Collected</th>
+            <th>Evaluation</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Haskell</td>
+            <td align="center">static, strong</td>
+            <td align="center">yes</td>
+            <td>non-strict</td>
+            <td>1990</td>
+          </tr>
+          <tr>
+            <td>Lua</td>
+            <td align="center">dynamic, strong</td>
+            <td align="center">yes</td>
+            <td>strict</td>
+            <td>1993</td>
+          </tr>
+          <tr>
+            <td>C</td>
+            <td align="center">static, weak</td>
+            <td align="center">no</td>
+            <td>strict</td>
+            <td>1972</td>
+          </tr>
+        </tbody>
+      </table>
+    </table-wrap>
+  </sec>
+  <sec id="equations">
+    <title>Equations</title>
+    <p>Cross-references to equations work similar to those for floating
+    elements. The difference is that, since captions are not supported
+    for equations, the label must be included in the equation:</p>
+    <preformat>$$a^n + b^n = c^n \label{fermat}$$</preformat>
+    <p>Referencing, however, is identical, with
+    <monospace>\autoref{eq:fermat}</monospace> resulting in
+    “<xref alt="Equation 1" rid="eqU003Afermat">Equation 1</xref>”.</p>
+    <p><named-content id="eqU003Afermat" content-type="equation"><disp-formula><alternatives>
+    <tex-math><![CDATA[a^n + b^n = c^n ]]></tex-math>
+    <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msup><mml:mi>a</mml:mi><mml:mi>n</mml:mi></mml:msup><mml:mo>+</mml:mo><mml:msup><mml:mi>b</mml:mi><mml:mi>n</mml:mi></mml:msup><mml:mo>=</mml:mo><mml:msup><mml:mi>c</mml:mi><mml:mi>n</mml:mi></mml:msup></mml:mrow></mml:math></alternatives></disp-formula></named-content></p>
+    <p>Authors who do not wish to include the label directly in the
+    formula can use a Markdown span to add the label:</p>
+    <preformat>[$$a^n + b^n = c^n$$]{label=&quot;eq:fermat&quot;}</preformat>
+  </sec>
+</sec>
+<sec id="behind-the-scenes">
+  <title>Behind the scenes</title>
+  <p>Readers may wonder about the reasons behind some of the choices
+  made for paper writing. Most often, the decisions were driven by
+  radical pragmatism. For example, Markdown is not only nearly
+  ubiquitous in the realms of software, but it can also be converted
+  into many different output formats. The archiving standard for
+  scientific articles is JATS, and the most popular publishing format is
+  PDF. Open Journals has built its pipeline based on
+  <ext-link ext-link-type="uri" xlink:href="https://pandoc.org">pandoc</ext-link>,
+  a universal document converter that can produce both of these
+  publishing formats – and many more.</p>
+  <p>A common method for PDF generation is to go via LaTeX. However,
+  support for tagging – a requirement for accessible PDFs – is not
+  readily available for LaTeX. The current method used ConTeXt, to
+  produce tagged PDF/A-3, a format suited for archiving
+  (<xref alt="Document Management – Electronic Document File Format for Long-Term Preservation – Part 3, 2012" rid="ref-pdfa3" ref-type="bibr"><italic>Document
+  Management – Electronic Document File Format for Long-Term
+  Preservation – Part 3</italic>, 2012</xref>).</p>
+</sec>
+</body>
+<back>
+<ref-list>
+  <ref id="ref-upper1974">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Upper</surname><given-names>D.</given-names></name>
+      </person-group>
+      <article-title>The unsuccessful self-treatment of a case of &quot;writer’s block&quot;</article-title>
+      <source>Journal of Applied Behavior Analysis</source>
+      <year iso-8601-date="1974">1974</year>
+      <volume>7</volume>
+      <issue>3</issue>
+      <issn>0021-8855</issn>
+      <pub-id pub-id-type="doi">10.1901/jaba.1974.7-497a</pub-id>
+      <fpage>497</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-smith2018">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Smith</surname><given-names>Arfon M.</given-names></name>
+        <name><surname>Niemeyer</surname><given-names>Kyle E.</given-names></name>
+        <name><surname>Katz</surname><given-names>Daniel S.</given-names></name>
+        <name><surname>Barba</surname><given-names>Lorena A.</given-names></name>
+        <name><surname>Githinji</surname><given-names>George</given-names></name>
+        <name><surname>Gymrek</surname><given-names>Melissa</given-names></name>
+        <name><surname>Huff</surname><given-names>Kathryn D.</given-names></name>
+        <name><surname>Madan</surname><given-names>Christopher R.</given-names></name>
+        <name><surname>Cabunoc Mayes</surname><given-names>Abigail</given-names></name>
+        <name><surname>Moerman</surname><given-names>Kevin M.</given-names></name>
+        <name><surname>Prins</surname><given-names>Pjotr</given-names></name>
+        <name><surname>Ram</surname><given-names>Karthik</given-names></name>
+        <name><surname>Rokem</surname><given-names>Ariel</given-names></name>
+        <name><surname>Teal</surname><given-names>Tracy K.</given-names></name>
+        <name><surname>Valls Guimera</surname><given-names>Roman</given-names></name>
+        <name><surname>Vanderplas</surname><given-names>Jacob T.</given-names></name>
+      </person-group>
+      <article-title>Journal of open source software (JOSS): Design and first-year review</article-title>
+      <source>PeerJ Computer Science</source>
+      <year iso-8601-date="2018-02">2018</year><month>02</month>
+      <volume>4</volume>
+      <issn>2376-5992</issn>
+      <uri>https://doi.org/10.7717/peerj-cs.147</uri>
+      <pub-id pub-id-type="doi">10.7717/peerj-cs.147</pub-id>
+      <fpage>e147</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-krewinkel2017">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Krewinkel</surname><given-names>Albert</given-names></name>
+        <name><surname>Winkler</surname><given-names>Robert</given-names></name>
+      </person-group>
+      <article-title>Formatting open science: Agilely creating multiple document formats for academic manuscripts with pandoc scholar</article-title>
+      <source>PeerJ Computer Science</source>
+      <year iso-8601-date="2017-05">2017</year><month>05</month>
+      <volume>3</volume>
+      <issn>2376-5992</issn>
+      <uri>https://doi.org/10.7717/peerj-cs.112</uri>
+      <pub-id pub-id-type="doi">10.7717/peerj-cs.112</pub-id>
+      <fpage>e112</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-yaml_website">
+    <element-citation publication-type="webpage">
+      <article-title>The Official YAML Web Site</article-title>
+      <year iso-8601-date="2022-04-19">2022</year><month>04</month><day>19</day>
+      <date-in-citation content-type="access-date"><year iso-8601-date="2022-04-19">2022</year><month>04</month><day>19</day></date-in-citation>
+      <uri>https://yaml.org/</uri>
+    </element-citation>
+  </ref>
+  <ref id="ref-pdfa3">
+    <element-citation publication-type="report">
+      <article-title>Document management – electronic document file format for long-term preservation – part 3: Use of ISO 32000-1 with support for embedded files (PDF/A-3)</article-title>
+      <publisher-name>International Organization for Standardization</publisher-name>
+      <publisher-loc>Geneva, CH</publisher-loc>
+      <year iso-8601-date="2012-10">2012</year><month>10</month>
+    </element-citation>
+  </ref>
+</ref-list>
+<fn-group>
+  <fn id="fn1">
+    <label>1</label><p>Although it should be noted that some publishers
+    prefer symbols or letters as footnote markers.</p>
+  </fn>
+  <fn id="fn2">
+    <label>2</label><p>An open license that allows reuse.</p>
+  </fn>
+</fn-group>
+</back>
+</article>
