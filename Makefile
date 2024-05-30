@@ -80,12 +80,12 @@ clean:
 
 # Command used to invoke Inara. Sets an environment variable that makes the
 # program ignore the real date.
-INARA_TEST_CMD = docker run --rm -it \
+INARA_TEST_CMD = docker run --rm \
 	--env SOURCE_DATE_EPOCH=1234567890 \
 	-v $${PWD}:/data openjournals/inara:latest
 
-.PHONY: test golden-tests test-jats test-%
-test: golden-tests
+.PHONY: test test-golden test-jats test-%
+test: test-golden
 
 test-golden: test-crossref test-jats test-pdf test-preprint
 
