@@ -85,15 +85,32 @@ INARA_TEST_CMD = docker run --rm \
 	--env SOURCE_DATE_EPOCH=1234567890 \
 	-v $${PWD}:/data openjournals/inara:latest
 
-.PHONY: test test-golden test-jats test-%
-test: test-golden
+.PHONY: test test-golden-draft test-golden-pub
+test: test-golden-draft test-golden-pub
+test-golden-draft: \
+	test-draft-crossref \
+	test-draft-jats \
+	test-draft-pdf \
+	test-draft-preprint
+test-golden-pub: \
+	test-pub-crossref \
+	test-pub-jats \
+	test-pub-pdf \
+	test-pub-preprint
 
-test-golden: test-crossref test-jats test-pdf test-preprint
+.PHONY: test-pub-jats test-pub-preprint test-pub-%
+test-pub-jats:     GOLDEN_FILE = paper.jats/paper.jats
+test-pub-preprint: GOLDEN_FILE = paper.preprint.tex
+test-pub-%:        GOLDEN_FILE = paper.$*
+test-pub-%:
+	$(INARA_TEST_CMD) -m test/metadata.yaml -o $* example/paper.md -p
+	diff example/$(GOLDEN_FILE) test/expected-pub/$(GOLDEN_FILE)
 
-test-jats:     GOLDEN_FILE = paper.jats/paper.jats
-test-preprint: GOLDEN_FILE = paper.preprint.tex
-test-%:        GOLDEN_FILE = paper.$*
-test-%:
+.PHONY: test-draft-jats test-draft-preprint test-draft-%
+test-draft-jats:     GOLDEN_FILE = paper.jats/paper.jats
+test-draft-preprint: GOLDEN_FILE = paper.preprint.tex
+test-draft-%:        GOLDEN_FILE = paper.$*
+test-draft-%:
 	$(INARA_TEST_CMD) -o $* example/paper.md
 	diff example/$(GOLDEN_FILE) test/expected-$(GOLDEN_FILE)
 
