@@ -108,20 +108,24 @@ test-golden-pub: \
 	test-pub-preprint
 
 .PHONY: test-pub-jats test-pub-preprint test-pub-%
-test-pub-jats:     GOLDEN_FILE = paper.jats/paper.jats
+test-pub-jats:
+	$(INARA_TEST_CMD) -o jats example/paper.md
+	diff test/expected-pub/paper.jats/paper.jats example/jats/paper.jats
 test-pub-preprint: GOLDEN_FILE = paper.preprint.tex
 test-pub-%:        GOLDEN_FILE = paper.$*
 test-pub-%:
 	$(INARA_TEST_CMD) -m test/metadata.yaml -o $* example/paper.md -p
-	diff example/$(GOLDEN_FILE) test/expected-pub/$(GOLDEN_FILE)
+	diff test/expected-pub/$(GOLDEN_FILE) example/$(GOLDEN_FILE)
 
 .PHONY: test-draft-jats test-draft-preprint test-draft-%
-test-draft-jats:     GOLDEN_FILE = paper.jats/paper.jats
+test-draft-jats:
+	$(INARA_TEST_CMD) -o jats example/paper.md
+	diff test/expected-paper.jats/paper.jats example/jats/paper.jats
 test-draft-preprint: GOLDEN_FILE = paper.preprint.tex
 test-draft-%:        GOLDEN_FILE = paper.$*
 test-draft-%:
 	$(INARA_TEST_CMD) -o $* example/paper.md
-	diff example/$(GOLDEN_FILE) test/expected-$(GOLDEN_FILE)
+	diff test/expected-$(GOLDEN_FILE) example/$(GOLDEN_FILE)
 
 NCBI_FTP = "ftp://ftp.ncbi.nih.gov/pub/jats/publishing/1.2/xsd/"
 test/JATS-Publishing-1-2-MathML2-XSD.zip:

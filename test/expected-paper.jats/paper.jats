@@ -293,7 +293,7 @@ a Creative Commons Attribution 4.0 International License (CC BY
       will give us</p>
       <p><disp-formula><alternatives>
       <tex-math><![CDATA[\int_{-\infty}^{+\infty} e^{-x^2} \, dx = \sqrt{\pi}]]></tex-math>
-      <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msubsup><mml:mo>∫</mml:mo><mml:mrow><mml:mo>−</mml:mo><mml:mi>∞</mml:mi></mml:mrow><mml:mrow><mml:mo>+</mml:mo><mml:mi>∞</mml:mi></mml:mrow></mml:msubsup><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mo>−</mml:mo><mml:msup><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:msup><mml:mspace width="0.167em"></mml:mspace><mml:mi>d</mml:mi><mml:mi>x</mml:mi><mml:mo>=</mml:mo><mml:msqrt><mml:mi>π</mml:mi></mml:msqrt></mml:mrow></mml:math></alternatives></disp-formula></p>
+      <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:msubsup><mml:mo>∫</mml:mo><mml:mrow><mml:mi>−</mml:mi><mml:mi>∞</mml:mi></mml:mrow><mml:mrow><mml:mi>+</mml:mi><mml:mi>∞</mml:mi></mml:mrow></mml:msubsup><mml:msup><mml:mi>e</mml:mi><mml:mrow><mml:mi>−</mml:mi><mml:msup><mml:mi>x</mml:mi><mml:mn>2</mml:mn></mml:msup></mml:mrow></mml:msup><mml:mspace width="0.167em"></mml:mspace><mml:mi>d</mml:mi><mml:mi>x</mml:mi><mml:mo>=</mml:mo><mml:msqrt><mml:mi>π</mml:mi></mml:msqrt></mml:mrow></mml:math></alternatives></disp-formula></p>
       <p>Numbered equations and internal cross-references are discussed
       <xref alt="futher below" rid="equations">futher below</xref>.</p>
     </sec>
@@ -638,6 +638,7 @@ Software should use an OSI-approved license.
 </body>
 <back>
 <ref-list>
+  <title></title>
   <ref id="ref-upper1974">
     <element-citation publication-type="article-journal">
       <person-group person-group-type="author">
