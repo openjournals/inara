@@ -1,3 +1,6 @@
+local pandoc = require 'pandoc'
+local utils = require 'pandoc.utils'
+local citeproc, stringify = utils.citeproc, utils.stringify
 function make_placeholder_doc(meta, reference)
   local tmpmeta = {
     ['references'] = {reference},
@@ -11,25 +14,16 @@ function make_placeholder_doc(meta, reference)
 end
 
 local function make_unstructured_citation(meta, reference)
-  local resource_path = table.concat(
-    PANDOC_STATE.resource_path,
-    pandoc.path.search_path_separator
-  )
-  local tmpdoc = pandoc.utils.run_json_filter(
-    make_placeholder_doc(meta, reference),
-    'pandoc',
-    {'--from=json', '--citeproc', '--to=json',
-     '--resource-path=' .. resource_path}
-  )
-  return pandoc.utils.stringify(tmpdoc.blocks)
+  local tmpdoc = citeproc(make_placeholder_doc(meta, reference))
+  return stringify(tmpdoc.blocks)
 end
 
 function Meta (meta)
-  for i, ref in ipairs(meta.references) do
+  for _, ref in ipairs(meta.references) do
     ref.unstructured_citation = make_unstructured_citation(meta, ref)
     for k, v in pairs(ref) do
-      if pandoc.utils.type(v) == 'Inlines' then
-        ref[k] = pandoc.utils.stringify(v)
+      if utils.type(v) == 'Inlines' then
+        ref[k] = stringify(v)
       end
     end
     if ref.type == 'book' then
