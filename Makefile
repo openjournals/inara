@@ -69,6 +69,15 @@ clean:
 	rm -rf $(TARGET_FOLDER)/paper.pdf
 	rm -rf $(TARGET_FOLDER)/paper.preprint
 	rm -rf $(TARGET_FOLDER)/paper.preprint.tex
+	rm -rf example/jats
+	rm -rf example/paper.cff
+	rm -rf example/paper.crossref
+	rm -rf example/paper.html
+	rm -rf example/paper.jats
+	rm -rf example/paper.native
+	rm -rf example/paper.pdf
+	rm -rf example/paper.preprint
+	rm -rf example/paper.preprint.tex
 	rm -rf test/JATS-Publishing-1-2-MathML2-XSD.zip
 	rm -rf test/JATS-journalpublishing1-elements.xsd
 	rm -rf test/JATS-journalpublishing1.xsd
