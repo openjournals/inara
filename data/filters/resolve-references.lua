@@ -128,7 +128,7 @@ return {
       if not ref then
         return nil
       end
-      local ref_target = link.attributes['reference-type'] == 'autoref'
+      local ref_target = link.attributes['reference-type'] == 'ref+label'
         and labels[ref]
         or (table_labels[ref] or figure_labels[ref] or equation_labels[ref])
       if ref_target then
