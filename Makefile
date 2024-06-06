@@ -109,7 +109,7 @@ test-golden-pub: \
 
 .PHONY: test-pub-jats test-pub-preprint test-pub-%
 test-pub-jats:
-	$(INARA_TEST_CMD) -o jats example/paper.md
+	$(INARA_TEST_CMD) -m test/metadata.yaml -o jats example/paper.md -p
 	diff test/expected-pub/paper.jats/paper.jats example/jats/paper.jats
 test-pub-preprint: GOLDEN_FILE = paper.preprint.tex
 test-pub-%:        GOLDEN_FILE = paper.$*

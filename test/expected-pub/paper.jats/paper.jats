@@ -16,7 +16,7 @@
 </journal-meta>
 <article-meta>
 <article-id pub-id-type="publisher-id">0</article-id>
-<article-id pub-id-type="doi">N/A</article-id>
+<article-id pub-id-type="doi">10.21105/joss.00000</article-id>
 <title-group>
 <article-title>Article Writing with Markdown and the Open Journals
 publishing pipeline</article-title>
@@ -74,9 +74,9 @@ publishing pipeline</article-title>
 <month>6</month>
 <year>2022</year>
 </pub-date>
-<volume>¿VOL?</volume>
-<issue>¿ISSUE?</issue>
-<fpage>¿PAGE?</fpage>
+<volume>0</volume>
+<issue>5</issue>
+<fpage>00000</fpage>
 <permissions>
 <copyright-statement>Authors of papers retain copyright and release the
 work under a Creative Commons Attribution 4.0 International License (CC
