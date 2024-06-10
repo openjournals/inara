@@ -48,7 +48,7 @@ $(TARGET_FOLDER):
 
 .PHONY: docker-image
 docker-image: Dockerfile
-	docker build --tag openjournals/inara .
+	docker build --tag openjournals/inara:edge .
 
 push-docker-image:
 	docker push openjournals/inara
@@ -92,7 +92,7 @@ clean:
 INARA_TEST_CMD = docker run --rm \
 	--user $(shell id -u):$(shell id -g) \
 	--env SOURCE_DATE_EPOCH=1234567890 \
-	-v $${PWD}:/data openjournals/inara:latest
+	-v $${PWD}:/data openjournals/inara:edge
 
 .PHONY: test test-golden-draft test-golden-pub
 test: test-golden-draft test-golden-pub
