@@ -15,6 +15,8 @@ TARGET_FOLDER = publishing-artifacts
 
 ARTICLE_INFO_FILE = $(OPENJOURNALS_PATH)/default-article-info.yaml
 
+IMAGE = openjournals/inara:edge
+
 .PHONY: all
 all: cff pdf html jats crossref native preprint
 
@@ -48,7 +50,7 @@ $(TARGET_FOLDER):
 
 .PHONY: docker-image
 docker-image: Dockerfile
-	docker build --tag openjournals/inara:edge .
+	docker build --tag $(IMAGE) .
 
 push-docker-image:
 	docker push openjournals/inara
@@ -92,7 +94,7 @@ clean:
 INARA_TEST_CMD = docker run --rm \
 	--user $(shell id -u):$(shell id -g) \
 	--env SOURCE_DATE_EPOCH=1234567890 \
-	-v $${PWD}:/data openjournals/inara:edge
+	-v $${PWD}:/data $(IMAGE)
 
 .PHONY: test test-golden-draft test-golden-pub
 test: test-golden-draft test-golden-pub
