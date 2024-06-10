@@ -64,3 +64,10 @@ PDFs are generated via LaTeX; for best results, all packages
 listed in `Dockerfile` should be installed.
 
 You will also need the [Hack](https://github.com/source-foundry/Hack) font by `source-foundry`.
+
+## Versions
+
+Inara is versioned using [SemVer](https://semver.org). Docker
+images are tagged with the version; tagged images are available
+for all published versions. The current development version is
+published as an image tagged *edge*.
