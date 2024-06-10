@@ -2,6 +2,9 @@ name: Image Builder
 
 on:
   push: {}
+  pull_request:
+    branches:
+      - main
 
 jobs:
   # Build images and push them
@@ -16,12 +19,16 @@ jobs:
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
+        if: >-
+          github.repository == 'openjournals/inara'
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
+        if: >-
+          github.repository == 'openjournals/inara'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -36,16 +43,18 @@ jobs:
             ghcr.io/openjournals/inara
           tags: |
             type=semver,pattern={{version}}
-            type=edge,branch=main
+            type=edge
+            type=ref,event=branch
+            type=ref,event=pr
 
-      - name: Build and push image
+      - name: Build and maybe push image
         id: push
         uses: docker/build-push-action@v5
         with:
           context: '.'
-          push: true
+          push: ${{ github.ref == 'refs/heads/main' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Test image
-        run: make test
+        run: make test IMAGE=${{ fromJSON(steps.meta.outputs.json).tags[0] }}
