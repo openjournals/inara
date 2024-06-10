@@ -1,59 +1,51 @@
 name: Image Builder
 
 on:
-  push:
-    # Build and publish after updating the default branch
-    branches:
-      - main
-    paths-ignore:
-      - '.dockerignore'
-      - 'docs/*'
-      - 'LICENSE'
-      - 'README.md'
-      - 'example/*'
-  pull_request:
-    # Build, but don't push on pull requests
-    branches:
-      - main
+  push: {}
 
 jobs:
   # Build images and push them
   build:
-    name: Build Docker image
+    name: Build tagged Docker image
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Build image
-        run: |
-          docker build \
-                 --tag=${{ github.repository }} \
-                 --tag=ghcr.io/${{ github.repository }} \
-                 .
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            openjournals/inara
+            ghcr.io/openjournals/inara
+          tags: |
+            type=semver,pattern={{version}}
+            type=edge,branch=main
+
+      - name: Build and push image
+        id: push
+        uses: docker/build-push-action@v5
+        with:
+          context: '.'
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
       - name: Test image
-        run: |
-          make test
-
-      - name: Push to Docker Hub
-        if: >-
-          github.event_name == 'push' &&
-          github.repository == 'openjournals/inara'
-        run: |
-          # Log into registry
-          echo "${{ secrets.DOCKER_HUB_TOKEN }}" |
-            docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} --password-stdin
-          docker push ${{ github.repository }}
-
-      - name: Push to GitHub Container Registry
-        if: >-
-          github.event_name == 'push' &&
-          github.repository == 'openjournals/inara'
-        run: |
-          # Log into registry
-          echo "${{ secrets.GITHUB_TOKEN }}" | \
-          docker login ghcr.io \
-              -u ${{ github.actor }} \
-              --password-stdin
-          docker push ghcr.io/${{ github.repository }}
+        run: make test
