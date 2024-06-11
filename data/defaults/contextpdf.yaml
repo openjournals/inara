@@ -1,5 +1,6 @@
 to: context
 pdf-engine: context
+pdf-engine-opt: --luatex
 output-file: paper.context.pdf
 top-level-division: section
 filters:
