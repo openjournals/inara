@@ -29,7 +29,7 @@ watermark and linenumbers. To create a _production_ PDF add the `-p` flag.
         -u $(id -u):$(id -g) \
         openjournals/inara \
         -o pdf,crossref \
-        path/relative/to/current/directory/paper.md
+        example/paper.md
 
 The resulting PDF and Crossref-XML files will be named `paper.pdf` and `paper.crossref` and placed next to the
 input file.
