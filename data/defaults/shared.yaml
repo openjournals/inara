@@ -33,8 +33,6 @@ filters:
   - type: lua
     path: normalize-author-names.lua
   - type: lua
-    path: substitute-in-format.lua
-  - type: lua
     path: diagram.lua
 
 # ERROR, WARNING, or INFO
