@@ -7,9 +7,9 @@ function Meta (meta)
   -- and meta.author (the processed one)
   for _, author in ipairs(meta.authors or {}) do
     local xml = "<affiliations>"
-    for i, affiliation_list in ipairs(author.affiliation) do
-        local index = tonumber(affiliation_list[1].text)
-        local affiliation = meta.affiliations[index]
+    for i, affiliation_index in ipairs(author.affiliation) do
+        affiliation_index = tonumber(pandoc.utils.stringify(affiliation_index))
+        local affiliation = meta.affiliations[affiliation_index]
         xml = xml.. "\n  <institution><institution_name>"
         for _, v in ipairs(affiliation.name) do
           if v.text then

@@ -11,6 +11,8 @@ filters:
     path: self-citation.lua
   - type: lua
     path: fix-bibentry-spacing.lua
+  - type: lua
+    path: prepare-affiliations.lua
 variables:
   # styling options
   colorlinks: true
