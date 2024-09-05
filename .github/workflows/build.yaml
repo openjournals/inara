@@ -1,7 +1,12 @@
 name: Image Builder
 
 on:
-  push: {}
+  push:
+    paths-ignore:
+      - '.gitignore'
+      - 'CHANGELOG.md'
+      - 'LICENSE'
+      - 'README.md'
   pull_request:
     branches:
       - main
