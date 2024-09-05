@@ -2,10 +2,15 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
+## Inara v1.1.2
+
+- Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
+
 ## Inara v1.1.1
 
+Released 2024-09-05.
+
 - Ignore failures around affiliations.
-- Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
 
 ## Inara v1.1.0
 
