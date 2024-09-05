@@ -4,7 +4,7 @@
 
 ## Inara v1.1.1
 
-Released 2024-09-04.
+Released 2024-09-05.
 
 - Ignore failures around affiliations.
 
