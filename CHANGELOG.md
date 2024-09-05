@@ -4,6 +4,7 @@
 
 ## Inara v1.1.1
 
+- Ignore failures around affiliations.
 - Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
 
 ## Inara v1.1.0
