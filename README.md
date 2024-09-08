@@ -14,13 +14,15 @@ must be mounted on path `/data`. The path to the paper, relative to
 the mounted folder, is expected as the only argument.
 
 - The Docker image will generate PDF and JATS files by default. To
-select specific output formats to be generated use the `-o` flag.
-Supported options are: `pdf`, `jats`, `html`, `crossref`, `cff`, and `preprint`. To get multiple outputs
-use a comma separated list.
+  select specific output formats to be generated use the `-o` flag.
+  Supported options are: `pdf`, `jats`, `html`, `crossref`, `cff`, and `preprint`. To get multiple outputs
+  use a comma separated list.
 - By default PDF files will be compiled in _draft mode_ to include a draft
-watermark and linenumbers. To create a _production_ PDF add the `-p` flag.
-- There is a special flag `-r` meant for retraction notices that don't need to show Software/Editor/Reviewes/Submission-date information.
-- The target journal can be set using the `JOURNAL` ENV VAR. Currently the valid values are: `joss`, `jose` or `resciencec`
+  watermark and linenumbers. To create a _production_ PDF add the `-p` flag.
+- There is a special flag `-r` meant for retraction notices that don't need to show
+  Software/Editor/Reviewes/Submission-date information.
+- The target journal can be set using the `JOURNAL` ENV VAR. Currently the valid values are: `joss`, `jose`
+  or `resciencec`
 
 **Example:**
 
@@ -53,6 +55,19 @@ E.g., to generate only a PDF file, the command would be
 
 The generated output will be written to folder
 `publishing-artifacts`.
+
+### Local development
+
+Since the make command is set up to use docker, this isn't appropriate for doing development
+on the internals. You can build documents locally with:
+
+    JOURNAL=joss OPENJOURNALS_PATH=/Users/cthoyt/dev/inara sh ./scripts/entrypoint.sh -v ./example/paper.md
+
+You can test locally using:
+
+    make INARA_TEST_CMD="SOURCE_DATE_EPOCH=1234567890 JOURNAL=joss OPENJOURNALS_PATH=/Users/cthoyt/dev/inara ./scripts/entrypoint.sh -v" test
+
+Where you replace the `OPENJOURNALS_PATH` with the absolute path to where you cloned the Inara git repo.
 
 ### Dependencies
 
