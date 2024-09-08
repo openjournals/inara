@@ -102,12 +102,12 @@ test: test-golden-draft test-golden-pub
 test-golden-draft: \
 	test-draft-crossref \
 	test-draft-jats \
-	test-draft-pdf \
+	test-draft-tex \
 	test-draft-preprint
 test-golden-pub: \
 	test-pub-crossref \
 	test-pub-jats \
-	test-pub-pdf \
+	test-pub-tex \
 	test-pub-preprint
 
 .PHONY: test-pub-jats test-pub-preprint test-pub-%
