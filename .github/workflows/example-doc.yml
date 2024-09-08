@@ -25,10 +25,12 @@ jobs:
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               openjournals/inara:latest \
-              -o contextpdf example/paper.md
+              -o contextpdf,pdf example/paper.md
 
       - name: Upload PDF
         uses: actions/upload-artifact@v3
         with:
           name: paper
-          path: example/paper.context.pdf
+          path: |
+            example/paper.context.pdf
+            example/paper.pdf
