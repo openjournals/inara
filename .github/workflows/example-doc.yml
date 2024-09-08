@@ -19,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build PDF
+      - name: Build draft PDF
         run: >-
           docker run \
               --volume "$(pwd):/data" \
@@ -27,10 +27,26 @@ jobs:
               openjournals/inara:latest \
               -o contextpdf,pdf example/paper.md
 
-      - name: Upload PDF
+      - name: Upload draft PDF
         uses: actions/upload-artifact@v3
         with:
-          name: paper
+          name: draft
+          path: |
+            example/paper.context.pdf
+            example/paper.pdf
+
+      - name: Build Production PDF
+        run: >-
+          docker run \
+              --volume "$(pwd):/data" \
+              --user "$(id -u):$(id -g)" \
+              openjournals/inara:latest \
+              -o contextpdf,pdf -p example/paper.md
+
+      - name: Upload production PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: production
           path: |
             example/paper.context.pdf
             example/paper.pdf
