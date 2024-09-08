@@ -1,9 +1,6 @@
 to: latex
 output-file: paper.preprint.tex
 template: preprint.latex
-filters:
-  - type: lua
-    path: prepare-affiliations.lua
 variables:
   # styling options
   colorlinks: true
