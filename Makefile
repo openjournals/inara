@@ -23,6 +23,7 @@ all: cff pdf html jats crossref native preprint
 .PHONY: cff pdf html jats crossref native preprint
 cff: $(TARGET_FOLDER)/paper.cff
 pdf: $(TARGET_FOLDER)/paper.pdf
+tex: $(TARGET_FOLDER)/paper.tex
 html: $(TARGET_FOLDER)/paper.html
 jats:	$(TARGET_FOLDER)/paper.jats
 native:	$(TARGET_FOLDER)/paper.native
