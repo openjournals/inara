@@ -18,9 +18,9 @@ ARTICLE_INFO_FILE = $(OPENJOURNALS_PATH)/default-article-info.yaml
 IMAGE = openjournals/inara:edge
 
 .PHONY: all
-all: cff pdf html jats crossref native preprint
+all: cff pdf tex html jats crossref native preprint
 
-.PHONY: cff pdf html jats crossref native preprint
+.PHONY: cff pdf tex html jats crossref native preprint
 cff: $(TARGET_FOLDER)/paper.cff
 pdf: $(TARGET_FOLDER)/paper.pdf
 tex: $(TARGET_FOLDER)/paper.tex
@@ -69,6 +69,7 @@ clean:
 	rm -rf $(TARGET_FOLDER)/paper.html
 	rm -rf $(TARGET_FOLDER)/paper.jats
 	rm -rf $(TARGET_FOLDER)/paper.native
+	rm -rf $(TARGET_FOLDER)/paper.tex
 	rm -rf $(TARGET_FOLDER)/paper.pdf
 	rm -rf $(TARGET_FOLDER)/paper.preprint
 	rm -rf $(TARGET_FOLDER)/paper.preprint.tex
@@ -78,6 +79,7 @@ clean:
 	rm -rf example/paper.html
 	rm -rf example/paper.jats
 	rm -rf example/paper.native
+	rm -rf example/paper.tex
 	rm -rf example/paper.pdf
 	rm -rf example/paper.preprint
 	rm -rf example/paper.preprint.tex

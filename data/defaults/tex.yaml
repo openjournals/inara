@@ -1,4 +1,6 @@
 to: latex
+# pdf-engine: latexmk
+# pdf-engine-opt: -lualatex
 output-file: paper.tex
 filters:
   - type: lua
@@ -9,10 +11,9 @@ filters:
     path: self-citation.lua
   - type: lua
     path: fix-bibentry-spacing.lua
-  - type: lua
-    path: prepare-credit.lua
 variables:
   # styling options
   colorlinks: true
   linkcolor: '[rgb]{0.0, 0.5, 1.0}'
   urlcolor: '[rgb]{0.0, 0.5, 1.0}'
+
