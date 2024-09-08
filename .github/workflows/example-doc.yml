@@ -32,11 +32,7 @@ jobs:
         with:
           name: draft
           path: |
-            example/paper.context.pdf
-            example/paper.pdf
-            example/paper.crossref
-            example/paper.jats
-            example/paper.preprint
+            example/*
 
       - name: Build Production PDF
         run: >-
@@ -51,8 +47,4 @@ jobs:
         with:
           name: production
           path: |
-            example/paper.context.pdf
-            example/paper.pdf
-            example/paper.crossref
-            example/paper.jats
-            example/paper.preprint
+            example/*
