@@ -8,19 +8,26 @@ authors:
     orcid: 0000-0002-9455-0796
     corresponding: true
     roles:
-      - 'software'
+      - type: software
+        degree: equal
+      - 'methodology'
   - name: Juanjo Bazán
     orcid: 0000-0001-7699-3983
     affiliation: [1]
     equal-contrib: true
     roles:
-      - 'software'
+      - type: software
+        degree: equal
   - name: Arfon M. Smith
     orcid: 0000-0002-3957-2474
     affiliation: [1, 3]
     equal-contrib: true
     roles:
-      - 'software'
+      - type: software
+        degree: equal
+      - type: supervision
+        degree: lead
+
 affiliations:
   - index: 1
     name: Open Journals
