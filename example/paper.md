@@ -4,7 +4,7 @@ title: >-
 authors:
   - name: Albert Krewinkel
     email: albert@zeitkraut.de
-    affiliation: [1, 2]
+    affiliation: [1, 2, 4]
     orcid: 0000-0002-9455-0796
     corresponding: true
   - name: Juanjo Bazán
@@ -22,6 +22,9 @@ affiliations:
     name: Pandoc Development Team
   - index: 3
     name: GitHub
+  - index: 4
+    name: Technische Universitaet Hamburg
+    ror: 04bs1pb34
 date: 2022-06-29
 bibliography: paper.bib
 tags:
@@ -363,6 +366,29 @@ authors:
   <!--     given-names: 瀧 -->
   <!--     surname: 立花 -->
 
+## Affiliations
+
+Each affiliation requires an `index` and `name`.
+
+Optionally, the Research Organization Registry (ROR) identifier for the top-level
+organization can be annotated with the `ror` key. Note that ROR does not include
+departments in its [scope](https://ror.org/registry/#scope-and-criteria-for-inclusion),
+so ROR annotations are typically made to the top-level organization.
+
+```yaml
+authors:
+  - name: Albert Krewinkel
+    affiliation: [ 1, 2, 3 ]
+
+affiliations:
+  - index: 1
+    name: Open Journals
+  - index: 2
+    name: Pandoc Development Team
+  - index: 3
+    name: Technische Universitaet Hamburg
+    ror: 04bs1pb34
+```
 
 # Internal references
 

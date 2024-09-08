@@ -7,5 +7,7 @@ filters:
     path: doi-batch-id.lua
   - type: lua
     path: flatten-references.lua
+  - type: lua
+    path: prepare-affiliations.lua
 
 template: '${.}/../templates/default.crossref'

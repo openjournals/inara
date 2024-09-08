@@ -45,18 +45,30 @@ publishing pipeline</title>
             <given_name>Albert</given_name>
             <surname>Krewinkel</surname>
             <ORCID>https://orcid.org/0000-0002-9455-0796</ORCID>
+            <affiliations>
+              <institution><institution_name>Open Journals</institution_name></institution>
+              <institution><institution_name>Pandoc Development Team</institution_name></institution>
+              <institution><institution_name>Technische Universitaet Hamburg</institution_name><institution_id type="ror">https://ror.org/04bs1pb34</institution_id></institution>
+            </affiliations>
           </person_name>
           <person_name sequence="additional"
                        contributor_role="author">
             <given_name>Juanjo</given_name>
             <surname>Bazán</surname>
             <ORCID>https://orcid.org/0000-0001-7699-3983</ORCID>
+            <affiliations>
+              <institution><institution_name>Open Journals</institution_name></institution>
+            </affiliations>
           </person_name>
           <person_name sequence="additional"
                        contributor_role="author">
             <given_name>Arfon M.</given_name>
             <surname>Smith</surname>
             <ORCID>https://orcid.org/0000-0002-3957-2474</ORCID>
+            <affiliations>
+              <institution><institution_name>Open Journals</institution_name></institution>
+              <institution><institution_name>GitHub</institution_name></institution>
+            </affiliations>
           </person_name>
         </contributors>
         <publication_date>

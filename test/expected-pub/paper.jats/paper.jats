@@ -31,6 +31,7 @@ publishing pipeline</article-title>
 <email>albert@zeitkraut.de</email>
 <xref ref-type="aff" rid="aff-1"/>
 <xref ref-type="aff" rid="aff-2"/>
+<xref ref-type="aff" rid="aff-4"/>
 <xref ref-type="corresp" rid="cor-1"><sup>*</sup></xref>
 </contrib>
 <contrib contrib-type="author" equal-contrib="yes">
@@ -63,6 +64,12 @@ publishing pipeline</article-title>
 <aff id="aff-3">
 <institution-wrap>
 <institution>GitHub</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-4">
+<institution-wrap>
+<institution>Technische Universitaet Hamburg</institution>
+<institution-id institution-id-type="ROR">04bs1pb34</institution-id>
 </institution-wrap>
 </aff>
 </contrib-group>
@@ -512,6 +519,30 @@ Software should use an OSI-approved license.
       surname: Nordmann</code>
       <p> </p>
     </sec>
+  </sec>
+  <sec id="affiliations">
+    <title>Affiliations</title>
+    <p>Each affiliation requires an <monospace>index</monospace> and
+    <monospace>name</monospace>.</p>
+    <p>Optionally, the Research Organization Registry (ROR) identifier
+    for the top-level organization can be annotated with the
+    <monospace>ror</monospace> key. Note that ROR does not include
+    departments in its
+    <ext-link ext-link-type="uri" xlink:href="https://ror.org/registry/#scope-and-criteria-for-inclusion">scope</ext-link>,
+    so ROR annotations are typically made to the top-level
+    organization.</p>
+    <code language="yaml">authors:
+  - name: Albert Krewinkel
+    affiliation: [ 1, 2, 3 ]
+
+affiliations:
+  - index: 1
+    name: Open Journals
+  - index: 2
+    name: Pandoc Development Team
+  - index: 3
+    name: Technische Universitaet Hamburg
+    ror: 04bs1pb34</code>
   </sec>
 </sec>
 <sec id="internal-references">
