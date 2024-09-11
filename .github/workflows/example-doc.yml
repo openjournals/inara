@@ -25,7 +25,7 @@ jobs:
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               openjournals/inara:latest \
-              -o "jats,contextpdf,crossref,preprint" example/paper.md
+              -o "jats,contextpdf,crossref,preprint,pdf" example/paper.md
 
       - name: Upload draft PDF
         uses: actions/upload-artifact@v3
@@ -44,7 +44,7 @@ jobs:
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               openjournals/inara:latest \
-              -o "jats,contextpdf,crossref,preprint" -p example/paper.md
+              -o "jats,contextpdf,crossref,preprint,pdf" -p example/paper.md
 
       - name: Upload production PDF
         uses: actions/upload-artifact@v3
