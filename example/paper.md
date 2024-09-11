@@ -1,19 +1,19 @@
 ---
 title: >-
-    Article Writing with Markdown and the Open Journals publishing pipeline
+  Article Writing with Markdown and the Open Journals publishing pipeline
 authors:
   - name: Albert Krewinkel
     email: albert@zeitkraut.de
-    affiliation: [1, 2, 4]
+    affiliation: [ 1, 2, 4 ]
     orcid: 0000-0002-9455-0796
     corresponding: true
   - name: Juanjo Bazán
     orcid: 0000-0001-7699-3983
-    affiliation: [1]
+    affiliation: [ 1 ]
     equal-contrib: true
   - name: Arfon M. Smith
     orcid: 0000-0002-3957-2474
-    affiliation: [1, 3]
+    affiliation: [ 1, 3 ]
     equal-contrib: true
 affiliations:
   - index: 1
@@ -53,7 +53,6 @@ paper by @upper1974.
 
 [YAML]: https://yaml.org
 
-
 # Statement of Need
 
 The journal publisher, in most cases where you'd be reading this, Open
@@ -84,21 +83,21 @@ The markup in Markdown should be semantic, not presentations. The table
 below gives a small example.
 
 +---------------------+-------------------------+-----------------------+
-| Markup              | Markdown example        | Rendered output       |
+| Markup | Markdown example | Rendered output |
 +:====================+:=======================:+:=====================:+
-| emphasis            | `*this*`                | *this*                |
+| emphasis | `*this*`                | *this*                |
 +---------------------+-------------------------+-----------------------+
-| strong emphasis     | `**that**`              | **that**              |
+| strong emphasis | `**that**`              | **that**              |
 +---------------------+-------------------------+-----------------------+
-| strikeout           | `~~not this~~`          | ~~not this~~          |
+| strikeout | `~~not this~~`          | ~~not this~~          |
 +---------------------+-------------------------+-----------------------+
-| subscript           | `H~2~O`                 | H~2~O                 |
+| subscript | `H~2~O`                 | H~2~O |
 +---------------------+-------------------------+-----------------------+
-| superscript         | `Ca^2+^`                | Ca^2+^                |
+| superscript | `Ca^2+^`                | Ca^2+^ |
 +---------------------+-------------------------+-----------------------+
-| underline           | `[underline]{.ul}`      | [underline]{.ul}      |
+| underline | `[underline]{.ul}`      | [underline]{.ul} |
 +---------------------+-------------------------+-----------------------+
-| inline code         | `` `return 23` ``       | `return 23`           |
+| inline code | `` `return 23` ``       | `return 23`           |
 +---------------------+-------------------------+-----------------------+
 
 : Basic inline markup and examples.
@@ -138,8 +137,7 @@ can sometimes be useful to give images an explicit height and/or width,
 e.g. when adding an image as part of a paragraph. The Markdown `![Nyan
 cat](nyan-cat.png){height="9pt"}` includes the image "nyan-cat.png"
 ![Nyan cat](images/nyan-cat.png){height="9pt"} while scaling it to a height of
-9 pt.
-
+9 pt.
 
 ![The "Mandrill" standard test image, sometimes erroneously called
 "Baboon", is a popular sample photo and used in image processing
@@ -199,7 +197,7 @@ can be any sequence of characters, like `[^marker]`, but may not contain
 whitespace characters.
 
 [^markers]: Although it should be noted that some publishers prefer
-    symbols or letters as footnote markers.
+symbols or letters as footnote markers.
 
 The above example results in the following output:
 
@@ -207,7 +205,6 @@ The above example results in the following output:
 > Software should use an OSI-approved license.
 >
 > [^1]: An open license that allows reuse.
-
 
 ## Blocks
 
@@ -241,7 +238,6 @@ discouraged.
 Usually [lists], as described in the next section, should be preferred
 over forth- and fifth-level headings.
 
-
 ### Lists
 
 Bullet lists and numbered lists, a.k.a. enumerations, offer an
@@ -256,8 +252,8 @@ additional method to present sequential and hierarchical information.
 
 - apples
 - citrus fruits
-  - lemons
-  - oranges
+    - lemons
+    - oranges
 
 Enumerations start with the number of the first item. Using the the
 first two [laws of
@@ -281,7 +277,6 @@ Rendered:
    energy, $\Delta U$, of a thermodynamic system is equal to the energy
    gained as heat, $Q$, less the thermodynamic work, $W$, done by the
    system on its surroundings. $$\Delta U = Q - W$$
-
 
 # Article metadata
 
@@ -422,13 +417,13 @@ number of the referenced float. E.g., in this document
 `\ref{proglangs}` gives "\ref{proglangs}".
 
 : Comparison of programming languages used in the publishing tool.
-  []{label="proglangs"}
+[]{label="proglangs"}
 
-| Language | Typing          | Garbage Collected | Evaluation | Created |
+| Language |     Typing      | Garbage Collected | Evaluation | Created |
 |----------|:---------------:|:-----------------:|------------|---------|
-| Haskell  | static, strong  | yes               | non-strict | 1990    |
-| Lua      | dynamic, strong | yes               | strict     | 1993    |
-| C        | static, weak    | no                | strict     | 1972    |
+| Haskell  | static, strong  |        yes        | non-strict | 1990    |
+| Lua      | dynamic, strong |        yes        | strict     | 1993    |
+| C        |  static, weak   |        no         | strict     | 1972    |
 
 ## Equations
 
