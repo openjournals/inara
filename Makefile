@@ -122,12 +122,12 @@ test-pub-%:
 .PHONY: test-draft-jats test-draft-preprint test-draft-%
 test-draft-jats:
 	$(INARA_TEST_CMD) -o jats example/paper.md
-	diff test/expected-paper.jats/paper.jats example/jats/paper.jats
+	diff test/expected-draft/paper.jats/paper.jats example/jats/paper.jats
 test-draft-preprint: GOLDEN_FILE = paper.preprint.tex
 test-draft-%:        GOLDEN_FILE = paper.$*
 test-draft-%:
 	$(INARA_TEST_CMD) -o $* example/paper.md
-	diff test/expected-$(GOLDEN_FILE) example/$(GOLDEN_FILE)
+	diff test/expected-draft/$(GOLDEN_FILE) example/$(GOLDEN_FILE)
 
 NCBI_FTP = "ftp://ftp.ncbi.nih.gov/pub/jats/publishing/1.2/xsd/"
 test/JATS-Publishing-1-2-MathML2-XSD.zip:
@@ -141,6 +141,6 @@ test/JATS-journalpublishing1.xsd: \
 	rm -rf /tmp/JATS-Publishing-1-2-MathML2-XSD
 
 .PHONY: validate-jats
-validate-jats: test/expected-paper.jats/paper.jats \
+validate-jats: test/expected-draft/paper.jats/paper.jats \
 		test/JATS-journalpublishing1.xsd
 	xmllint --schema test/JATS-journalpublishing1.xsd $< --noout
