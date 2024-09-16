@@ -53,7 +53,6 @@ paper by @upper1974.
 
 [YAML]: https://yaml.org
 
-
 # Statement of Need
 
 The journal publisher, in most cases where you'd be reading this, Open
