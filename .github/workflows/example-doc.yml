@@ -19,18 +19,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build PDF
+      - name: Build draft PDF
         run: >-
           docker run \
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               openjournals/inara:latest \
-              -o contextpdf,tex example/paper.md
+              -o "jats,contextpdf,crossref,preprint,tex,pdf" example/paper.md
 
-      - name: Upload PDF
+      - name: Upload draft PDF
         uses: actions/upload-artifact@v3
         with:
-          name: paper
+          name: draft
           path: |
+            example/jats/paper.jats
             example/paper.context.pdf
+            example/paper.crossref
+            example/paper.pdf
             example/paper.tex
+            example/paper.preprint.tex 
+
+      - name: Build production PDF
+        run: >-
+          docker run \
+              --volume "$(pwd):/data" \
+              --user "$(id -u):$(id -g)" \
+              openjournals/inara:latest \
+              -o "jats,contextpdf,crossref,preprint,tex,pdf" -p example/paper.md
+
+      - name: Upload production PDF
+        uses: actions/upload-artifact@v3
+        with:
+          name: production
+          path: |
+            example/jats/paper.jats
+            example/paper.context.pdf
+            example/paper.crossref
+            example/paper.pdf
+            example/paper.tex
+            example/paper.preprint.tex 
