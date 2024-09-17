@@ -2,7 +2,7 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
-## Inara v1.1.2
+## UNRELEASED
 
 - Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
 - Fix a bug in the injection of `SOURCE_DATE_EPOCH` (https://github.com/openjournals/inara/pull/86) in tests
