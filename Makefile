@@ -17,6 +17,8 @@ ARTICLE_INFO_FILE = $(OPENJOURNALS_PATH)/default-article-info.yaml
 
 IMAGE = openjournals/inara:edge
 
+MAKEFILE_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+
 .PHONY: all
 all: cff pdf tex html jats crossref native preprint
 
@@ -98,6 +100,10 @@ INARA_TEST_CMD = docker run --rm \
 	--user $(shell id -u):$(shell id -g) \
 	--env SOURCE_DATE_EPOCH=1234567890 \
 	-v $${PWD}:/data $(IMAGE)
+
+# Uncomment this if you want to run tests locally instead of inside docker,
+# though note that there might be non-trivial differences that are hard to explain
+# INARA_TEST_CMD = SOURCE_DATE_EPOCH=1234567890 JOURNAL=joss OPENJOURNALS_PATH=$(MAKEFILE_DIR) sh scripts/entrypoint.sh
 
 .PHONY: test test-golden-draft test-golden-pub
 test: test-golden-draft test-golden-pub

@@ -111,8 +111,9 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
     #    inara git repo that is created in Docker, in which the contents of
     #    the resources/ directory is copied into the root directory
     # 3. assumes pandoc is in a certain location. Switch `/usr/local/bin/pandoc`
-    #    to just `pandoc` locally
     /usr/local/bin/pandoc \
+    #    to just `pandoc` locally, or symlink with
+    #    sudo ln -s $which(pandoc) /usr/local/bin/pandoc
 	      --data-dir="$OPENJOURNALS_PATH"/data \
         --defaults=shared \
         --defaults="${format}" \
