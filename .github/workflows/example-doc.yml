@@ -25,7 +25,7 @@ jobs:
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               openjournals/inara:latest \
-              -o contextpdf,pdf,crossref,jats,preprint example/paper.md
+              -o "jats,contextpdf,crossref,preprint,tex,pdf" example/paper.md
 
       - name: Upload draft PDF
         uses: actions/upload-artifact@v3
@@ -36,7 +36,8 @@ jobs:
             example/paper.context.pdf
             example/paper.crossref
             example/paper.pdf
-            example/paper.preprint.tex
+            example/paper.tex
+            example/paper.preprint.tex 
 
       - name: Build production PDF
         run: >-
@@ -44,7 +45,7 @@ jobs:
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               openjournals/inara:latest \
-              -o contextpdf,pdf,crossref,jats,preprint -p example/paper.md
+              -o "jats,contextpdf,crossref,preprint,tex,pdf" -p example/paper.md
 
       - name: Upload production PDF
         uses: actions/upload-artifact@v3
@@ -55,42 +56,5 @@ jobs:
             example/paper.context.pdf
             example/paper.crossref
             example/paper.pdf
-            example/paper.preprint.tex
-
-      - name: Build production golden PDF
-        run: >-
-          docker run \
-              --volume "$(pwd):/data" \
-              --user "$(id -u):$(id -g)" \
-              openjournals/inara:latest \
-              -o contextpdf,pdf,crossref,jats,preprint -m test/metadata.yaml -p example/paper.md
-
-      - name: Upload production golden PDF
-        uses: actions/upload-artifact@v3
-        with:
-          name: production-golden
-          path: |
-            example/jats/paper.jats
-            example/paper.context.pdf
-            example/paper.crossref
-            example/paper.pdf
-            example/paper.preprint.tex
-
-      - name: Build draft golden PDF
-        run: >-
-          docker run \
-              --volume "$(pwd):/data" \
-              --user "$(id -u):$(id -g)" \
-              openjournals/inara:latest \
-              -o contextpdf,pdf,crossref,jats,preprint -m test/metadata.yaml example/paper.md
-
-      - name: Upload draft golden PDF
-        uses: actions/upload-artifact@v3
-        with:
-          name: draft-golden
-          path: |
-            example/jats/paper.jats
-            example/paper.context.pdf
-            example/paper.crossref
-            example/paper.pdf
-            example/paper.preprint.tex
+            example/paper.tex
+            example/paper.preprint.tex 

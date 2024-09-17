@@ -5,13 +5,10 @@
 /example/paper.jats
 /example/paper.crossref
 /example/paper.preprint.tex
-/example/paper.*.log
+example/paper.tex
 
 # JATS schema files
 /test/JATS-Publishing-1-2-MathML2-XSD.zip
 /test/JATS-journalpublishing1-elements.xsd
 /test/JATS-journalpublishing1.xsd
 /test/standard-modules
-jats/mandrill.jpg
-jats/nyan-cat.png
-jats/sylt.jpg

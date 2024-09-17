@@ -6,6 +6,10 @@
 
 - Support for annotating author roles with the Contribution Role Taxonomy (CRediT) (Charles Tapley Hoyt)
 
+## Inara v1.1.2
+
+- Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
+
 ## Inara v1.1.1
 
 Released 2024-09-05.

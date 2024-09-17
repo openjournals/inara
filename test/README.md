@@ -1,16 +1,22 @@
 # Testing
 
-There are two different versions of the files here that use `-m test/metadata.yaml` to
-override some of the built-in metadata.
+Testing in Inara works by checking both the _draft_ mode and
+_production_ mode (i.e., compiled with `-p`) for the following artifacts
+using the `diff` command:
 
-1. `expected-pub` is for **production** files. These are created
-   by adding the `-p` flag to the entrypoint script.
-2. `expected-paper.*` is for **draft** files. These are created w/o the `-p` flag
+1. JATS XML (`jats`)
+2. Crossref XML (`crossref`)
+3. Preprint LaTeX (`preprint`)
+4. PDF (`pdf`), though note this is a binary comparison
 
-All of these files get generated on the GitHub action, so you can do the following to update them:
+The _draft_ golden standard files are in the [expected-draft](expected-draft) folder while
+the _production_ golden standard files are in the [expected-pub](expected-pub) folder.
 
-1. Start a PR with your changes. This will engage the CI action that builds things for you
-2. Navigate to https://github.com/openjournals/inara/actions
-3. Find the most recent "Compile paper example" run corresponding to your run
-4. Scroll down to the "Artifacts" section
-5. Download the `production-golden` and `draft-golden` folders which contain all the parts you need.
+## Maintaining the Golden Standard Files
+
+If you make updates to the underlying [paper.md](../example/paper.md) file in the `/examples`
+folder, you'll need to update at minimum the preprint and PDF. If you update the metadata
+in the `paper.md` or make changes to the templates, you might also have to update the JATS
+and Crossref XML files.
+
+**How to update the golden standard files** - TBA

@@ -4,7 +4,7 @@ title: >-
 authors:
   - name: Albert Krewinkel
     email: albert@zeitkraut.de
-    affiliation: [1, 2, 4]
+    affiliation: "1, 2, 4"
     orcid: 0000-0002-9455-0796
     corresponding: true
     roles:
@@ -65,7 +65,6 @@ Authors who face difficulties while writing are referred to the
 paper by @upper1974.
 
 [YAML]: https://yaml.org
-
 
 # Statement of Need
 
