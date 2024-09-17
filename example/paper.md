@@ -240,7 +240,6 @@ discouraged.
 Usually [lists], as described in the next section, should be preferred
 over forth- and fifth-level headings.
 
-
 ### Lists
 
 Bullet lists and numbered lists, a.k.a. enumerations, offer an
