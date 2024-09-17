@@ -12,3 +12,12 @@ example/paper.tex
 /test/JATS-journalpublishing1-elements.xsd
 /test/JATS-journalpublishing1.xsd
 /test/standard-modules
+
+# If you copy the resources into the base directory to
+# make the Makefile work, don't accidentally commit these
+apa.csl
+default-article-info.yaml
+footer.csl
+/joss
+/jose
+/resciencec

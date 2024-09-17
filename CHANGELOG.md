@@ -2,13 +2,14 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
-## Inara v1.2.0
+## UNRELEASED
 
-- Support for annotating author roles with the Contribution Role Taxonomy (CRediT) (Charles Tapley Hoyt)
-
-## Inara v1.1.2
-
+- Support for annotating author roles with the Contribution Role Taxonomy (CRediT) (Charles Tapley Hoyt) (https://github.com/openjournals/inara/pull/75)
 - Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
+- Fix a bug in the injection of `SOURCE_DATE_EPOCH` (https://github.com/openjournals/inara/pull/86) in tests
+- Fix test files (https://github.com/openjournals/inara/pull/86, https://github.com/openjournals/inara/pull/85)
+- Switch testing to work on tex instead of pdf (https://github.com/openjournals/inara/pull/82)
+- Refactor testing folders (https://github.com/openjournals/inara/pull/84)
 
 ## Inara v1.1.1
 
