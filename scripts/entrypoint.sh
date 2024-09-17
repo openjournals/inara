@@ -105,7 +105,13 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
         mkdir -p "jats"
     fi
 
-    # Note that the output file must be defined in the format's defaults file.
+    # Notes:
+    # 1. the output file must be defined in the format's defaults file.
+    # 2. these assume a different organizational structure than in the
+    #    inara git repo that is created in Docker, in which the contents of
+    #    the resources/ directory is copied into the root directory
+    # 3. assumes pandoc is in a certain location. Switch `/usr/local/bin/pandoc`
+    #    to just `pandoc` locally
     /usr/local/bin/pandoc \
 	      --data-dir="$OPENJOURNALS_PATH"/data \
         --defaults=shared \
