@@ -1,3 +1,6 @@
+# If you change this, please keep it in sync with
+# data/filters/draft.lua
+
 metadata:
   archive_doi: 'DOI unavailable'
   editor_url: 'https://example.com'
