@@ -5,7 +5,7 @@
 /example/paper.jats
 /example/paper.crossref
 /example/paper.preprint.tex
-example/paper.tex
+/example/paper.tex
 
 # JATS schema files
 /test/JATS-Publishing-1-2-MathML2-XSD.zip
@@ -15,9 +15,9 @@ example/paper.tex
 
 # If you copy the resources into the base directory to
 # make the Makefile work, don't accidentally commit these
-apa.csl
-default-article-info.yaml
-footer.csl
+/apa.csl
+/default-article-info.yaml
+/footer.csl
 /joss
 /jose
 /resciencec
