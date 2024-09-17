@@ -94,6 +94,9 @@ clean:
 
 ## Tests
 
+# Note that SOURCE_DATE_EPOCH=1234567890 corresponds to 1234567890 seconds
+# from the unix epoch (January 1, 1970), which is in 2009
+
 # Command used to invoke Inara. Sets an environment variable that makes the
 # program ignore the real date.
 INARA_TEST_CMD = docker run --rm \
