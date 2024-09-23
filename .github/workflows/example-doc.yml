@@ -19,6 +19,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Build the docker image locally to enable testing
+      # updates to the templates. This workflow does not
+      # push new images to dockerhub at all, hence why we
+      # don't prefix this like openjournals/inara:<tag>
       - name: Build docker
         run: |
           docker build -t inara:edgiest .
