@@ -151,3 +151,12 @@ function Meta (meta)
     return result
   end
 end
+
+function tests()
+    assert("" == join_with_commas_and({ }))
+    assert("foo" == join_with_commas_and({ "foo" }))
+    assert("foo and bar" == join_with_commas_and({ "foo", "bar" }))
+    assert("foo, bar, and baz" == join_with_commas_and({ "foo", "bar", "baz" }))
+end
+
+tests()
