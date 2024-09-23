@@ -1,20 +1,76 @@
 -- Checks if any contributor information is available
 
-roles = pandoc.List {
-    "conceptualization",
-    "data-curation",
-    "formal-analysis",
-    "funding-acquisition",
-    "investigation",
-    "methodology",
-    "project-administration",
-    "resources",
-    "software",
-    "supervision",
-    "validation",
-    "visualization",
-    "writing-original-draft",
-    "writing-review-editing"
+local roles = {
+    ["conceptualization"] = {
+        name = "Conceptualization",
+        id = "8b73531f-db56-4914-9502-4cc4d4d8ed73",
+        uri = "https://credit.niso.org/contributor-roles/conceptualization/"
+    },
+    ["data-curation"] = {
+        name = "Data curation",
+        id = "f93e0f44-f2a4-4ea1-824a-4e0853b05c9d",
+        uri = "https://credit.niso.org/contributor-roles/data-curation/"
+    },
+    ["formal-analysis"] = {
+        name = "Formal analysis",
+        id = "95394cbd-4dc8-4735-b589-7e5f9e622b3f",
+        uri = "https://credit.niso.org/contributor-roles/formal-analysis/"
+    },
+    ["funding-acquisition"] = {
+        name = "Funding acquisition",
+        id = "34ff6d68-132f-4438-a1f4-fba61ccf364a",
+        uri = "https://credit.niso.org/contributor-roles/funding-acquisition/"
+    },
+    ["investigation"] = {
+        name = "Investigation",
+        id = "2451924d-425e-4778-9f4c-36c848ca70c2",
+        uri = "https://credit.niso.org/contributor-roles/investigation/"
+    },
+    ["methodology"] = {
+        name = "Methodology",
+        id = "f21e2be9-4e38-4ab7-8691-d6f72d5d5843",
+        uri = "https://credit.niso.org/contributor-roles/methodology/"
+    },
+    ["project-administration"] = {
+        name = "Project administration",
+        id = "a693fe76-ea33-49ad-9dcc-5e4f3ac5f938",
+        uri = "https://credit.niso.org/contributor-roles/project-administration/"
+    },
+    ["resources"] = {
+        name = "Resources",
+        id = "ebd781f0-bf79-492c-ac21-b31b9c3c990c",
+        uri = "https://credit.niso.org/contributor-roles/resources/"
+    },
+    ["software"] = {
+        name = "Software",
+        id = "f89c5233-01b0-4778-93e9-cc7d107aa2c8",
+        uri = "https://credit.niso.org/contributor-roles/software/"
+    },
+    ["supervision"] = {
+        name = "Supervision",
+        id = "0c8ca7d4-06ad-4527-9cea-a8801fcb8746",
+        uri = "https://credit.niso.org/contributor-roles/supervision/"
+    },
+    ["validation"] = {
+        name = "Validation",
+        id = "4b1bf348-faf2-4fc4-bd66-4cd3a84b9d44",
+        uri = "https://credit.niso.org/contributor-roles/validation/"
+    },
+    ["visualization"] = {
+        name = "Visualization",
+        id = "76b9d56a-e430-4e0a-84c9-59c11be343ae",
+        uri = "https://credit.niso.org/contributor-roles/visualization/"
+    },
+    ["writing-original-draft"] = {
+        name = "Writing – original draft",
+        id = "43ebbd94-98b4-42f1-866b-c930cef228ca",
+        uri = "https://credit.niso.org/contributor-roles/writing-original-draft/"
+    },
+    ["writing-review-editing"] = {
+        name = "Writing – review & editing",
+        id = "d3aead86-f2a2-47f7-bb99-79de6421164d",
+        uri = "https://credit.niso.org/contributor-roles/writing-review-editing/"
+    }
 }
 
 degrees = pandoc.List {
@@ -24,7 +80,7 @@ degrees = pandoc.List {
 }
 
 function invalidRole(str)
-    return not roles:includes(str)
+    return roles[str] == nil
 end
 
 function invalidDegree(str)
