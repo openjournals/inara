@@ -150,6 +150,9 @@ function Meta (meta)
   if ok then
     return result
   end
+
+function assertEqual(expected, actual)
+    assert(expected == actual, "got \"" .. actual .. "\", expected \"" .. expected .. "\"")
 end
 
 function tests()
