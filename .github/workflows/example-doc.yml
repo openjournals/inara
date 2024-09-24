@@ -19,12 +19,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Build the docker image locally to enable testing
+      # updates to the templates. This workflow does not
+      # push new images to dockerhub at all, hence why we
+      # don't prefix this like openjournals/inara:<tag>
+      - name: Build docker
+        run: |
+          docker build -t inara:edgiest .
+
       - name: Build draft PDF
         run: >-
           docker run \
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
-              openjournals/inara:latest \
+              inara:edgiest \
               -o "jats,contextpdf,crossref,preprint,tex,pdf" example/paper.md
 
       - name: Upload draft PDF
@@ -44,7 +52,7 @@ jobs:
           docker run \
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
-              openjournals/inara:latest \
+              inara:edgiest \
               -o "jats,contextpdf,crossref,preprint,tex,pdf" -p example/paper.md
 
       - name: Upload production PDF
