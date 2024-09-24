@@ -157,6 +157,58 @@ function tests()
     assert("foo" == join_with_commas_and({ "foo" }))
     assert("foo and bar" == join_with_commas_and({ "foo", "bar" }))
     assert("foo, bar, and baz" == join_with_commas_and({ "foo", "bar", "baz" }))
+
+    local m1 = {
+        ["authors"] = {
+            {
+                ["name"] = "Author 1",
+                ["roles"] = {
+                    "methodology"
+                }
+            },
+            {
+                ["name"] = "Author 2",
+                ['roles'] = {
+                    { ["type"] = "methodology" }
+                }
+            },
+            {
+                ["name"] = "Author 3",
+                ['roles'] = {
+                    { ["type"] = "methodology" },
+                    { ["type"] = "data-curation" },
+                    { ["type"] = "conceptualization" },
+                }
+            },
+            {
+                ["name"] = "Author 4",
+                ['roles'] = {
+                    { ["type"] = "methodology", ["degree"] = "lead" },
+                    { ["type"] = "data-curation", ["degree"] = "supporting" },
+                    { ["type"] = "conceptualization" },
+                }
+            },
+        }
+    }
+    local m1t = prepare_credit(m1)
+    assert(m1t.hasRoles, "hasRoles should be set to true")
+    assertEqual("Methodology", m1t['authors'][1].rolesString)
+    assertEqual("Methodology", m1t['authors'][2].rolesString)
+    assertEqual("Methodology, Data curation, and Conceptualization", m1t['authors'][3].rolesString)
+    assertEqual("Methodology (Lead), Data curation (Supporting), and Conceptualization", m1t['authors'][4].rolesString)
+
+    local m2 = {
+        ["authors"] = {
+            {
+                ["name"] = "Author 1"
+            },
+            {
+                ["name"] = "Author 2"
+            }
+        }
+    }
+    local m2t = prepare_credit(m2)
+    assert(not m2t.hasRoles, "hasRoles should be set to false")
 end
 
 tests()
