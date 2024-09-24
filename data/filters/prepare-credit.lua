@@ -106,50 +106,51 @@ function capitalize_first_letter(str)
 end
 
 function clean_role_dict(d)
-  if d.type then
-    return d
-  else
-    return {["type"] = pandoc.utils.stringify(d)}
-  end
+    if d.type then
+        return d
+    else
+        return { ["type"] = pandoc.utils.stringify(d) }
+    end
 end
 
 local function prepare_credit (meta)
-  meta.hasRoles = false
-  for _, author in ipairs(meta.authors or {}) do
-    if author.roles then
-      roleList = {}
-      for _, roleDict in ipairs(author.roles) do
-        roleDict = clean_role_dict(roleDict)
-        role = pandoc.utils.stringify(roleDict.type)
-        if invalidRole(role) then
-          print("invalid role for author " .. author.name .. ": " .. role)
-        elseif roleDict.degree then
-          degree = capitalize_first_letter(pandoc.utils.stringify(roleDict.degree))
-          if invalidDegree(degree) then
-            print("invalid degree for author " .. author.name .. ": " .. degree)
-            -- even though the degree is invalid, add the role anyway
-            table.insert(roleList, role)
-          else
-            table.insert(roleList, role .. " (" .. degree .. ")")
-          end
-        else
-          table.insert(roleList, role)
+    meta.hasRoles = false
+    for _, author in ipairs(meta.authors or {}) do
+        if author.roles then
+            roleList = {}
+            for _, roleDict in ipairs(author.roles) do
+                roleDict = clean_role_dict(roleDict)
+                role = pandoc.utils.stringify(roleDict.type)
+                if invalidRole(role) then
+                    print("invalid role for author " .. author.name .. ": " .. role)
+                elseif roleDict.degree then
+                    degree = capitalize_first_letter(pandoc.utils.stringify(roleDict.degree))
+                    if invalidDegree(degree) then
+                        print("invalid degree for author " .. author.name .. ": " .. degree)
+                        -- even though the degree is invalid, add the role anyway
+                        table.insert(roleList, roles[role].name)
+                    else
+                        table.insert(roleList, roles[role].name .. " (" .. degree .. ")")
+                    end
+                else
+                    table.insert(roleList, roles[role].name)
+                end
+            end
+            if #roleList > 0 then
+                meta.hasRoles = true
+                author.rolesString = join_with_commas_and(roleList)
+            end
         end
-      end
-      if #roleList > 0 then
-        meta.hasRoles = true
-        author.rolesString = join_with_commas_and(roleList)
-      end
     end
-  end
-  return meta
+    return meta
 end
 
 function Meta (meta)
-  local ok, result = pcall(prepare_credit, meta)
-  if ok then
-    return result
-  end
+    local ok, result = pcall(prepare_credit, meta)
+    if ok then
+        return result
+    end
+end
 
 function assertEqual(expected, actual)
     assert(expected == actual, "got \"" .. actual .. "\", expected \"" .. expected .. "\"")
