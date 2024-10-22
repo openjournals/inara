@@ -6,7 +6,7 @@
 
 - Fix bug in the height of ROR logos (https://github.com/openjournals/inara/pull/90)
 - Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
-- Fix a bug in the injection of `SOURCE_DATE_EPOCH` (https://github.com/openjournals/inara/pull/86) in tests
+- Fix a bug in the injection of `SOURCE_DATE_EPOCH` in tests (https://github.com/openjournals/inara/pull/86)
 - Fix test files (https://github.com/openjournals/inara/pull/86, https://github.com/openjournals/inara/pull/85)
 - Switch testing to work on tex instead of pdf (https://github.com/openjournals/inara/pull/82)
 - Refactor testing folders (https://github.com/openjournals/inara/pull/84)
@@ -33,5 +33,4 @@ Initial release. May the program live long and prosper.
 - *Pandoc*: 3.2.0
 - *TeXLive*: 2024
 
-
-  [SemVer]: https://semver.org
+[SemVer]: https://semver.org
