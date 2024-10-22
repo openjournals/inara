@@ -4,6 +4,7 @@
 
 ## UNRELEASED
 
+- Fix bug in the height of ROR logos (https://github.com/openjournals/inara/pull/90)
 - Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
 - Fix a bug in the injection of `SOURCE_DATE_EPOCH` (https://github.com/openjournals/inara/pull/86) in tests
 - Fix test files (https://github.com/openjournals/inara/pull/86, https://github.com/openjournals/inara/pull/85)
