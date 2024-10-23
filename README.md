@@ -71,3 +71,8 @@ Inara is versioned using [SemVer](https://semver.org). Docker
 images are tagged with the version; tagged images are available
 for all published versions. The current development version is
 published as an image tagged *edge*.
+
+## Deployment
+
+After minting a new version, update the configuration in https://github.com/xuanxu/publishing-artifacts-action
+to reflect the new version, such as in https://github.com/xuanxu/publishing-artifacts-action/pull/1.
