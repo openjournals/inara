@@ -2,7 +2,7 @@
 -- author dictionary to contain all the information, not
 -- just the index in the global affiliation list
 
-local function perepare_affiliations (meta)
+local function prepare_affiliations (meta)
   -- note that there's a difference between meta.authors (the original)
   -- and meta.author (the processed one)
   for _, author in ipairs(meta.authors or {}) do
@@ -32,7 +32,7 @@ local function perepare_affiliations (meta)
 end
 
 function Meta (meta)
-  local ok, result = pcall(perepare_affiliations, meta)
+  local ok, result = pcall(prepare_affiliations, meta)
   if ok then
     return result
   end
