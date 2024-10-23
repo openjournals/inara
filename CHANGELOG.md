@@ -2,7 +2,9 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
-## UNRELEASED
+## Inara v1.1.2
+
+Released 2024-10-23.
 
 - Fix bug in the height of ROR logos (https://github.com/openjournals/inara/pull/90)
 - Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
