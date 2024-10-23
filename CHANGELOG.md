@@ -6,6 +6,7 @@
 
 Released 2024-10-23.
 
+- Support for annotating author roles with the Contribution Role Taxonomy (CRediT) (https://github.com/openjournals/inara/pull/87)
 - Fix bug in the height of ROR logos (https://github.com/openjournals/inara/pull/90)
 - Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
 - Fix a bug in the injection of `SOURCE_DATE_EPOCH` in tests (https://github.com/openjournals/inara/pull/86)

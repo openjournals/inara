@@ -554,6 +554,17 @@ $if(lof)$
 $endif$
 $body$
 
+$if(hasRoles)$
+\section{Author Contributions}\label{author-contributions}
+\begin{enumerate}
+$for(authors)$
+$if(it.rolesString)$
+\item $it.name$ - $it.rolesString$
+$endif$
+$endfor$
+\end{enumerate}
+$endif$
+
 $if(natbib)$
 $if(bibliography)$
 $if(biblio-title)$
