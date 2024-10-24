@@ -4,14 +4,30 @@
 
 ## Inara v1.1.2
 
+Released 2024-10-24.
+
+All contributions by Juanjo Bazán.
+
+- Fix CrossRef XML output. The affiliations element is moved
+  before the ORCID element.
+
+## Inara v1.1.2
+
 Released 2024-10-23.
 
-- Fix bug in the height of ROR logos (https://github.com/openjournals/inara/pull/90)
-- Fix bug in application of `prepare-affiliations.lua` filter (Charles Tapley Hoyt)
-- Fix a bug in the injection of `SOURCE_DATE_EPOCH` in tests (https://github.com/openjournals/inara/pull/86)
-- Fix test files (https://github.com/openjournals/inara/pull/86, https://github.com/openjournals/inara/pull/85)
-- Switch testing to work on tex instead of pdf (https://github.com/openjournals/inara/pull/82)
-- Refactor testing folders (https://github.com/openjournals/inara/pull/84)
+All contributions by Charles Taplev Hovt.
+
+- Fix bug in the height of ROR logos.
+  (https://github.com/openjournals/inara/pull/90)
+- Fix bug in application of `prepare-affiliations.lua` filter.
+- Fix a bug in the injection of `SOURCE_DATE_EPOCH` in tests.
+  (https://github.com/openjournals/inara/pull/86)
+- Fix test files. (https://github.com/openjournals/inara/pull/86,
+  https://github.com/openjournals/inara/pull/85)
+- Switch testing to work on tex instead of pdf.
+  (https://github.com/openjournals/inara/pull/82)
+- Refactor testing folders.
+  (https://github.com/openjournals/inara/pull/84)
 
 ## Inara v1.1.1
 
