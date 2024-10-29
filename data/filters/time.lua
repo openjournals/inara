@@ -41,5 +41,8 @@ function Meta (meta)
 
   meta.submitted = format_date(meta.submitted_parts)
   meta.published = format_date(meta.published_parts)
+
+  meta.copyright = meta.copyright or {}
+  meta.copyright.year = meta.published_parts.year
   return meta
 end
