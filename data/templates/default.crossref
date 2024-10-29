@@ -49,11 +49,11 @@ $endif$
 $if(it.suffix)$
             <suffix>${it.suffix}</suffix>
 $endif$
-$if(it.orcid)$
-            <ORCID>https://orcid.org/${it.orcid}</ORCID>
-$endif$
 $if(it.afxml)$
             $it.afxml$
+$endif$
+$if(it.orcid)$
+            <ORCID>https://orcid.org/${it.orcid}</ORCID>
 $endif$
           </person_name>
 $endfor$
@@ -67,11 +67,11 @@ $endif$
 $if(it.suffix)$
             <suffix>${it.suffix}</suffix>
 $endif$
-$if(it.orcid)$
-            <ORCID>https://orcid.org/${it.orcid}</ORCID>
-$endif$
 $if(it.afxml)$
             $it.afxml$
+$endif$
+$if(it.orcid)$
+            <ORCID>https://orcid.org/${it.orcid}</ORCID>
 $endif$
           </person_name>
 $endfor$
