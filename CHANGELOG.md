@@ -2,6 +2,10 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
+## UNRELEASED
+
+- Support for annotating author roles with the Contribution Role Taxonomy (CRediT) (https://github.com/openjournals/inara/pull/87)
+
 ## Inara v1.1.3
 
 Released 2024-10-24.
