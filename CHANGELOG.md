@@ -2,6 +2,14 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
+## Inara v1.1.4
+
+Released 2024-11-06.
+
+- HTML-escape institution names in CrossRef XML.
+- Set copyright year to the year in which the article was
+  publishing.
+
 ## Inara v1.1.3
 
 Released 2024-10-24.
