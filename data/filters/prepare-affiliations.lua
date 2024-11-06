@@ -10,10 +10,14 @@ local function prepare_affiliations (meta)
     for i, affiliation_index in ipairs(author.affiliation) do
         affiliation_index = tonumber(pandoc.utils.stringify(affiliation_index))
         local affiliation = meta.affiliations[affiliation_index]
+        local function html_escape(str)
+          local doc = pandoc.Pandoc{pandoc.Str(str)}
+          return pandoc.write(doc, 'html')
+        end
         xml = xml.. "\n  <institution><institution_name>"
         for _, v in ipairs(affiliation.name) do
           if v.text then
-            xml = xml .. v.text
+            xml = xml .. html_escape(v.text)
           else
             xml = xml .. " "
           end
