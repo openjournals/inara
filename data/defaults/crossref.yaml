@@ -1,3 +1,4 @@
+columns: 10000
 to: html5
 output-file: paper.crossref
 html-math-method: mathjax

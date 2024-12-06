@@ -37,8 +37,7 @@
       </journal_issue>
       <journal_article publication_type="full_text">
         <titles>
-          <title>Article Writing with Markdown and the Open Journals
-publishing pipeline</title>
+          <title>Article Writing with Markdown and the Open Journals publishing pipeline</title>
         </titles>
         <contributors>
           <person_name sequence="first" contributor_role="author">
@@ -108,69 +107,45 @@ publishing pipeline</title>
         </doi_data>
         <citation_list>
           <citation key="upper1974">
-            <article_title>The unsuccessful self-treatment of a case of
-"writer’s block"</article_title>
+            <article_title>The unsuccessful self-treatment of a case of "writer’s block"</article_title>
             <author>Upper</author>
-            <journal_title>Journal of Applied Behavior
-Analysis</journal_title>
+            <journal_title>Journal of Applied Behavior Analysis</journal_title>
             <issue>3</issue>
             <volume>7</volume>
             <doi>10.1901/jaba.1974.7-497a</doi>
             <issn>0021-8855</issn>
             <cYear>1974</cYear>
-            <unstructured_citation>Upper, D. (1974). The unsuccessful
-self-treatment of a case of "writer’s block". Journal of Applied
-Behavior Analysis, 7(3), 497.
-https://doi.org/10.1901/jaba.1974.7-497a</unstructured_citation>
+            <unstructured_citation>Upper, D. (1974). The unsuccessful self-treatment of a case of "writer’s block". Journal of Applied Behavior Analysis, 7(3), 497. https://doi.org/10.1901/jaba.1974.7-497a</unstructured_citation>
           </citation>
           <citation key="smith2018">
-            <article_title>Journal of open source software (JOSS):
-Design and first-year review</article_title>
+            <article_title>Journal of open source software (JOSS): Design and first-year review</article_title>
             <author>Smith</author>
             <journal_title>PeerJ Computer Science</journal_title>
             <volume>4</volume>
             <doi>10.7717/peerj-cs.147</doi>
             <issn>2376-5992</issn>
             <cYear>2018</cYear>
-            <unstructured_citation>Smith, A. M., Niemeyer, K. E., Katz,
-D. S., Barba, L. A., Githinji, G., Gymrek, M., Huff, K. D., Madan, C.
-R., Cabunoc Mayes, A., Moerman, K. M., Prins, P., Ram, K., Rokem, A.,
-Teal, T. K., Valls Guimera, R., &amp; Vanderplas, J. T. (2018). Journal
-of open source software (JOSS): Design and first-year review. PeerJ
-Computer Science, 4, e147.
-https://doi.org/10.7717/peerj-cs.147</unstructured_citation>
+            <unstructured_citation>Smith, A. M., Niemeyer, K. E., Katz, D. S., Barba, L. A., Githinji, G., Gymrek, M., Huff, K. D., Madan, C. R., Cabunoc Mayes, A., Moerman, K. M., Prins, P., Ram, K., Rokem, A., Teal, T. K., Valls Guimera, R., &amp; Vanderplas, J. T. (2018). Journal of open source software (JOSS): Design and first-year review. PeerJ Computer Science, 4, e147. https://doi.org/10.7717/peerj-cs.147</unstructured_citation>
           </citation>
           <citation key="krewinkel2017">
-            <article_title>Formatting open science: Agilely creating
-multiple document formats for academic manuscripts with pandoc
-scholar</article_title>
+            <article_title>Formatting open science: Agilely creating multiple document formats for academic manuscripts with pandoc scholar</article_title>
             <author>Krewinkel</author>
             <journal_title>PeerJ Computer Science</journal_title>
             <volume>3</volume>
             <doi>10.7717/peerj-cs.112</doi>
             <issn>2376-5992</issn>
             <cYear>2017</cYear>
-            <unstructured_citation>Krewinkel, A., &amp; Winkler, R.
-(2017). Formatting open science: Agilely creating multiple document
-formats for academic manuscripts with pandoc scholar. PeerJ Computer
-Science, 3, e112.
-https://doi.org/10.7717/peerj-cs.112</unstructured_citation>
+            <unstructured_citation>Krewinkel, A., &amp; Winkler, R. (2017). Formatting open science: Agilely creating multiple document formats for academic manuscripts with pandoc scholar. PeerJ Computer Science, 3, e112. https://doi.org/10.7717/peerj-cs.112</unstructured_citation>
           </citation>
           <citation key="yaml_website">
             <article_title>The Official YAML Web Site</article_title>
             <cYear>2022</cYear>
-            <unstructured_citation>The Official YAML Web Site. (2022,
-April 19). https://yaml.org/</unstructured_citation>
+            <unstructured_citation>The Official YAML Web Site. (2022, April 19). https://yaml.org/</unstructured_citation>
           </citation>
           <citation key="pdfa3">
-            <article_title>Document management – electronic document
-file format for long-term preservation – part 3: Use of ISO 32000-1 with
-support for embedded files (PDF/A-3)</article_title>
+            <article_title>Document management – electronic document file format for long-term preservation – part 3: Use of ISO 32000-1 with support for embedded files (PDF/A-3)</article_title>
             <cYear>2012</cYear>
-            <unstructured_citation>Document management – electronic
-document file format for long-term preservation – part 3: Use of ISO
-32000-1 with support for embedded files (PDF/A-3). (2012). [Standard].
-International Organization for Standardization.</unstructured_citation>
+            <unstructured_citation>Document management – electronic document file format for long-term preservation – part 3: Use of ISO 32000-1 with support for embedded files (PDF/A-3). (2012). [Standard]. International Organization for Standardization.</unstructured_citation>
           </citation>
         </citation_list>
       </journal_article>
