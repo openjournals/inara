@@ -82,8 +82,12 @@ if [ "$verbosity" -ge 1 ]; then
     printf 'article_info_option  : %s\n' "${article_info_option}"
 fi
 if [ "$verbosity" -ge 2 ]; then
-    printf "\nContent of metadata defaults file:\n"
-    cat "${article_info_file}"
+    if [ -n "${article_info_file}" ] && [ -f "${article_info_file}" ]; then
+        printf "\nContent of metadata defaults file:\n"
+        cat "${article_info_file}"
+    else
+        printf "No valid metadata defaults file specified.\n"
+    fi
 fi
 
 # All paths in the document are expected to be relative to the paper
