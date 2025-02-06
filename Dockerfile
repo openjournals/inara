@@ -1,4 +1,6 @@
-FROM pandoc/latex:3.2.0-alpine
+# WARNING: this PR contains changes to pandoc from https://github.com/jgm/pandoc/pull/10153
+# that aren't yet released. They should land in the 3.6.3 future version
+FROM pandoc/latex:3.6.3-alpine
 
 RUN apk add --no-cache ttf-hack
 
