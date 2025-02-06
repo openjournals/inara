@@ -2,6 +2,13 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
+## UNRELEASED
+
+- Support for annotating contributor roles with the Contribution Role Taxonomy (CRediT).
+  A text table is generated at the bottom of the PDF and preprint template containing
+  this information. As of https://github.com/jgm/pandoc/pull/10153, Pandoc will generate
+  conformant JATS containing contibutor roles. (https://github.com/openjournals/inara/pull/87)
+
 ## Inara v1.1.4
 
 Released 2024-11-06.

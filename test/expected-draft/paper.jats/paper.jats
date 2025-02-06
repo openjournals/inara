@@ -28,6 +28,16 @@ publishing pipeline</article-title>
 <surname>Krewinkel</surname>
 <given-names>Albert</given-names>
 </name>
+<role vocab="credit" degree-contribution="Equal"
+      vocab-identifier="https://credit.niso.org/"
+      vocab-term-identifier="https://credit.niso.org/contributor-roles/software/"
+      vocab-term="Software"
+>Software</role>
+<role vocab="credit
+      vocab-identifier="https://credit.niso.org/"
+      vocab-term-identifier="https://credit.niso.org/contributor-roles/methodology/"
+      vocab-term="Methodology"
+>Methodology</role>
 <email>albert@zeitkraut.de</email>
 <xref ref-type="aff" rid="aff-1"/>
 <xref ref-type="aff" rid="aff-2"/>
@@ -40,6 +50,11 @@ publishing pipeline</article-title>
 <surname>Bazán</surname>
 <given-names>Juanjo</given-names>
 </name>
+<role vocab="credit" degree-contribution="Equal"
+      vocab-identifier="https://credit.niso.org/"
+      vocab-term-identifier="https://credit.niso.org/contributor-roles/software/"
+      vocab-term="Software"
+>Software</role>
 <xref ref-type="aff" rid="aff-1"/>
 </contrib>
 <contrib contrib-type="author" equal-contrib="yes">
@@ -48,6 +63,16 @@ publishing pipeline</article-title>
 <surname>Smith</surname>
 <given-names>Arfon M.</given-names>
 </name>
+<role vocab="credit" degree-contribution="Equal"
+      vocab-identifier="https://credit.niso.org/"
+      vocab-term-identifier="https://credit.niso.org/contributor-roles/software/"
+      vocab-term="Software"
+>Software</role>
+<role vocab="credit" degree-contribution="Lead"
+      vocab-identifier="https://credit.niso.org/"
+      vocab-term-identifier="https://credit.niso.org/contributor-roles/supervision/"
+      vocab-term="Supervision"
+>Supervision</role>
 <xref ref-type="aff" rid="aff-1"/>
 <xref ref-type="aff" rid="aff-3"/>
 </contrib>
@@ -519,6 +544,106 @@ Software should use an OSI-approved license.
       surname: Nordmann</code>
       <p> </p>
     </sec>
+  </sec>
+  <sec id="contributor-roles">
+    <title>Contributor Roles</title>
+    <p>The
+    <ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles">Contribution
+    Role Taxonomy (CRediT)</ext-link> defines fourteen standard roles of
+    authors. Each author can be annotated with one or more contribution
+    roles.</p>
+    <list list-type="order">
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/conceptualization">conceptualization</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/data-curation">data-curation</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/formal-analysis">formal-analysis</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/funding-acquisition">funding-acquisition</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/investigation">investigation</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/methodology">methodology</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/project-administration">project-administration</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/resources">resources</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/software">software</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/supervision">supervision</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/validation">validation</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/visualization">visualization</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/writing-original-draft">writing-original-draft</ext-link></p>
+      </list-item>
+      <list-item>
+        <p><ext-link ext-link-type="uri" xlink:href="https://credit.niso.org/contributor-roles/writing-review-editing">writing-review-editing</ext-link></p>
+      </list-item>
+    </list>
+    <p>JATS also specifies three degrees which can be used to quantify
+    the impact of a contribution:</p>
+    <list list-type="order">
+      <list-item>
+        <p><monospace>Lead</monospace></p>
+      </list-item>
+      <list-item>
+        <p><monospace>Supporting</monospace></p>
+      </list-item>
+      <list-item>
+        <p><monospace>Equal</monospace> - for use if multiple equivalent
+        leads</p>
+      </list-item>
+    </list>
+    <p>Together, these can be used to identify which authors materially
+    contributed to the paper, such as through
+    <monospace>formal-analysis</monospace> or
+    <monospace>data-curation</monospace> and which authors contributed
+    immaterially, such as through <monospace>supervision</monospace>. It
+    also allows for saying if multiple people made the same kind of
+    contribution, who took the lead.</p>
+    <code language="yaml">authors:
+  - name: John Doe
+    affiliation: [ 1 ]
+    roles:
+      - credit: 'formal-analysis'
+        degree: 'lead'
+
+  - name: John Boss
+    affiliation: [ 1 ]
+    roles:
+      - credit: 'funding-acquisition'
+        degree: 'lead'
+      - credit: 'supervision'
+        degree: 'lead'</code>
+    <p>Roles are optional, and within roles, degrees are optional. It’s
+    possible to shorthand roles by using strings directly:</p>
+    <code language="yaml">authors:
+  - name: John Doe
+    affiliation: [ 1 ]
+    roles:
+      - 'formal-analysis'
+
+  - name: John Boss
+    affiliation: [ 1 ]
+    roles:
+      - 'funding-acquisition'
+      - 'supervision'</code>
   </sec>
   <sec id="affiliations">
     <title>Affiliations</title>
