@@ -18,3 +18,6 @@ filters:
     # do it here for that reason.
     type: lua
     path: orcid-uri.lua
+
+  - type: lua
+    path: prepare-credit.lua
