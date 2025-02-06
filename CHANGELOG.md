@@ -23,7 +23,7 @@ All contributions by Juanjo Bazán.
 
 Released 2024-10-23.
 
-All contributions by Charles Taplev Hovt.
+All contributions by Charles Tapley Hoyt.
 
 - Fix bug in the height of ROR logos.
   (https://github.com/openjournals/inara/pull/90)
