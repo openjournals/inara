@@ -484,9 +484,9 @@ The markup in Markdown should be semantic, not presentations. The table
 below gives a small example.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3014}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3562}}
-  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3288}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3014}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3562}}
+  >{\centering\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3288}}@{}}
 \caption{Basic inline markup and examples.}\tabularnewline
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
@@ -567,12 +567,12 @@ can sometimes be useful to give images an explicit height and/or width,
 e.g.~when adding an image as part of a paragraph. The Markdown
 \texttt{!{[}Nyan\ cat{]}(nyan-cat.png)\{height="9pt"\}} includes the
 image ``nyan-cat.png''
-\includegraphics[width=\textwidth,height=0.125in]{images/nyan-cat.png}
+\includegraphics[width=\linewidth,height=0.125in,keepaspectratio]{images/nyan-cat.png}
 while scaling it to a height of 9\,pt.
 
 \begin{figure}
 \centering
-\includegraphics{images/mandrill.jpg}
+\pandocbounded{\includegraphics[keepaspectratio]{images/mandrill.jpg}}
 \caption{The ``Mandrill'' standard test image, sometimes erroneously
 called ``Baboon'', is a popular sample photo and used in image
 processing research.}\label{fig:mandrill}
@@ -885,7 +885,7 @@ are supported. In a nutshell, elements that were marked with
 
 \begin{figure}
 \centering
-\includegraphics[width=1\textwidth,height=\textheight]{images/sylt.jpg}
+\includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{images/sylt.jpg}
 \caption{View of coastal dunes in a nature reserve on Sylt, an island in
 the North Sea. Sylt (Danish: \emph{Slid}) is Germany's northernmost
 island.}\label{sylt}
@@ -909,11 +909,11 @@ type and number of the referenced float. E.g., in this document
 gives ``\ref{proglangs}''.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1493}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2537}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2836}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1791}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1343}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1493}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2537}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2836}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1791}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1343}}@{}}
 \caption{Comparison of programming languages used in the publishing
 tool. {}}\tabularnewline
 \toprule\noalign{}
