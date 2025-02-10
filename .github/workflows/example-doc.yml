@@ -6,10 +6,12 @@ on:
     paths:
       - 'example/*'
       - 'data/templates/*'
+      - "Dockerfile"
   pull_request:
     paths:
       - 'example/*'
       - 'data/templates/*'
+      - "Dockerfile"
     # Build, but don't push on pull requests
 
 jobs:
@@ -38,7 +40,7 @@ jobs:
               -o "jats,contextpdf,crossref,preprint,tex,pdf" example/paper.md
 
       - name: Upload draft PDF
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: draft
           path: |
@@ -58,7 +60,7 @@ jobs:
               -o "jats,contextpdf,crossref,preprint,tex,pdf" -p example/paper.md
 
       - name: Upload production PDF
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: production
           path: |
