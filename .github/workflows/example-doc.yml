@@ -33,11 +33,12 @@ jobs:
 
       - name: Build draft PDF
         run: >-
+          cd example
           docker run \
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               inara:edgiest \
-              -o "jats,contextpdf,crossref,preprint,tex,pdf" example/paper.md
+              -o "jats,contextpdf,crossref,preprint,tex,pdf" paper.md
 
       - name: Upload draft PDF
         uses: actions/upload-artifact@v4
