@@ -33,7 +33,7 @@ jobs:
 
       - name: Build draft PDF
         run: >-
-          cd example
+          cd example && \
           docker run \
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
