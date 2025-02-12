@@ -33,8 +33,7 @@ jobs:
 
       - name: Build draft PDF
         run: >-
-          cd example && \
-          docker run \
+          cd example && docker run \
               --volume "$(pwd):/data" \
               --user "$(id -u):$(id -g)" \
               inara:edgiest \
