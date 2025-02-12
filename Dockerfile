@@ -1,5 +1,5 @@
-# Released 2024-05-11
-FROM pandoc/latex:3.2.0-alpine
+# Released 2025-02-10
+FROM pandoc/latex:3.6.3-alpine
 
 RUN apk add --no-cache ttf-hack
 
