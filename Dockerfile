@@ -4,7 +4,8 @@ FROM pandoc/latex:3.2.0-alpine
 RUN apk add --no-cache ttf-hack
 
 # Install additional LaTeX packages
-RUN tlmgr update --self && tlmgr install \
+RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final && \ 
+  tlmgr update --self && tlmgr install \
   algorithmicx \
   algorithms \
   collection-context \
