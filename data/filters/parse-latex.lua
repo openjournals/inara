@@ -7,7 +7,11 @@ function Pandoc (doc)
     return nil  -- do nothing
   end
 
-  return doc:walk {
+  -- The `latex` metadata field is special, raw LaTeX is always allowed in
+  -- there.
+  local latex = doc.meta.latex
+
+  doc = doc:walk {
     RawBlock = function (raw)
       if raw.format:match 'tex' then
         return pandoc.read(
@@ -29,4 +33,8 @@ function Pandoc (doc)
       end
     end
   }
+
+  -- Restore the `latex` metadata field.
+  doc.meta.latex = latex
+  return doc
 end

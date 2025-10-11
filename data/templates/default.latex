@@ -472,6 +472,9 @@ $endif$
 \marginpar{
 
   \begin{flushleft}
+$if(latex.before-metadata)$
+  ${latex.before-metadata}
+$endif$
   %\hrule
   \sffamily\small
 
