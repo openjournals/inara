@@ -291,7 +291,7 @@ a Creative Commons Attribution 4.0 International License (CC BY
       <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mi>x</mml:mi></mml:math></alternatives></inline-formula>
       or a short formula like <inline-formula><alternatives>
       <tex-math><![CDATA[\sin \frac{\pi}{2}]]></tex-math>
-      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mo>sin</mml:mo><mml:mfrac><mml:mi>π</mml:mi><mml:mn>2</mml:mn></mml:mfrac></mml:mrow></mml:math></alternatives></inline-formula>,
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>sin</mml:mi><mml:mo>&#8289;</mml:mo><mml:mfrac><mml:mi>π</mml:mi><mml:mn>2</mml:mn></mml:mfrac></mml:mrow></mml:math></alternatives></inline-formula>,
       we would write <monospace>$x$</monospace> and
       <monospace>$\sin \frac{\pi}{2}$</monospace>, respectively.
       However, for more complex formulæ, display style is more
@@ -405,7 +405,7 @@ Software should use an OSI-approved license.
           <p>In a process without transfer of matter, the change in
           internal energy, <inline-formula><alternatives>
           <tex-math><![CDATA[\Delta U]]></tex-math>
-          <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>U</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>,
+          <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi mathvariant="normal">Δ</mml:mi><mml:mi>U</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>,
           of a thermodynamic system is equal to the energy gained as
           heat, <inline-formula><alternatives>
           <tex-math><![CDATA[Q]]></tex-math>
@@ -416,7 +416,7 @@ Software should use an OSI-approved license.
           done by the system on its surroundings.
           <disp-formula><alternatives>
           <tex-math><![CDATA[\Delta U = Q - W]]></tex-math>
-          <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>U</mml:mi><mml:mo>=</mml:mo><mml:mi>Q</mml:mi><mml:mo>−</mml:mo><mml:mi>W</mml:mi></mml:mrow></mml:math></alternatives></disp-formula></p>
+          <mml:math display="block" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi mathvariant="normal">Δ</mml:mi><mml:mi>U</mml:mi><mml:mo>=</mml:mo><mml:mi>Q</mml:mi><mml:mo>−</mml:mo><mml:mi>W</mml:mi></mml:mrow></mml:math></alternatives></disp-formula></p>
         </list-item>
       </list>
     </sec>

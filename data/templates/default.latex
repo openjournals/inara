@@ -1,6 +1,6 @@
+$passoptions.latex()$
 \documentclass[10pt,a4paper,onecolumn]{article}
 \usepackage{marginnote}
-\usepackage{graphicx}
 \usepackage[rgb,svgnames]{xcolor}
 \usepackage{authblk,etoolbox}
 \usepackage{titlesec}
@@ -8,6 +8,8 @@
 \usepackage{tikz}
 \usepackage[pdfa]{hyperref}
 \usepackage{hyperxmp}
+$-- Our hypersetup is more complicated than the default,          --$
+$-- so we cannot use the “hypersetup” partial provided by pandoc. --$
 \hypersetup{%
     unicode=true,
     pdfapart=3,
@@ -67,6 +69,8 @@ $endif$
 \usepackage{seqsplit}
 \usepackage{xstring}
 
+$common.latex()$
+
 \usepackage{float}
 \let\origfigure\figure
 \let\endorigfigure\endfigure
@@ -75,44 +79,6 @@ $endif$
 } {
     \endorigfigure
 }
-
-\usepackage{fixltx2e} % provides \textsubscript
-
-$if(csl-refs)$
-% definitions for citeproc citations
-\NewDocumentCommand\citeproctext{}{}
-\NewDocumentCommand\citeproc{mm}{%
-  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
-\makeatletter
- % allow citations to break across lines
- \let\@cite@ofmt\@firstofone
- % avoid brackets around text for \cite:
- \def\@biblabel#1{}
- \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
-\makeatother
-\newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
-\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
- {\begin{list}{}{%
-  \setlength{\itemindent}{0pt}
-  \setlength{\leftmargin}{0pt}
-  \setlength{\parsep}{0pt}
-  % turn on hanging indent if param 1 is 1
-  \ifodd #1
-   \setlength{\leftmargin}{\cslhangindent}
-   \setlength{\itemindent}{-1\cslhangindent}
-  \fi
-  % set entry spacing
-  \setlength{\itemsep}{#2\baselineskip}}}
- {\end{list}}
-\usepackage{calc}
-\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
-\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
-\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-$endif$
 
 % --- Page layout -------------------------------------------------------------
 \usepackage[top=3.5cm, bottom=3cm, right=1.5cm, left=1.0cm,
@@ -245,31 +211,14 @@ $endif$
 \renewcommand\Affilfont{\sffamily\small\mdseries}
 \setlength{\affilsep}{1em}
 
+$-- Taken from fonts.latex and specialized for LuaLaTeX --$
+\usepackage{fontspec}
+\defaultfontfeatures{Scale=MatchLowercase}
+\defaultfontfeatures[\sffamily]{Ligatures=TeX}
+\defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
-  \usepackage[utf8]{inputenc}
-
-\else % if luatex or xelatex
-  \ifxetex
-    \usepackage{mathspec}
-    \usepackage{fontspec}
-
-  \else
-    \usepackage{fontspec}
-  \fi
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\sffamily]{Ligatures=TeX}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
-
-\fi
-% use upquote if available, for straight quotes in verbatim environments
-\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-}{}
+% Default pandoc font settings
+$font-settings.latex()$
 
 %% Font settings
 \usepackage{fontsetup} % Lazy way to get proper Greek lowercase glyphs
@@ -281,64 +230,7 @@ $if(colorlinks)$
 \PassOptionsToPackage{usenames,dvipsnames}{color} % color is loaded by hyperref
 $endif$
 \urlstyle{same}  % don't use monospace font for urls
-$if(lang)$
-\ifLuaTeX
-\usepackage[bidi=basic]{babel}
-\else
-\usepackage[bidi=default]{babel}
-\fi
-\babelprovide[main,import]{$babel-lang$}
-$for(babel-otherlangs)$
-\babelprovide[import]{$babel-otherlangs$}
-$endfor$
-% get rid of language-specific shorthands (see #6817):
-\let\LanguageShortHands\languageshorthands
-\def\languageshorthands#1{}
-$endif$
-$if(natbib)$
-\usepackage{natbib}
-\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
-$endif$
-$if(biblatex)$
-\usepackage$if(biblio-style)$[style=$biblio-style$]$endif${biblatex}
-$if(biblatexoptions)$\ExecuteBibliographyOptions{$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$}$endif$
-$for(bibliography)$
-\addbibresource{$bibliography$}
-$endfor$
-$endif$
-$if(listings)$
-\usepackage{listings}
-$endif$
-$if(lhs)$
-\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
-$endif$
-$if(highlighting-macros)$
-$highlighting-macros$
-$endif$
-$if(verbatim-in-note)$
-\usepackage{fancyvrb}
-\VerbatimFootnotes % allows verbatim text in footnotes
-$endif$
-$if(tables)$
-\usepackage{longtable,booktabs,array}
-$endif$
-$if(graphics)$
-\usepackage{graphicx}
-\makeatletter
-\newsavebox\pandoc@box
-\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
-  \sbox\pandoc@box{#1}%
-  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
-  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
-  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
-  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
-  \else\usebox{\pandoc@box}%
-  \fi%
-}
-% Set default figure placement to htbp
-\def\fps@figure{htbp}
-\makeatother
-$endif$
+
 $-- add watermark and linenumbers unless this is the final (non-draft) version
 $if(draft)$
 \usepackage{lineno}
@@ -346,76 +238,6 @@ $if(draft)$
 \usepackage{draftwatermark}
 $endif$
 
-$if(graphics)$
-\usepackage{graphicx,grffile}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-$endif$
-$if(links-as-notes)$
-% Make links footnotes instead of hotlinks:
-\renewcommand{\href}[2]{#2\footnote{\url{#1}}}
-$endif$
-$if(strikeout)$
-\usepackage[normalem]{ulem}
-% avoid problems with \sout in headers with hyperref:
-\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
-$endif$
-$if(indent)$
-$else$
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-$endif$
-$if(strikeout)$
-$-- also used for underline
-\usepackage{soul}
-$endif$
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-$if(numbersections)$
-\setcounter{secnumdepth}{5}
-$else$
-\setcounter{secnumdepth}{0}
-$endif$
-$if(subparagraph)$
-$else$
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-$endif$
-$if(dir)$
-\ifxetex
-  % load bidi as late as possible as it modifies e.g. graphicx
-  $if(latex-dir-rtl)$
-  \usepackage[RTLdocument]{bidi}
-  $else$
-  \usepackage{bidi}
-  $endif$
-\fi
-\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
-  \TeXXeTstate=1
-  \newcommand{\RL}[1]{\beginR #1\endR}
-  \newcommand{\LR}[1]{\beginL #1\endL}
-  \newenvironment{RTL}{\beginR}{\endR}
-  \newenvironment{LTR}{\beginL}{\endL}
-\fi
-$endif$
 $for(header-includes)$
 $header-includes$
 $endfor$
