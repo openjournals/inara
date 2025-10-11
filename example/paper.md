@@ -462,3 +462,14 @@ A common method for PDF generation is to go via LaTeX. However, support
 for tagging -- a requirement for accessible PDFs -- is not readily
 available for LaTeX. The current method used ConTeXt, to produce tagged
 PDF/A-3, a format suited for archiving [@pdfa3].
+
+
+``` {=comment}
+The below snippet can be added to the YAML metadata if the placement of
+the metadata block in the margin needs manual adjustments.
+```
+
+---
+latex:
+  before-metadata: '`\vspace{0cm}`{=latex}'
+---
