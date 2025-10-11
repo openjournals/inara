@@ -1,10 +1,10 @@
-# Released 2024-06-24
-FROM pandoc/latex:3.2.1-alpine
+# Released 2025-03-16
+FROM pandoc/latex:3.6.4-alpine
 
 RUN apk add --no-cache ttf-hack
 
 # Install additional LaTeX packages
-RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final && \ 
+RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final && \
   tlmgr update --self && tlmgr install \
   algorithmicx \
   algorithms \
