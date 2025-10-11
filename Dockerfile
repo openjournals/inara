@@ -1,4 +1,4 @@
-# Released 2024-05-11
+# Released 2024-06-24
 FROM pandoc/latex:3.2.1-alpine
 
 RUN apk add --no-cache ttf-hack
