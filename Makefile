@@ -53,7 +53,7 @@ $(TARGET_FOLDER):
 
 .PHONY: docker-image
 docker-image: Dockerfile
-	docker build --tag $(IMAGE) .
+	docker build --force-rm --tag $(IMAGE) .
 
 push-docker-image:
 	docker push openjournals/inara
