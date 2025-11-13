@@ -511,7 +511,17 @@ $if(joss)$
   \begin{itemize}
   \setlength\itemsep{0em}
   $for(reviewers)$
+  $if(reviewers.name)$
+  $-- New format: reviewer object with name and optional orcid
+  $if(reviewers.orcid)$
+  \item \href{https://orcid.org/$reviewers.orcid$}{$reviewers.name$}\,\orcidlink{${reviewers.orcid}}
+  $else$
+  \item $reviewers.name$
+  $endif$
+  $else$
+  $-- Old format: simple string (GitHub handle)
   \item \href{https://github.com/$reviewers$}{@$reviewers$}
+  $endif$
   $endfor$
   \end{itemize}
   $endif$

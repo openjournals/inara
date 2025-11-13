@@ -438,8 +438,19 @@ $endif$
 
   {Reviewers}\\
 $for(reviewers)$
-  \useURL[$it$][https://github.com/$it$][][@$it$]
-  \from[$it$]
+$if(reviewers.name)$
+  $-- New format: reviewer object with name and optional orcid
+$if(reviewers.orcid)$
+  \useURL[reviewer-$i$][https://orcid.org/$reviewers.orcid$][][$reviewers.name$]
+  \from[reviewer-$i$] \orcidlink{$reviewers.orcid$}
+$else$
+  $reviewers.name$
+$endif$
+$else$
+  $-- Old format: simple string (GitHub handle)
+  \useURL[reviewer-$i$][https://github.com/$reviewers$][][@$reviewers$]
+  \from[reviewer-$i$]
+$endif$
 $sep$\\
 $endfor$
   \blank[big]
