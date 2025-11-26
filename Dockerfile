@@ -3,6 +3,11 @@ FROM pandoc/latex:3.2.1-alpine
 
 RUN apk add --no-cache ttf-hack
 
+# Install dependencies for diagrams
+RUN apk add --no-cache graphviz
+RUN apk add --no-cache nodejs npm
+RUN npm install -g @mermaid-js/mermaid-cli
+
 # Install additional LaTeX packages
 RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final && \ 
   tlmgr update --self && tlmgr install \
