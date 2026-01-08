@@ -1,0 +1,37 @@
+---
+title: 'Article Writing with Markdown and the Open Journals publishing pipeline'
+tags:
+  - reference
+  - example
+  - markdown
+  - publishing
+languages:
+  - Markdown
+authors:
+  - Albert Krewinkel
+  - Juanjo Bazán
+  - Arfon M. Smith
+doi: '10.21105/joss.00000'
+software_repository_url: 'https://github.com/openjournals/inara'
+review_issue_id: '00000'
+review_editor: 'Jane Q. Doe'
+# Enhanced reviewer format with names and ORCIDs
+reviewers:
+  - name: Single Source Publishing
+    orcid: 0000-0001-2345-6789
+  - given-names: Ilona
+    surname: Silverwood
+    orcid: 0000-0002-3456-7890
+  - name: Name Only Reviewer
+volume: '0'
+issue: '5'
+year: '2020'
+page: '00000'
+journal_alias: 'JOSS'
+journal_name: 'Journal of Open Source Software'
+software_review_url: 'https://github.com/openjournals/inara/issues'
+archive_doi: '10.5281/zenodo.00000000'
+
+submitted_at: '2020-01-01'
+published_at: '2020-05-23'
+---
