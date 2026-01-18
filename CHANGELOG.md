@@ -2,6 +2,14 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
+## Inara v1.3.0
+
+Released 2026-01-18.
+
+- Switch to `pandoc/latex:3.6.4`.
+
+- Use pandoc's partials for common code in LaTeX templates.
+
 ## Inara v1.2.0
 
 Released 2025-10-11.
