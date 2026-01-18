@@ -2,6 +2,19 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
+## Inara v1.2.0
+
+Released 2025-10-11.
+
+- Force `tlmgr` to use 2024 packages. (Agah)
+
+- Update example documentation with build workflow. (Charles Tapley
+  Hoyt)
+
+- Allow to add raw LaTeX in sidebar via metadata.
+
+- Switch to `pandoc/latex:3.2.1`.
+
 ## Inara v1.1.4
 
 Released 2024-11-06.
