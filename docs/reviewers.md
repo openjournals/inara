@@ -110,7 +110,7 @@ Reviewers:
 **Without ORCID:**
 ```
 Reviewers:
-• Anonymous Reviewer
+• Review Name (no ORCID)
 ```
 (Plain text, no link)
 
