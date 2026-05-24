@@ -33,8 +33,9 @@ COPY ./fonts/libre-franklin $OSFONTDIR/libre-franklin
 
 RUN TERM=dumb luaotfload-tool --update \
   && chmod -R o+w /opt/texlive/texdir/texmf-var \
-  && apk add --no-cache ttf-opensans \
+  && apk add --no-cache ttf-opensans font-noto-cjk \
   && fc-cache -sfv $OSFONTDIR/libre-franklin \
+  && luaotfload-tool --update \
   && mtxrun --generate \
   && mtxrun --script font --reload
 
