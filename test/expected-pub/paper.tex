@@ -339,6 +339,18 @@ publishing pipeline. \emph{Journal of Open Source Software},
 }{}
 
 %% Font settings
+% Register a CJK fallback font for LuaLaTeX so that CJK characters in author
+% names (and other text) render instead of being silently dropped. The fallback
+% must be declared before fontsetup loads the New CM fonts so that every font
+% defined by fontsetup inherits it via \defaultfontfeatures+.
+\ifLuaTeX
+  \directlua{
+    luaotfload.add_fallback("cjk_fallback", {
+      "Noto Sans CJK SC:mode=harf;",
+    })
+  }
+  \defaultfontfeatures+{RawFeature={fallback=cjk_fallback}}
+\fi
 \usepackage{fontsetup} % Lazy way to get proper Greek lowercase glyphs
 
 % Use Hack https://sourcefoundry.org/hack/
