@@ -7,14 +7,27 @@ authors:
     affiliation: "1, 2, 4"
     orcid: 0000-0002-9455-0796
     corresponding: true
+    roles:
+      - credit: software
+        degree: equal
+      - 'methodology'
   - name: Juanjo Bazán
     orcid: 0000-0001-7699-3983
     affiliation: [1]
     equal-contrib: true
+    roles:
+      - credit: software
+        degree: equal
   - name: Arfon M. Smith
     orcid: 0000-0002-3957-2474
     affiliation: [1, 3]
     equal-contrib: true
+    roles:
+      - credit: software
+        degree: equal
+      - credit: supervision
+        degree: lead
+
 affiliations:
   - index: 1
     name: Open Journals
@@ -364,6 +377,72 @@ authors:
   <!--     literal: 立花 瀧 -->
   <!--     given-names: 瀧 -->
   <!--     surname: 立花 -->
+
+## Contributor Roles
+
+The [Contribution Role Taxonomy (CRediT)](https://credit.niso.org/contributor-roles) defines
+fourteen standard roles of authors. Each author can be annotated with one or more contribution
+roles.
+
+1. [conceptualization](https://credit.niso.org/contributor-roles/conceptualization)
+2. [data-curation](https://credit.niso.org/contributor-roles/data-curation)
+3. [formal-analysis](https://credit.niso.org/contributor-roles/formal-analysis)
+4. [funding-acquisition](https://credit.niso.org/contributor-roles/funding-acquisition)
+5. [investigation](https://credit.niso.org/contributor-roles/investigation)
+6. [methodology](https://credit.niso.org/contributor-roles/methodology)
+7. [project-administration](https://credit.niso.org/contributor-roles/project-administration)
+8. [resources](https://credit.niso.org/contributor-roles/resources)
+9. [software](https://credit.niso.org/contributor-roles/software)
+10. [supervision](https://credit.niso.org/contributor-roles/supervision)
+11. [validation](https://credit.niso.org/contributor-roles/validation)
+12. [visualization](https://credit.niso.org/contributor-roles/visualization)
+13. [writing-original-draft](https://credit.niso.org/contributor-roles/writing-original-draft)
+14. [writing-review-editing](https://credit.niso.org/contributor-roles/writing-review-editing)
+
+JATS also specifies three degrees which can be used to quantify the impact of a contribution:
+
+1. `Lead`
+2. `Supporting`
+3. `Equal` - for use if multiple equivalent leads
+
+Together, these can be used to identify which authors materially contributed to the paper,
+such as through `formal-analysis` or `data-curation` and which authors contributed immaterially,
+such as through `supervision`. It also allows for saying if multiple people made the same
+kind of contribution, who took the lead.
+
+```yaml
+authors:
+  - name: John Doe
+    affiliation: [ 1 ]
+    roles:
+      - credit: 'formal-analysis'
+        degree: 'lead'
+
+  - name: John Boss
+    affiliation: [ 1 ]
+    roles:
+      - credit: 'funding-acquisition'
+        degree: 'lead'
+      - credit: 'supervision'
+        degree: 'lead'
+```
+
+Roles are optional, and within roles, degrees are optional. It's possible to shorthand
+roles by using strings directly:
+
+```yaml
+authors:
+  - name: John Doe
+    affiliation: [ 1 ]
+    roles:
+      - 'formal-analysis'
+
+  - name: John Boss
+    affiliation: [ 1 ]
+    roles:
+      - 'funding-acquisition'
+      - 'supervision'
+```
 
 ## Affiliations
 
