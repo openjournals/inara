@@ -2,6 +2,12 @@
 
 `Inara` uses [SemVer][] (semantic versioning).
 
+## Inara v1.3.1
+
+Released 2026-06-10.
+
+- Add configuration for RSECon26
+
 ## Inara v1.3.0
 
 Released 2026-01-18.
