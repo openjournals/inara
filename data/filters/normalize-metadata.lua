@@ -8,6 +8,10 @@ local normalize_authors = dofile(
   path.join{scriptdir, 'normalize', 'authors.lua'}
 )
 
+local normalize_reviewers = dofile(
+  path.join{scriptdir, 'normalize', 'reviewers.lua'}
+)
+
 local List = require 'pandoc.List'
 local stringify = pandoc.utils.stringify
 
@@ -56,6 +60,10 @@ function Meta (meta)
   meta = normalize_authors(meta)
   meta.affiliation = meta.affiliations
 
+  -- Normalize reviewers: handles both old format (GitHub handles) and new
+  -- format (objects with name, orcid, url, etc.)
+  meta = normalize_reviewers(meta)
+
   -- ensure 'article' table is available
   meta.article = meta.article or {}
   -- We take the variable part of the doi as publisher id
@@ -77,11 +85,6 @@ function Meta (meta)
       or 'N/A'
     -- unset base key
     meta[basekey] = nil
-  end
-
-  -- Remove leading '@' from reviewers
-  for i, reviewer in ipairs(meta.reviewers) do
-    meta.reviewers[i] = stringify(reviewer):gsub('^@', '')
   end
 
   -- Unset author notes unless it contains values: The existence of this
