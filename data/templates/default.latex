@@ -221,6 +221,14 @@ $-- Taken from fonts.latex and specialized for LuaLaTeX --$
 $font-settings.latex()$
 
 %% Font settings
+% fontsetup >= 2.5.0 uses \newcommand (without guards) for circled-letter
+% symbols (\circledR, \circledS, ...), conflicting with prior definitions
+% from amssymb. Use a package hook to clear the two amssymb-defined commands
+% just before fontsetup loads, so fontsetup's \newcommand succeeds.
+\AddToHook{package/before/fontsetup}{%
+  \let\circledR\relax
+  \let\circledS\relax
+}
 \usepackage{fontsetup} % Lazy way to get proper Greek lowercase glyphs
 
 % Use Hack https://sourcefoundry.org/hack/
