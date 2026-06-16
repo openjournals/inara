@@ -127,6 +127,7 @@ for format in $(printf "%s" "$outformats" | sed -e 's/,/ /g'); do
 	      --variable="${JOURNAL}" \
         --variable=retraction:"$retraction" \
         --variable=draft:"$draft" \
+		--fail-if-warnings=true \
         --metadata=draft:"$draft" \
         --log="$logfile" \
         "$input_file" \
