@@ -281,6 +281,120 @@ Rendered:
    gained as heat, $Q$, less the thermodynamic work, $W$, done by the
    system on its surroundings. $$\Delta U = Q - W$$
 
+### Code examples
+
+Code examples can be written in fenced code blocks and highlighted with the provided language. 
+
+For example:
+
+```` 
+```python
+import shutil
+
+def hello_world():
+    # shutil.rmtree('/')
+    # on second thought
+    print('hello world')
+```
+````
+
+creates:
+
+```python
+import shutil
+
+def hello_world():
+    # shutil.rmtree('/')
+    # on second thought
+    print('hello world')
+```
+
+### Diagrams
+
+Diagrams[^diagrams] can be written within fenced code blocks using:
+
+[^diagrams]: Thanks to the [pandoc-ext/diagram](https://github.com/pandoc-ext/diagram/tree/main) pandoc filter
+
+- [`mermaid`](https://mermaid.js.org/)
+- `dot` ([graphviz](https://graphviz.org/))
+
+See the linked documentation for more information on available diagram types and syntax, particularly with mermaid which is under active development.
+
+For example, using mermaid:
+
+```` markdown
+``` mermaid
+%%| label: open_review
+%%| caption: Open Software Review: a state diagram
+stateDiagram-v2
+  direction LR
+  Ship: Ship It
+  [*] --> Code
+  Code --> Compile
+  Compile --> Bug
+  Bug --> Cry
+  Cry --> Code
+  Bug --> YOLO
+  YOLO --> Ship
+  Ship --> [*]
+```
+````
+
+Creates:
+
+``` mermaid
+%%| label: open_source
+%%| caption: Open Source: a state diagram
+stateDiagram-v2
+  direction LR
+  Ship: Ship It
+  [*] --> Code
+  Code --> Compile
+  Compile --> Bug
+  Bug --> Cry
+  Cry --> Code
+  Bug --> YOLO
+  YOLO --> Ship
+  Ship --> [*]
+```
+
+Similarly, with dot/graphviz:
+
+````markdown
+``` dot
+digraph {
+  rankdir=LR
+  submit -> read
+  subgraph cluster_review {
+      label="review"
+      read -> issue
+      issue -> PR
+      PR -> read
+  }
+  read -> lgtm
+  lgtm -> thanks[label="say thanks"]
+  thanks -> friends[label="make friends!"]
+}
+```
+````
+
+Creates:
+
+``` dot
+digraph {
+  rankdir=LR
+  submit -> read
+  subgraph cluster_review {
+      label="review"
+      read -> issue
+      issue -> PR
+      PR -> read
+  }
+  read -> lgtm
+  lgtm -> thanks[label="say thanks"]
+  thanks -> friends[label="make friends!"]
+}
+```
 
 # Article metadata
 
