@@ -72,7 +72,6 @@ variables:
     - location={footer,margin}
     - state=start
 
-  papersize: a4
   pdfa: 3a
   whitespace: none
   # Use the international standard
