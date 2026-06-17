@@ -421,7 +421,7 @@ number of the referenced float. E.g., in this document
 `\ref{proglangs}` gives "\ref{proglangs}".
 
 : Comparison of programming languages used in the publishing tool.
-  []{label="proglangs"}
+  []{#proglangs}
 
 | Language | Typing          | Garbage Collected | Evaluation | Created |
 |----------|:---------------:|:-----------------:|------------|---------|
