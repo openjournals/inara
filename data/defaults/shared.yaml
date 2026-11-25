@@ -17,6 +17,9 @@ filters:
     # Parse raw LaTeX
     path: parse-latex.lua
   - type: lua
+    # Remove CiTO properties from citation keys, e.g. [@usesMethodIn:key]
+    path: extract-cito.lua
+  - type: lua
     path: inline-cited-references.lua
   - type: citeproc
   - type: lua
