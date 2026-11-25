@@ -159,6 +159,13 @@ the [pandoc manual](https://pandoc.org/MANUAL#extension-citations)
 for additional features, including page locators, prefixes,
 suffixes, and suppression of author names in citations.
 
+A citation can also state *why* a work is cited, using the
+[Citation Typing Ontology](https://sparontologies.github.io/cito/current/cito.html)
+(CiTO). Put the CiTO property in front of the identifier, separated
+by a colon: `[@usesMethodIn:krewinkel2017]` creates the reference
+"[@usesMethodIn:krewinkel2017]", and the property is shown after the
+entry in the bibliography of the PDF.
+
 ### Mathematical Formulæ
 
 Equations and other math content has is marked by dollar signs (`$`). A
